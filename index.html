@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f7f4" />
+  <title>Biologia – życie pod lupą</title>
+  <style>
+    :root{
+      --bg:#f6f7f4;
+      --card:#ffffff;
+      --text:#1f2a24;
+      --muted:#667169;
+      --line:#d9dfda;
+      --accent:#3f6f59;
+      --accent-soft:#e7f0eb;
+      --accent-2:#355f7a;
+      --accent-2-soft:#e8f0f5;
+      --ok:#2f6b4a;
+      --ok-soft:#e6f3eb;
+      --bad:#8b4b45;
+      --bad-soft:#f7e9e7;
+      --warn:#8a6a27;
+      --shadow:0 10px 30px rgba(30,48,38,.08);
+      --radius:22px;
+      --safe-bottom:max(14px, env(safe-area-inset-bottom));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:ui-rounded, "SF Pro Rounded", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif}
+    body{padding-bottom:calc(76px + var(--safe-bottom))}
+    button{font:inherit}
+    .app{width:min(980px,100%);margin:0 auto}
+    .top{
+      position:sticky;top:0;z-index:20;
+      background:rgba(246,247,244,.94);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(217,223,218,.8);
+      padding:14px 18px 12px;
+    }
+    .top-row{display:flex;align-items:center;gap:12px}
+    .mark{
+      width:38px;height:38px;border-radius:12px;background:var(--accent);
+      display:grid;place-items:center;flex:0 0 auto;
+    }
+    .mark svg{width:24px;height:24px}
+    .title-wrap{min-width:0;flex:1}
+    h1{font-size:21px;line-height:1.1;margin:0;font-weight:800;letter-spacing:-.2px}
+    .subtitle{font-size:13px;color:var(--muted);margin-top:3px}
+    .progress-wrap{margin-top:10px;height:6px;background:#e5e9e6;border-radius:999px;overflow:hidden}
+    .progress-bar{height:100%;width:0;background:var(--accent);transition:width .25s ease}
+    main{padding:22px 18px 28px}
+    .screen{display:none;animation:fade .18s ease}
+    .screen.active{display:block}
+    @keyframes fade{from{opacity:.2;transform:translateY(3px)}to{opacity:1;transform:none}}
+    .hero{
+      background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);
+      border-radius:28px;padding:26px;
+    }
+    .hero h2{font-size:30px;line-height:1.05;margin:0 0 10px;letter-spacing:-.6px}
+    .hero p{font-size:17px;line-height:1.48;color:var(--muted);margin:0}
+    .hero .small{font-size:14px;margin-top:12px}
+    .section-title{font-size:20px;margin:26px 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .menu-card{
+      border:1px solid var(--line);background:var(--card);border-radius:20px;padding:18px;text-align:left;
+      min-height:130px;cursor:pointer;box-shadow:0 6px 20px rgba(30,48,38,.05);
+      transition:.15s ease; color:var(--text)
+    }
+    .menu-card:active{transform:scale(.985)}
+    .menu-card .num{
+      width:32px;height:32px;border-radius:10px;display:grid;place-items:center;
+      background:var(--accent-soft);color:var(--accent);font-weight:800;margin-bottom:14px
+    }
+    .menu-card strong{display:block;font-size:18px;line-height:1.2}
+    .menu-card span{display:block;color:var(--muted);font-size:14px;line-height:1.35;margin-top:6px}
+    .panel{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+      box-shadow:0 8px 24px rgba(30,48,38,.05)
+    }
+    .kicker{font-size:13px;color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+    .panel h2{margin:0 0 10px;font-size:26px;line-height:1.08}
+    .panel p{font-size:17px;line-height:1.5;margin:0;color:#334039}
+    .learn-card{min-height:390px;display:flex;flex-direction:column}
+    .learn-card .body{flex:1}
+    .mini-note{margin-top:16px;padding:14px 16px;background:var(--accent-soft);border-radius:16px;font-size:15px;line-height:1.42}
+    .pager{display:flex;gap:10px;justify-content:space-between;margin-top:20px}
+    .btn{
+      border:0;border-radius:15px;min-height:48px;padding:0 18px;font-weight:800;cursor:pointer;
+      background:var(--accent);color:white
+    }
+    .btn.secondary{background:#edf0ee;color:var(--text)}
+    .btn.blue{background:var(--accent-2)}
+    .btn.small{min-height:42px;padding:0 14px}
+    .btn:disabled{opacity:.35;cursor:default}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+    .concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+    .concept{
+      border:1px solid var(--line);border-radius:16px;padding:14px;background:#fbfcfb
+    }
+    .concept strong{display:block;font-size:16px;margin-bottom:4px}
+    .concept span{font-size:14px;color:var(--muted);line-height:1.35}
+    .life-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+    .life-item{border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+    .life-item b{font-size:15px}
+    .life-item div{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.3}
+    .levels{margin:20px 0 4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .level{padding:10px 13px;border-radius:14px;background:var(--accent-soft);font-weight:800;font-size:14px}
+    .arrow{color:#97a39c;font-weight:800}
+    .question-card{min-height:420px;display:flex;flex-direction:column}
+    .qmeta{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;color:var(--muted);font-size:13px}
+    .qtitle{font-size:24px;line-height:1.18;margin:0 0 18px}
+    .answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .answer{
+      border:1px solid var(--line);background:#fbfcfb;border-radius:16px;padding:14px 15px;text-align:left;
+      min-height:58px;cursor:pointer;font-weight:700;color:var(--text)
+    }
+    .answer:hover{border-color:#b7c2bb}
+    .answer.correct{background:var(--ok-soft);border-color:#99c3a9;color:#23543a}
+    .answer.wrong{background:var(--bad-soft);border-color:#d4aaa5;color:#70403b}
+    .answer:disabled{cursor:default}
+    .feedback{
+      margin-top:16px;border-radius:16px;padding:14px 16px;font-size:15px;line-height:1.4;display:none
+    }
+    .feedback.show{display:block}
+    .feedback.ok{background:var(--ok-soft);color:#24583b}
+    .feedback.bad{background:var(--bad-soft);color:#743f39}
+    .nextline{margin-top:auto;padding-top:18px;display:flex;justify-content:flex-end}
+    .pill{
+      display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#edf0ee;color:#536158;font-size:12px;font-weight:800
+    }
+    .build-area{
+      border:1px dashed #bfc8c1;border-radius:18px;padding:16px;margin:16px 0;background:#fbfcfb;min-height:84px
+    }
+    .build-seq{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .slot{
+      min-width:94px;text-align:center;padding:10px 12px;border-radius:13px;background:#edf2ee;color:#5d6b62;font-size:13px;font-weight:800
+    }
+    .slot.filled{background:var(--accent-soft);color:var(--accent)}
+    .option-row{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      border:1px solid var(--line);background:white;border-radius:14px;padding:10px 12px;font-weight:800;cursor:pointer
+    }
+    .chip:disabled{opacity:.4}
+    .score{
+      display:grid;place-items:center;width:122px;height:122px;border-radius:50%;
+      background:var(--accent-soft);color:var(--accent);font-size:34px;font-weight:900;margin:18px auto
+    }
+    .result{text-align:center}
+    .result h2{font-size:28px;margin-bottom:8px}
+    .result p{font-size:16px;color:var(--muted);line-height:1.45}
+    .wrong-list{margin:18px 0 0;padding:0;list-style:none;text-align:left}
+    .wrong-list li{padding:11px 0;border-top:1px solid var(--line);font-size:14px}
+    .nav{
+      position:fixed;z-index:50;left:0;right:0;bottom:0;
+      padding:8px 12px var(--safe-bottom);background:rgba(250,251,249,.96);backdrop-filter:blur(18px);
+      border-top:1px solid var(--line)
+    }
+    .nav-inner{width:min(760px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+    .nav button{
+      border:0;background:transparent;border-radius:13px;min-height:52px;color:#647168;font-weight:800;font-size:13px;cursor:pointer
+    }
+    .nav button.active{background:var(--accent-soft);color:var(--accent)}
+    .hint{font-size:13px;color:var(--muted);margin-top:10px}
+    .mode-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .mode-head h2{font-size:24px;margin:0}
+    .compact-select{border:1px solid var(--line);border-radius:12px;background:white;padding:9px 12px;font-weight:700;color:var(--text)}
+    .tiny{font-size:12px;color:var(--muted)}
+    @media (max-width:700px){
+      main{padding:16px 14px 22px}
+      .top{padding:12px 14px 10px}
+      .grid{grid-template-columns:1fr}
+      .menu-card{min-height:108px}
+      .hero{padding:22px 20px}
+      .hero h2{font-size:27px}
+      .panel{padding:18px}
+      .panel h2{font-size:24px}
+      .concepts,.life-grid,.answers{grid-template-columns:1fr}
+      .learn-card{min-height:calc(100dvh - 190px)}
+      .question-card{min-height:calc(100dvh - 190px)}
+      .qtitle{font-size:21px}
+      .answers .answer{min-height:54px}
+    }
+    @media (max-width:420px){
+      h1{font-size:18px}
+      .subtitle{font-size:12px}
+      .mark{width:34px;height:34px}
+      .panel{padding:16px}
+      .learn-card{min-height:calc(100dvh - 178px)}
+      .question-card{min-height:calc(100dvh - 178px)}
+      .levels{gap:6px}
+      .level{font-size:12px;padding:8px 10px}
+      .pager .btn{padding:0 14px}
+      .nav button{font-size:12px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="top-row">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M8 3h5v3H8zM10.5 6v4.4m-3.8 7.1h10.9M8.5 10.5h4.1c2.3 0 4.2 1.9 4.2 4.2v.7H7.2v-.7c0-1.4.5-2.7 1.3-3.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 20h12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="title-wrap">
+        <h1>Biologia – życie pod lupą</h1>
+        <div class="subtitle" id="topSubtitle">Lekcja 1: Biologia jako nauka</div>
+      </div>
+      <span class="pill" id="donePill">0/6</span>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  </header>
+
+  <main>
+    <section class="screen active" id="screen-start">
+      <div class="hero">
+        <h2>Najpierw zrozum, potem sprawdź.</h2>
+        <p>Materiał jest podzielony na krótkie części. Na ekranie jest tylko jedno zadanie naraz, a odpowiedź dostajesz od razu.</p>
+        <p class="small">Temat obejmuje cały materiał z przesłanych stron: zakres biologii, przyrodę ożywioną, cechy organizmów, wszystkie czynności życiowe, poziomy budowy i dziedziny biologii.</p>
+      </div>
+
+      <h3 class="section-title">Co będziemy ćwiczyć?</h3>
+      <div class="grid">
+        <button class="menu-card" data-go="learn" data-learn="0">
+          <div class="num">1</div><strong>Co bada biologia?</strong><span>Rozpoznaj, które pytania należą do biologii.</span>
+        </button>
+        <button class="menu-card" data-go="learn" data-learn="2">
+          <div class="num">2</div><strong>Co łączy organizmy?</strong><span>Dwie najważniejsze cechy wszystkich organizmów.</span>
+        </button>
+        <button class="menu-card" data-go="learn" data-learn="3">
+          <div class="num">3</div><strong>Czynności życiowe</strong><span>7 czynności i krótkie przykłady.</span>
+        </button>
+        <button class="menu-card" data-go="learn" data-learn="6">
+          <div class="num">4</div><strong>Poziomy budowy</strong><span>Od komórki do całego organizmu.</span>
+        </button>
+        <button class="menu-card" data-go="learn" data-learn="8">
+          <div class="num">5</div><strong>Dziedziny biologii</strong><span>Zoologia, botanika, anatomia i inne.</span>
+        </button>
+        <button class="menu-card" data-go="practice">
+          <div class="num">6</div><strong>Trening</strong><span>Różne typy zadań, krótki feedback po każdej odpowiedzi.</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-learn">
+      <div class="panel learn-card">
+        <div class="body" id="learnBody"></div>
+        <div class="pager">
+          <button class="btn secondary" id="learnPrev">Wstecz</button>
+          <button class="btn" id="learnNext">Dalej</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-practice">
+      <div class="mode-head">
+        <h2>Trening</h2>
+        <select id="practiceMode" class="compact-select" aria-label="Rodzaj ćwiczenia">
+          <option value="basics">Podstawy o organizmach</option>
+          <option value="bio">Biologia czy nie?</option>
+          <option value="life">Czynności życiowe</option>
+          <option value="flow">Co wchodzi, co wychodzi?</option>
+          <option value="structure">Poziomy budowy – pojęcia</option>
+          <option value="levels">Zbuduj organizm</option>
+          <option value="fields">Jaka to dziedzina?</option>
+        </select>
+      </div>
+      <div id="practiceArea"></div>
+    </section>
+
+    <section class="screen" id="screen-test">
+      <div id="testArea"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <button data-nav="start" class="active">Start</button>
+    <button data-nav="learn">Nauka</button>
+    <button data-nav="practice">Ćwicz</button>
+    <button data-nav="test">Test</button>
+  </div>
+</nav>
+
+<script>
+(() => {
+  const state = {
+    screen:'start',
+    learnIndex:0,
+    completed:new Set(),
+    practiceMode:'basics',
+    practiceIndex:0,
+    practiceAnswered:false,
+    practiceCorrect:0,
+    practiceTotal:0,
+    levelsStep:0,
+    levelsKind:'animal',
+    testIndex:0,
+    testScore:0,
+    testWrong:[],
+    testAnswered:false,
+    testSet:[]
+  };
+
+  const learnPages = [
+    {
+      kicker:'1 z 9 · Czym zajmuje się biologia?',
+      title:'Biologia bada organizmy i ich życie.',
+      html:`
+        <p>Biologia zajmuje się <b>budową</b> i <b>czynnościami życiowymi</b> wszystkich organizmów.</p>
+        <div class="concepts">
+          <div class="concept"><strong>Budowa</strong><span>Jak jest zbudowany organizm?</span></div>
+          <div class="concept"><strong>Czynności życiowe</strong><span>Jak organizm odżywia się, oddycha, rośnie i wykonuje inne czynności?</span></div>
+          <div class="concept"><strong>Zależności</strong><span>Jak organizmy wpływają na siebie, np. przez drapieżnictwo, pasożytnictwo i roślinożerność?</span></div>
+          <div class="concept"><strong>Środowisko</strong><span>Jak temperatura, światło i inne warunki wpływają na organizmy?</span></div>
+        </div>
+        <div class="mini-note">Biolodzy sprawdzają też, jak organizmy są <b>przystosowane do życia w określonych warunkach</b> i jak reagują na zmiany środowiska.</div>`
+    },
+    {
+      kicker:'2 z 9 · Przyroda ożywiona',
+      title:'Biologia dotyczy ożywionej części przyrody.',
+      html:`
+        <p>Do organizmów należą między innymi <b>bakterie, protisty, grzyby, rośliny i zwierzęta</b>, w tym człowiek.</p>
+        <div class="concepts">
+          <div class="concept"><strong>Ożywione</strong><span>bakteria, grzyb, drzewo, kot, człowiek</span></div>
+          <div class="concept"><strong>Nieożywione</strong><span>skała, woda, powietrze, światło</span></div>
+        </div>
+        <div class="mini-note"><b>Z ramki „Czy wiesz, że?”:</b> nazwa „biologia” pochodzi od greckich słów <i>bios</i> – „życie” oraz <i>logos</i> – „słowo”.</div>`
+    },
+    {
+      kicker:'3 z 9 · Cechy organizmów',
+      title:'Wszystkie organizmy mają dwie wspólne cechy.',
+      html:`
+        <div class="concepts">
+          <div class="concept"><strong>1. Budowa komórkowa</strong><span>Każdy organizm jest zbudowany z co najmniej jednej komórki. Komórka jest podstawową jednostką budowy organizmu.</span></div>
+          <div class="concept"><strong>2. Czynności życiowe</strong><span>Wszystkie organizmy wykonują ten sam zestaw podstawowych czynności życiowych.</span></div>
+        </div>
+        <div class="mini-note"><b>Przykłady:</b> drożdże mogą być zbudowane tylko z jednej komórki, a duża sekwoja z miliardów komórek. Liczba komórek nie zmienia tego, że oba są organizmami.</div>`
+    },
+    {
+      kicker:'4 z 9 · Czynności życiowe I',
+      title:'Odżywianie, oddychanie i wydalanie.',
+      html:`
+        <div class="life-grid">
+          <div class="life-item"><b>Odżywianie się</b><div>Dostarczanie składników pokarmowych. Są one źródłem energii i materiałem do budowy komórek.</div></div>
+          <div class="life-item"><b>Oddychanie</b><div>Uwalnianie z pokarmu energii potrzebnej do życia. Większość organizmów, także roślin, potrzebuje do tego tlenu.</div></div>
+          <div class="life-item"><b>Wydalanie</b><div>Usuwanie substancji niepotrzebnych i szkodliwych, np. nadmiaru wody i dwutlenku węgla.</div></div>
+        </div>
+        <div class="mini-note">Podczas oddychania powstaje <b>dwutlenek węgla</b>. Tlen i dwutlenek węgla są gazami występującymi w powietrzu. Mocz może zawierać nadmiar wody, sole mineralne i szkodliwe substancje.</div>`
+    },
+    {
+      kicker:'5 z 9 · Czynności życiowe II',
+      title:'Ruch, wzrost i rozwój to nie to samo.',
+      html:`
+        <div class="life-grid">
+          <div class="life-item"><b>Ruch</b><div>Zmiana położenia całego ciała lub jego części. Zwierzęta mogą przemieszczać się z miejsca na miejsce.</div></div>
+          <div class="life-item"><b>Ruch roślin</b><div>Rośliny także wykonują ruchy, np. liście i łodygi mogą zwracać się w stronę światła.</div></div>
+          <div class="life-item"><b>Wzrost</b><div>Zwiększanie rozmiarów i masy ciała.</div></div>
+          <div class="life-item"><b>Rozwój</b><div>Wszystkie zmiany wyglądu i sposobu funkcjonowania organizmu w ciągu jego życia.</div></div>
+        </div>
+        <div class="mini-note">Wzrost mówi głównie o <b>wielkości i masie</b>. Rozwój mówi o <b>zmianach organizmu podczas życia</b>.</div>`
+    },
+    {
+      kicker:'6 z 9 · Czynności życiowe III',
+      title:'Rozmnażanie i reakcja na bodźce.',
+      html:`
+        <div class="life-grid">
+          <div class="life-item"><b>Rozmnażanie się</b><div>Wydawanie na świat potomstwa.</div></div>
+          <div class="life-item"><b>Rozmnażanie płciowe</b><div>U większości organizmów zachodzi z udziałem męskich i żeńskich komórek rozrodczych.</div></div>
+          <div class="life-item"><b>Rozmnażanie bezpłciowe</b><div>Niektóre organizmy potrafią rozmnażać się bezpłciowo.</div></div>
+          <div class="life-item"><b>Reakcja na bodźce</b><div>Reagowanie np. na zapach, światło i dźwięk pomaga dostosować się do zmian w środowisku.</div></div>
+        </div>
+        <div class="mini-note"><b>Pełna lista 7 czynności:</b> odżywianie się, oddychanie, wydalanie, ruch, wzrost i rozwój, rozmnażanie się, reakcja na bodźce.</div>`
+    },
+    {
+      kicker:'7 z 9 · Poziomy budowy',
+      title:'Od komórki do całego organizmu.',
+      html:`
+        <p>W organizmie wielokomórkowym mniejsze elementy łączą się w coraz większe jednostki.</p>
+        <div class="levels">
+          <span class="level">komórka</span><span class="arrow">→</span>
+          <span class="level">tkanka</span><span class="arrow">→</span>
+          <span class="level">narząd / organ</span><span class="arrow">→</span>
+          <span class="level">układ / system</span><span class="arrow">→</span>
+          <span class="level">organizm</span>
+        </div>
+        <div class="concepts">
+          <div class="concept"><strong>Komórka</strong><span>Podstawowa jednostka, z której są zbudowane organizmy.</span></div>
+          <div class="concept"><strong>Tkanka</strong><span>Grupa komórek o podobnej budowie, wykonujących określone zadania.</span></div>
+          <div class="concept"><strong>Narząd / organ</strong><span>Tworzą go tkanki wyspecjalizowane w pełnieniu określonej funkcji.</span></div>
+          <div class="concept"><strong>Układ / system</strong><span>Grupa narządów lub organów współdziałających przy wykonywaniu określonych czynności.</span></div>
+        </div>`
+    },
+    {
+      kicker:'8 z 9 · Poziomy budowy – przykłady',
+      title:'Zwierzęta i rośliny używają trochę innych nazw.',
+      html:`
+        <div class="concepts">
+          <div class="concept"><strong>Zwierzę</strong><span>komórka zwierzęca → tkanka mięśniowa → <b>narząd</b>, np. serce → <b>układ narządów</b>, np. układ krwionośny → organizm</span></div>
+          <div class="concept"><strong>Roślina</strong><span>komórka roślinna → tkanka miękiszowa → <b>organ</b>, np. liść → <b>system organów</b>, np. system pędowy → organizm</span></div>
+        </div>
+        <div class="mini-note">Poszczególne układy lub systemy <b>współpracują ze sobą</b>, dzięki czemu tworzą jeden organizm.</div>`
+    },
+    {
+      kicker:'9 z 9 · Dziedziny biologii',
+      title:'Zapamiętaj nazwę i to, co dana dziedzina bada.',
+      html:`
+        <div class="concepts">
+          <div class="concept"><strong>Zoologia</strong><span>nauka o zwierzętach</span></div>
+          <div class="concept"><strong>Botanika</strong><span>nauka o roślinach</span></div>
+          <div class="concept"><strong>Mikrobiologia</strong><span>nauka o mikroorganizmach</span></div>
+          <div class="concept"><strong>Anatomia</strong><span>nauka o budowie wewnętrznej organizmów</span></div>
+          <div class="concept"><strong>Fizjologia</strong><span>nauka o czynnościach życiowych organizmów</span></div>
+          <div class="concept"><strong>Ekologia</strong><span>nauka m.in. o zależnościach między organizmami a środowiskiem</span></div>
+        </div>
+        <div class="mini-note">Zoologia, botanika i mikrobiologia dzielą biologię według <b>obiektu badań</b>. Anatomia, fizjologia i ekologia według <b>problemu, którym zajmuje się naukowiec</b>.</div>`
+    }
+  ];
+
+  const banks = {
+    basics:[
+      {q:'Czym zajmuje się biologia?', a:'Badaniem budowy i czynności życiowych organizmów', opts:['Badaniem budowy i czynności życiowych organizmów','Wyłącznie badaniem pogody','Wyłącznie badaniem skał','Badaniem planet i gwiazd'], why:'Biologia jest nauką o organizmach, ich budowie i czynnościach życiowych.'},
+      {q:'Która lista zawiera wyłącznie grupy organizmów?', a:'bakterie, protisty, grzyby, rośliny, zwierzęta', opts:['bakterie, protisty, grzyby, rośliny, zwierzęta','skały, woda, grzyby, powietrze, rośliny','Słońce, bakterie, gleba, zwierzęta, woda','powietrze, światło, rośliny, skały, grzyby'], why:'Bakterie, protisty, grzyby, rośliny i zwierzęta należą do ożywionej części przyrody.'},
+      {q:'Jakie dwie cechy są wspólne dla wszystkich organizmów?', a:'Budowa komórkowa i wykonywanie czynności życiowych', opts:['Budowa komórkowa i wykonywanie czynności życiowych','Posiadanie nóg i poruszanie się','Oddychanie płucami i wzrok','Zielony kolor i wzrost'], why:'Każdy organizm jest zbudowany z komórek i wykonuje czynności życiowe.'},
+      {q:'Co jest podstawową jednostką budowy organizmu?', a:'Komórka', opts:['Komórka','Tkanka','Narząd','Układ narządów'], why:'Komórka jest podstawowym elementem budowy każdego organizmu.'},
+      {q:'Drożdże mogą być zbudowane z…', a:'jednej komórki', opts:['jednej komórki','jednego narządu','jednej tkanki','jednego układu narządów'], why:'Niektóre organizmy, np. drożdże, są jednokomórkowe.'},
+      {q:'Czy organizm zbudowany z jednej komórki wykonuje czynności życiowe?', a:'Tak, wykonuje te same podstawowe czynności życiowe', opts:['Tak, wykonuje te same podstawowe czynności życiowe','Nie, czynności życiowe wykonują tylko zwierzęta','Nie, potrzebuje do tego tkanek','Tylko wtedy, gdy ma narządy'], why:'Wszystkie organizmy, niezależnie od liczby komórek, wykonują podstawowe czynności życiowe.'},
+      {q:'Greckie słowo „bios”, od którego pochodzi nazwa „biologia”, oznacza…', a:'życie', opts:['życie','roślinę','komórkę','naukę'], why:'„Bios” oznacza życie, a „logos” – słowo.'},
+      {q:'Greckie słowo „logos”, od którego pochodzi nazwa „biologia”, oznacza…', a:'słowo', opts:['słowo','życie','zwierzę','środowisko'], why:'„Logos” oznacza słowo, a „bios” – życie.'}
+    ],
+    bio:[
+      {q:'Badanie, jak temperatura wpływa na wzrost i rozwój roślin.', a:'bio', why:'To biologia, bo badamy wpływ środowiska na organizmy.'},
+      {q:'Wyznaczanie kierunku północnego w terenie.', a:'no', why:'To nie jest badanie organizmów ani ich czynności życiowych.'},
+      {q:'Sprawdzanie, gdzie żyją bakterie.', a:'bio', why:'Bakterie są organizmami, więc zajmuje się nimi biologia.'},
+      {q:'Obserwowanie wędrówki Słońca nad widnokręgiem.', a:'no', why:'To dotyczy zjawisk astronomicznych, a nie organizmów.'},
+      {q:'Poznawanie budowy drzewa.', a:'bio', why:'Drzewo jest organizmem, a biologia bada budowę organizmów.'},
+      {q:'Badanie, jak drapieżnik wpływa na liczebność swoich ofiar.', a:'bio', why:'Biologia bada zależności między organizmami, w tym drapieżnictwo.'},
+      {q:'Badanie pasożyta żyjącego kosztem innego organizmu.', a:'bio', why:'Pasożytnictwo jest zależnością między organizmami badaną przez biologów.'},
+      {q:'Sprawdzanie, jak ilość światła wpływa na organizmy.', a:'bio', why:'Biolodzy badają wpływ warunków środowiska, np. światła, na organizmy.'},
+      {q:'Sprawdzanie, jak organizm jest przystosowany do życia w swoim środowisku.', a:'bio', why:'Przystosowanie organizmów do warunków środowiska jest przedmiotem badań biologii.'},
+      {q:'Badanie składu chemicznego skały, bez badania organizmów.', a:'no', why:'Sama skała jest elementem przyrody nieożywionej.'}
+    ],
+    life:[
+      {q:'Organizm dostarcza sobie składników pokarmowych.', a:'Odżywianie się', opts:['Odżywianie się','Oddychanie','Ruch','Wydalanie'], why:'Odżywianie polega na dostarczaniu organizmowi składników pokarmowych.'},
+      {q:'Składniki pokarmowe są wykorzystywane jako źródło energii oraz materiał do budowy komórek. Jakiej czynności to dotyczy?', a:'Odżywianie się', opts:['Odżywianie się','Oddychanie','Wydalanie','Reakcja na bodźce'], why:'Taką rolę pełnią składniki pokarmowe dostarczane podczas odżywiania.'},
+      {q:'Organizm uwalnia z pokarmu energię potrzebną do życia.', a:'Oddychanie', opts:['Oddychanie','Odżywianie się','Wydalanie','Wzrost'], why:'Na tym polega oddychanie.'},
+      {q:'Większość organizmów, także rośliny, potrzebuje do tej czynności tlenu.', a:'Oddychanie', opts:['Oddychanie','Ruch','Rozmnażanie się','Wydalanie'], why:'U większości organizmów tlen jest potrzebny do oddychania.'},
+      {q:'Organizm usuwa substancje niepotrzebne i szkodliwe.', a:'Wydalanie', opts:['Wydalanie','Odżywianie się','Reakcja na bodźce','Ruch'], why:'Wydalanie usuwa z organizmu zbędne lub szkodliwe substancje.'},
+      {q:'Kot skacze na parapet.', a:'Ruch', opts:['Ruch','Wydalanie','Oddychanie','Rozmnażanie się'], why:'Ruch to zmiana położenia całego ciała lub jego części.'},
+      {q:'Liście i łodygi zwracają się w stronę światła.', a:'Ruch', opts:['Ruch','Wzrost','Odżywianie się','Wydalanie'], why:'Rośliny także wykonują ruchy, np. zwracając części ciała ku światłu.'},
+      {q:'Organizm zwiększa swoje rozmiary i masę ciała.', a:'Wzrost', opts:['Wzrost','Rozwój','Ruch','Rozmnażanie się'], why:'Wzrost polega na zwiększaniu rozmiarów i masy ciała.'},
+      {q:'W organizmie zachodzą w ciągu życia zmiany wyglądu i sposobu funkcjonowania.', a:'Rozwój', opts:['Rozwój','Wzrost','Wydalanie','Oddychanie'], why:'Rozwój obejmuje zmiany wyglądu i funkcjonowania w ciągu życia.'},
+      {q:'Organizm wydaje na świat potomstwo.', a:'Rozmnażanie się', opts:['Rozmnażanie się','Wzrost','Ruch','Odżywianie się'], why:'Rozmnażanie polega na wydawaniu na świat potomstwa.'},
+      {q:'U większości organizmów bierze w nim udział męska i żeńska komórka rozrodcza.', a:'Rozmnażanie płciowe', opts:['Rozmnażanie płciowe','Rozmnażanie bezpłciowe','Wzrost','Oddychanie'], why:'Rozmnażanie płciowe zachodzi z udziałem męskich i żeńskich komórek rozrodczych.'},
+      {q:'Niektóre organizmy potrafią wydawać potomstwo bez udziału męskiej i żeńskiej komórki rozrodczej.', a:'Rozmnażanie bezpłciowe', opts:['Rozmnażanie bezpłciowe','Rozmnażanie płciowe','Rozwój','Ruch'], why:'Niektóre organizmy mają zdolność rozmnażania bezpłciowego.'},
+      {q:'Kot wyczuwa zapach jedzenia i biegnie do kuchni.', a:'Reakcja na bodźce', opts:['Reakcja na bodźce','Rozmnażanie się','Wydalanie','Wzrost'], why:'Zapach jest bodźcem, na który organizm reaguje.'},
+      {q:'Reagowanie na światło, zapach lub dźwięk pomaga organizmowi…', a:'dostosować się do zmian w środowisku', opts:['dostosować się do zmian w środowisku','zbudować tkanki','wytworzyć narządy','zwiększyć liczbę komórek rozrodczych'], why:'Reakcja na bodźce umożliwia dostosowanie się do zmian zachodzących w środowisku.'}
+    ],
+    flow:[
+      {q:'Podczas oddychania u większości organizmów pobierany jest…', a:'tlen', opts:['tlen','dwutlenek węgla','mocz','składniki pokarmowe'], why:'Tlen jest potrzebny większości organizmów, także roślinom, do oddychania.'},
+      {q:'Podczas oddychania powstaje między innymi…', a:'dwutlenek węgla', opts:['dwutlenek węgla','tlen','mocz','składniki pokarmowe'], why:'Dwutlenek węgla powstaje podczas oddychania.'},
+      {q:'Podczas odżywiania organizm pobiera…', a:'składniki pokarmowe', opts:['składniki pokarmowe','tlen','mocz','dwutlenek węgla'], why:'Odżywianie dostarcza składników pokarmowych.'},
+      {q:'Wydalanie może usuwać z organizmu…', a:'mocz', opts:['mocz','składniki pokarmowe','tlen','pokarm'], why:'Mocz jest jednym ze sposobów usuwania zbędnych substancji.'},
+      {q:'Mocz może zawierać między innymi…', a:'nadmiar wody, sole mineralne i szkodliwe substancje', opts:['nadmiar wody, sole mineralne i szkodliwe substancje','wyłącznie tlen','składniki pokarmowe potrzebne do budowy komórek','wyłącznie dwutlenek węgla'], why:'W książce wskazano nadmiar wody, sole mineralne i szkodliwe substancje jako składniki usuwane z moczem.'},
+      {q:'Który gaz może być usuwany z organizmu jako zbędny produkt oddychania?', a:'dwutlenek węgla', opts:['dwutlenek węgla','tlen','azot jako jedyny produkt oddychania','para pokarmowa'], why:'Dwutlenek węgla powstaje podczas oddychania i jest usuwany z organizmu.'},
+      {q:'Tlen i dwutlenek węgla to…', a:'gazy będące składnikami powietrza', opts:['gazy będące składnikami powietrza','rodzaje komórek','składniki moczu','tkanki organizmu'], why:'Oba są gazami występującymi w powietrzu.'}
+    ],
+    structure:[
+      {q:'Komórka to…', a:'podstawowa jednostka, z której są zbudowane organizmy', opts:['podstawowa jednostka, z której są zbudowane organizmy','grupa narządów','grupa tkanek','cały organizm'], why:'Komórka jest podstawowym i najniższym poziomem budowy organizmu.'},
+      {q:'Tkanka to…', a:'grupa podobnych komórek wykonujących określone zadania', opts:['grupa podobnych komórek wykonujących określone zadania','jeden organ rośliny','cały układ narządów','pojedyncza komórka'], why:'Tkankę tworzy grupa komórek o podobnej budowie i określonych zadaniach.'},
+      {q:'Narząd lub organ tworzą…', a:'tkanki wyspecjalizowane w pełnieniu określonej funkcji', opts:['tkanki wyspecjalizowane w pełnieniu określonej funkcji','wyłącznie pojedyncze komórki','układy narządów','całe organizmy'], why:'Z wyspecjalizowanych tkanek powstają narządy u zwierząt i organy u roślin.'},
+      {q:'Który przykład jest narządem zwierzęcia?', a:'serce', opts:['serce','tkanka mięśniowa','układ krwionośny','komórka zwierzęca'], why:'Serce jest narządem. Tkanka mięśniowa jest tkanką, a układ krwionośny – układem narządów.'},
+      {q:'Który przykład jest organem rośliny?', a:'liść', opts:['liść','tkanka miękiszowa','system pędowy','komórka roślinna'], why:'Liść jest organem rośliny.'},
+      {q:'U zwierząt narządy uczestniczące w wykonywaniu określonych czynności tworzą…', a:'układ narządów', opts:['układ narządów','tkankę','komórkę','organ rośliny'], why:'Przykładem jest układ krwionośny złożony m.in. z serca i naczyń krwionośnych.'},
+      {q:'U roślin organy łączą się w…', a:'system organów', opts:['system organów','tkankę zwierzęcą','komórkę','narząd zwierzęcia'], why:'Przykładem jest system pędowy.'},
+      {q:'Serce i naczynia krwionośne są elementami…', a:'układu krwionośnego', opts:['układu krwionośnego','tkanki mięśniowej','komórki zwierzęcej','systemu pędowego'], why:'U zwierząt serce i naczynia tworzą układ krwionośny.'},
+      {q:'Liść i łodyga są elementami…', a:'systemu pędowego', opts:['systemu pędowego','układu krwionośnego','tkanki mięśniowej','komórki roślinnej'], why:'U roślin liście i łodygi należą do systemu pędowego.'},
+      {q:'Co powstaje dzięki współpracy poszczególnych układów lub systemów?', a:'organizm', opts:['organizm','tkanka','pojedyncza komórka','jeden narząd'], why:'Układy lub systemy współpracują ze sobą, tworząc cały organizm.'}
+    ],
+    fields:[
+      {q:'Nauka o zwierzętach', a:'Zoologia', opts:['Zoologia','Botanika','Anatomia','Ekologia'], why:'Zoologia zajmuje się zwierzętami.'},
+      {q:'Nauka o roślinach', a:'Botanika', opts:['Botanika','Mikrobiologia','Fizjologia','Zoologia'], why:'Botanika zajmuje się roślinami.'},
+      {q:'Nauka o mikroorganizmach', a:'Mikrobiologia', opts:['Mikrobiologia','Anatomia','Ekologia','Botanika'], why:'Mikrobiologia bada mikroorganizmy.'},
+      {q:'Nauka o budowie wewnętrznej organizmów', a:'Anatomia', opts:['Anatomia','Fizjologia','Zoologia','Ekologia'], why:'Anatomia opisuje budowę wewnętrzną organizmów.'},
+      {q:'Nauka o czynnościach życiowych organizmów', a:'Fizjologia', opts:['Fizjologia','Anatomia','Botanika','Mikrobiologia'], why:'Fizjologia zajmuje się czynnościami życiowymi organizmów.'},
+      {q:'Nauka o zależnościach między organizmami a środowiskiem', a:'Ekologia', opts:['Ekologia','Zoologia','Anatomia','Fizjologia'], why:'Ekologia bada m.in. zależności między organizmami i środowiskiem.'}
+    ]
+  };
+
+  const levelData = {
+    animal:['komórka','tkanka','narząd','układ narządów','organizm'],
+    plant:['komórka','tkanka','organ','system organów','organizm']
+  };
+
+  const practiceOrder = ['basics','bio','life','flow','structure','levels','fields'];
+  const practiceLabels = {
+    basics:'Podstawy o organizmach',
+    bio:'Biologia czy nie?',
+    life:'Czynności życiowe',
+    flow:'Co wchodzi, co wychodzi?',
+    structure:'Poziomy budowy – pojęcia',
+    levels:'Zbuduj organizm',
+    fields:'Jaka to dziedzina?'
+  };
+
+  const testQuestions = [
+    {q:'Czym zajmuje się biologia?', a:'Badaniem budowy i czynności życiowych organizmów', opts:['Badaniem budowy i czynności życiowych organizmów','Wyłącznie badaniem pogody','Wyłącznie badaniem skał','Badaniem planet i gwiazd'], why:'Biologia jest nauką o organizmach, ich budowie i czynnościach życiowych.'},
+    {q:'Który zestaw przedstawia przykłady zależności między organizmami omawianych w podręczniku?', a:'drapieżnictwo, pasożytnictwo, roślinożerność', opts:['drapieżnictwo, pasożytnictwo, roślinożerność','parowanie, topnienie, zamarzanie','dzień, noc, pory roku','erozja, wietrzenie, sedymentacja'], why:'Biolodzy badają zależności między organizmami, w tym zależności pokarmowe.'},
+    {q:'Które czynniki środowiska podano w książce jako przykłady badane przez biologów?', a:'temperaturę i dostęp do światła', opts:['temperaturę i dostęp do światła','wyłącznie kierunek północny','wyłącznie ruch planet','wyłącznie skład skał'], why:'Podręcznik podaje temperaturę i dostęp do światła jako przykłady warunków środowiska.'},
+    {q:'Biolodzy sprawdzają również…', a:'jak organizmy są przystosowane do życia w danych warunkach', opts:['jak organizmy są przystosowane do życia w danych warunkach','jak wyznaczyć północ bez kompasu','jak powstają kratery na Księżycu','jak obliczyć długość równika'], why:'Biologia bada wpływ środowiska i przystosowania organizmów do określonych warunków.'},
+    {q:'Która lista zawiera wyłącznie grupy organizmów należące do ożywionej części przyrody?', a:'bakterie, protisty, grzyby, rośliny, zwierzęta', opts:['bakterie, protisty, grzyby, rośliny, zwierzęta','skały, woda, grzyby, powietrze, rośliny','Słońce, bakterie, gleba, zwierzęta, woda','powietrze, światło, rośliny, skały, grzyby'], why:'Bakterie, protisty, grzyby, rośliny i zwierzęta są organizmami.'},
+    {q:'Jakie dwie cechy są wspólne dla wszystkich organizmów?', a:'Budowa komórkowa i wykonywanie czynności życiowych', opts:['Budowa komórkowa i wykonywanie czynności życiowych','Posiadanie nóg i oddychanie płucami','Zielony kolor i wzrost','Poruszanie się z miejsca na miejsce i słuch'], why:'Każdy organizm jest zbudowany z komórek i wykonuje czynności życiowe.'},
+    {q:'Co jest podstawową jednostką budowy każdego organizmu?', a:'Komórka', opts:['Komórka','Tkanka','Narząd','Układ narządów'], why:'Komórka jest podstawowym i najniższym poziomem budowy organizmów.'},
+    {q:'Co pokazuje przykład drożdży w podręczniku?', a:'Niektóre organizmy są zbudowane tylko z jednej komórki', opts:['Niektóre organizmy są zbudowane tylko z jednej komórki','Każdy organizm ma wiele tkanek','Tylko rośliny mają komórki','Drożdże są elementem przyrody nieożywionej'], why:'Drożdże są przykładem organizmu jednokomórkowego.'},
+    {q:'Która lista zawiera wszystkie 7 czynności życiowych z podręcznika?', a:'odżywianie, oddychanie, wydalanie, ruch, wzrost i rozwój, rozmnażanie, reakcja na bodźce', opts:['odżywianie, oddychanie, wydalanie, ruch, wzrost i rozwój, rozmnażanie, reakcja na bodźce','odżywianie, sen, wydalanie, ruch, wzrost, nauka, rozmnażanie','oddychanie, polowanie, picie, ruch, wzrost, widzenie, słyszenie','odżywianie, ruch, wzrost, fotosynteza, sen, pamięć, wydalanie'], why:'To pełna lista czynności życiowych podana w podręczniku.'},
+    {q:'Na czym polega odżywianie się?', a:'Na dostarczaniu organizmowi składników pokarmowych', opts:['Na dostarczaniu organizmowi składników pokarmowych','Na usuwaniu zbędnych substancji','Na zmianie położenia ciała','Na wydawaniu potomstwa'], why:'Odżywianie dostarcza składników pokarmowych.'},
+    {q:'Do czego organizm wykorzystuje składniki pokarmowe?', a:'Jako źródło energii i materiał do budowy komórek', opts:['Jako źródło energii i materiał do budowy komórek','Wyłącznie do zwiększania masy','Wyłącznie do wydalania','Wyłącznie do reagowania na światło'], why:'Podręcznik wskazuje obie role składników pokarmowych: energetyczną i budulcową.'},
+    {q:'Na czym polega oddychanie?', a:'Na uwalnianiu z pokarmu energii potrzebnej do życia', opts:['Na uwalnianiu z pokarmu energii potrzebnej do życia','Na samym pobieraniu powietrza do płuc','Na dostarczaniu składników pokarmowych','Na zwiększaniu rozmiarów ciała'], why:'Oddychanie jest procesem uwalniania energii z pokarmu.'},
+    {q:'Które zdanie o tlenie jest zgodne z podręcznikiem?', a:'Większość organizmów, także rośliny, potrzebuje tlenu do oddychania', opts:['Większość organizmów, także rośliny, potrzebuje tlenu do oddychania','Tlen jest potrzebny tylko zwierzętom','Rośliny nigdy nie oddychają','Tlen powstaje jako jedyny produkt oddychania'], why:'Książka wprost zaznacza, że tlen jest potrzebny większości organizmów, także roślinom.'},
+    {q:'Jaki gaz powstaje podczas oddychania?', a:'Dwutlenek węgla', opts:['Dwutlenek węgla','Tlen','Azot jako jedyny produkt','Hel'], why:'Podczas oddychania powstaje dwutlenek węgla.'},
+    {q:'Czym są tlen i dwutlenek węgla?', a:'Gazami będącymi składnikami powietrza', opts:['Gazami będącymi składnikami powietrza','Rodzajami komórek','Tkankami','Składnikami pokarmowymi'], why:'Oba gazy są składnikami powietrza.'},
+    {q:'Na czym polega wydalanie?', a:'Na usuwaniu z organizmu substancji niepotrzebnych i szkodliwych', opts:['Na usuwaniu z organizmu substancji niepotrzebnych i szkodliwych','Na pobieraniu pokarmu','Na zwiększaniu masy ciała','Na wydawaniu potomstwa'], why:'Wydalanie usuwa z organizmu zbędne i szkodliwe substancje.'},
+    {q:'Które substancje mogą być usuwane podczas wydalania?', a:'Nadmiar wody i dwutlenek węgla', opts:['Nadmiar wody i dwutlenek węgla','Wyłącznie składniki pokarmowe','Wyłącznie tlen','Wyłącznie substancje potrzebne do budowy komórek'], why:'Podręcznik jako przykłady podaje m.in. nadmiar wody i dwutlenek węgla.'},
+    {q:'Co może zawierać mocz?', a:'Nadmiar wody, sole mineralne i szkodliwe substancje', opts:['Nadmiar wody, sole mineralne i szkodliwe substancje','Wyłącznie tlen','Wyłącznie składniki pokarmowe','Tylko dwutlenek węgla'], why:'Takie składniki moczu wymienia podpis w podręczniku.'},
+    {q:'Czym jest ruch?', a:'Zmianą położenia całego ciała lub jego części', opts:['Zmianą położenia całego ciała lub jego części','Wyłącznie przemieszczaniem się zwierzęcia z miejsca na miejsce','Tylko zwiększaniem masy ciała','Tylko reakcją na dźwięk'], why:'Ruch może dotyczyć całego ciała albo tylko jego części.'},
+    {q:'Który przykład pokazuje ruch roślin?', a:'Zwracanie liści i łodyg w stronę światła', opts:['Zwracanie liści i łodyg w stronę światła','Powstawanie moczu','Wydawanie nasion jako jedyny rodzaj ruchu','Pobieranie składników pokarmowych'], why:'Podręcznik podaje zwracanie liści i łodyg ku światłu jako przykład ruchu roślin.'},
+    {q:'Na czym polega wzrost?', a:'Na zwiększaniu rozmiarów i masy ciała', opts:['Na zwiększaniu rozmiarów i masy ciała','Na wszystkich zmianach wyglądu i funkcjonowania','Na wydawaniu potomstwa','Na reagowaniu na bodźce'], why:'Wzrost dotyczy zwiększania rozmiarów i masy.'},
+    {q:'Czym jest rozwój?', a:'Wszystkimi zmianami wyglądu i sposobu funkcjonowania organizmu w ciągu życia', opts:['Wszystkimi zmianami wyglądu i sposobu funkcjonowania organizmu w ciągu życia','Wyłącznie zwiększaniem masy ciała','Wyłącznie ruchem','Wyłącznie oddychaniem'], why:'Rozwój obejmuje zmiany wyglądu i funkcjonowania w ciągu życia.'},
+    {q:'Na czym polega rozmnażanie się?', a:'Na wydawaniu na świat potomstwa', opts:['Na wydawaniu na świat potomstwa','Na zwiększaniu rozmiarów','Na usuwaniu moczu','Na uwalnianiu energii z pokarmu'], why:'Rozmnażanie umożliwia powstawanie potomstwa.'},
+    {q:'Jak rozmnaża się większość organizmów według podręcznika?', a:'Płciowo, z udziałem męskich i żeńskich komórek rozrodczych', opts:['Płciowo, z udziałem męskich i żeńskich komórek rozrodczych','Wyłącznie bezpłciowo','Przez wzrost tkanek','Przez oddychanie'], why:'Książka podaje, że większość organizmów rozmnaża się płciowo.'},
+    {q:'Czy wszystkie organizmy rozmnażają się wyłącznie płciowo?', a:'Nie, niektóre mogą rozmnażać się bezpłciowo', opts:['Nie, niektóre mogą rozmnażać się bezpłciowo','Tak, wszystkie bez wyjątku','Nie, ponieważ organizmy się nie rozmnażają','Tak, ale tylko rośliny'], why:'Niektóre organizmy mają zdolność rozmnażania bezpłciowego.'},
+    {q:'Który zestaw zawiera przykłady bodźców z podręcznika?', a:'zapach, światło, dźwięk', opts:['zapach, światło, dźwięk','tkanka, narząd, układ','tlen, mocz, pokarm','wzrost, rozwój, komórka'], why:'Zapach, światło i dźwięk są przykładami bodźców.'},
+    {q:'Dlaczego reakcja na bodźce jest ważna?', a:'Pomaga organizmom dostosować się do zmian w środowisku', opts:['Pomaga organizmom dostosować się do zmian w środowisku','Tworzy z komórek tkanki','Zastępuje oddychanie','Zawsze zwiększa masę ciała'], why:'Reakcja na bodźce umożliwia dostosowanie się do zmian zachodzących w środowisku.'},
+    {q:'Jaka jest prawidłowa kolejność poziomów budowy organizmu wielokomórkowego?', a:'komórka → tkanka → narząd/organ → układ/system → organizm', opts:['komórka → tkanka → narząd/organ → układ/system → organizm','tkanka → komórka → organizm → narząd → układ','organizm → układ → narząd → tkanka → komórka','komórka → narząd → tkanka → organizm → układ'], why:'Mniejsze elementy łączą się w coraz większe jednostki właśnie w tej kolejności.'},
+    {q:'Co to jest tkanka?', a:'Grupa komórek o podobnej budowie wykonujących określone zadania', opts:['Grupa komórek o podobnej budowie wykonujących określone zadania','Pojedyncza komórka','Grupa układów narządów','Cały organizm'], why:'Tak definiuje tkankę podręcznik.'},
+    {q:'Co tworzy narząd u zwierząt lub organ u roślin?', a:'Tkanki wyspecjalizowane w pełnieniu określonej funkcji', opts:['Tkanki wyspecjalizowane w pełnieniu określonej funkcji','Wyłącznie pojedyncza komórka','Kilka organizmów','Środowisko nieożywione'], why:'Narządy i organy powstają z wyspecjalizowanych tkanek.'},
+    {q:'Który zestaw poprawnie łączy przykład zwierzęcy z poziomem budowy?', a:'serce – narząd, układ krwionośny – układ narządów', opts:['serce – narząd, układ krwionośny – układ narządów','serce – tkanka, układ krwionośny – komórka','serce – organizm, układ krwionośny – narząd','serce – komórka, układ krwionośny – tkanka'], why:'Serce jest narządem, a układ krwionośny – układem narządów.'},
+    {q:'Który zestaw poprawnie łączy przykład roślinny z poziomem budowy?', a:'liść – organ, system pędowy – system organów', opts:['liść – organ, system pędowy – system organów','liść – tkanka, system pędowy – komórka','liść – organizm, system pędowy – organ','liść – komórka, system pędowy – tkanka'], why:'Liść jest organem rośliny, a system pędowy – systemem organów.'},
+    {q:'Co tworzą współpracujące ze sobą układy lub systemy?', a:'Organizm', opts:['Organizm','Tkankę','Pojedynczą komórkę','Jeden narząd'], why:'Poszczególne układy lub systemy współpracują i razem tworzą organizm.'},
+    {q:'Która dziedzina biologii zajmuje się zwierzętami?', a:'Zoologia', opts:['Zoologia','Botanika','Anatomia','Ekologia'], why:'Zoologia jest nauką o zwierzętach.'},
+    {q:'Która dziedzina biologii zajmuje się roślinami?', a:'Botanika', opts:['Botanika','Zoologia','Anatomia','Ekologia'], why:'Botanika jest nauką o roślinach.'},
+    {q:'Która dziedzina biologii zajmuje się mikroorganizmami?', a:'Mikrobiologia', opts:['Mikrobiologia','Zoologia','Fizjologia','Anatomia'], why:'Mikrobiologia jest nauką o mikroorganizmach.'},
+    {q:'Która dziedzina biologii zajmuje się budową wewnętrzną organizmów?', a:'Anatomia', opts:['Anatomia','Fizjologia','Botanika','Ekologia'], why:'Anatomia bada budowę wewnętrzną organizmów.'},
+    {q:'Która dziedzina biologii zajmuje się czynnościami życiowymi organizmów?', a:'Fizjologia', opts:['Fizjologia','Anatomia','Mikrobiologia','Botanika'], why:'Fizjologia bada czynności życiowe organizmów.'},
+    {q:'Która dziedzina biologii zajmuje się m.in. zależnościami między organizmami a środowiskiem?', a:'Ekologia', opts:['Ekologia','Anatomia','Zoologia','Fizjologia'], why:'Ekologia bada m.in. zależności organizmów ze środowiskiem.'},
+    {q:'Które zdanie dotyczy biologii?', a:'Sprawdzę, jak temperatura wpływa na wzrost roślin', opts:['Sprawdzę, jak temperatura wpływa na wzrost roślin','Wyznaczę kierunek północny w terenie','Będę obserwować wędrówkę Słońca nad widnokręgiem','Obliczę długość trasy na mapie'], why:'Wpływ temperatury na wzrost roślin jest zagadnieniem biologicznym.'},
+    {q:'W schemacie oddychania organizmu, która para kierunków jest prawidłowa?', a:'tlen do organizmu, dwutlenek węgla z organizmu', opts:['tlen do organizmu, dwutlenek węgla z organizmu','dwutlenek węgla do organizmu, tlen z organizmu','mocz do organizmu, tlen z organizmu','składniki pokarmowe z organizmu, mocz do organizmu'], why:'U większości organizmów tlen jest pobierany do oddychania, a dwutlenek węgla powstaje i jest usuwany.'},
+    {q:'W schemacie odżywiania i wydalania, która para jest prawidłowa?', a:'składniki pokarmowe do organizmu, mocz z organizmu', opts:['składniki pokarmowe do organizmu, mocz z organizmu','mocz do organizmu, pokarm z organizmu','tlen do odżywiania, składniki pokarmowe z organizmu','dwutlenek węgla jako pokarm, tlen jako mocz'], why:'Podczas odżywiania pobierane są składniki pokarmowe, a wydalanie usuwa m.in. mocz.'},
+    {q:'Co oznaczają greckie słowa, od których pochodzi nazwa „biologia”?', a:'bios – życie, logos – słowo', opts:['bios – życie, logos – słowo','bios – roślina, logos – zwierzę','bios – komórka, logos – tkanka','bios – nauka, logos – środowisko'], why:'Tak wyjaśnia pochodzenie nazwy „biologia” ramka w podręczniku.'}
+  ];
+
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => [...document.querySelectorAll(sel)];
+
+  function setScreen(name){
+    state.screen = name;
+    $$('.screen').forEach(s=>s.classList.remove('active'));
+    $('#screen-'+name).classList.add('active');
+    $$('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.nav===name || (name==='learn' && b.dataset.nav==='learn')));
+    if(name==='learn') renderLearn();
+    if(name==='practice') renderPractice();
+    if(name==='test') startTest();
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+
+  function updateProgress(){
+    const pct = Math.round((state.completed.size/6)*100);
+    $('#progressBar').style.width = pct+'%';
+    $('#donePill').textContent = state.completed.size+'/6';
+  }
+
+  function renderLearn(){
+    const page = learnPages[state.learnIndex];
+    $('#learnBody').innerHTML = `<div class="kicker">${page.kicker}</div><h2>${page.title}</h2>${page.html}`;
+    $('#learnPrev').disabled = state.learnIndex===0;
+    $('#learnNext').textContent = state.learnIndex===learnPages.length-1 ? 'Ćwicz' : 'Dalej';
+  }
+
+  $('#learnPrev').addEventListener('click', ()=>{
+    if(state.learnIndex>0){ state.learnIndex--; renderLearn(); }
+  });
+  $('#learnNext').addEventListener('click', ()=>{
+    if(state.learnIndex<learnPages.length-1){
+      state.learnIndex++;
+      renderLearn();
+    } else {
+      for(let i=0;i<5;i++) state.completed.add(i);
+      updateProgress();
+      setScreen('practice');
+    }
+  });
+
+  $$('.menu-card').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(btn.dataset.go==='learn'){
+        state.learnIndex = Number(btn.dataset.learn || 0);
+        setScreen('learn');
+      } else setScreen(btn.dataset.go);
+    });
+  });
+
+  $$('.nav button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const dest = btn.dataset.nav;
+      if(dest==='learn') state.learnIndex=0;
+      setScreen(dest);
+    });
+  });
+
+  $('#practiceMode').addEventListener('change', e=>{
+    state.practiceMode=e.target.value;
+    state.practiceIndex=0;
+    state.practiceAnswered=false;
+    state.practiceCorrect=0;
+    state.practiceTotal=0;
+    state.levelsStep=0;
+    renderPractice();
+  });
+
+  function qCard(title, indexText, answersHtml, extra=''){
+    return `<div class="panel question-card">
+      <div class="qmeta"><span>${indexText}</span><span class="pill">1 zadanie naraz</span></div>
+      <h3 class="qtitle">${title}</h3>
+      ${answersHtml}
+      <div class="feedback" id="feedback"></div>
+      ${extra}
+      <div class="nextline"><button class="btn small" id="practiceNext" style="display:none">Dalej</button></div>
+    </div>`;
+  }
+
+  function renderPractice(){
+    $('#practiceMode').value = state.practiceMode;
+    if(state.practiceMode==='levels') return renderLevels();
+
+    const bank = banks[state.practiceMode];
+    const item = bank[state.practiceIndex % bank.length];
+    let opts;
+    if(state.practiceMode==='bio'){
+      opts=shuffle([
+        {v:'bio',l:'Biologia'},
+        {v:'no',l:'Nie biologia'}
+      ]);
+    } else {
+      opts=shuffle(item.opts.map(x=>({v:x,l:x})));
+    }
+    $('#practiceArea').innerHTML = qCard(
+      item.q,
+      `${state.practiceIndex+1} / ${bank.length}`,
+      `<div class="answers">${opts.map(o=>`<button class="answer" data-answer="${escapeAttr(o.v)}">${o.l}</button>`).join('')}</div>`
+    );
+    $$('.answer').forEach(btn=>btn.addEventListener('click', ()=>handlePracticeAnswer(btn, item)));
+  }
+
+  function handlePracticeAnswer(btn,item){
+    if(state.practiceAnswered) return;
+    state.practiceAnswered=true;
+    const chosen=btn.dataset.answer;
+    const ok = chosen===item.a;
+    state.practiceTotal++;
+    if(ok) state.practiceCorrect++;
+
+    btn.classList.add(ok?'correct':'wrong');
+    $$('.answer').forEach(b=>{
+      b.disabled=true;
+      if(b.dataset.answer===item.a) b.classList.add('correct');
+    });
+
+    const fb=$('#feedback');
+    fb.className='feedback show '+(ok?'ok':'bad');
+    fb.textContent = ok ? `Dobrze. ${item.why}` : `Poprawna odpowiedź: ${item.a}. ${item.why}`;
+
+    const bank=banks[state.practiceMode];
+    const isLast = state.practiceIndex === bank.length - 1;
+    const nextBtn = $('#practiceNext');
+    nextBtn.style.display='inline-block';
+    nextBtn.textContent = isLast ? 'Podsumowanie' : 'Dalej';
+    nextBtn.onclick=()=>{
+      state.practiceAnswered=false;
+      if(isLast){
+        renderPracticeSummary();
+      } else {
+        state.practiceIndex++;
+        renderPractice();
+      }
+    };
+  }
+
+  function renderPracticeSummary(){
+    const mode = state.practiceMode;
+    const total = state.practiceTotal;
+    const correct = state.practiceCorrect;
+    const pct = total ? Math.round((correct/total)*100) : 0;
+    const idx = practiceOrder.indexOf(mode);
+    const nextMode = practiceOrder[idx+1];
+
+    state.completed.add(5);
+    updateProgress();
+
+    let message = pct===100
+      ? 'Wszystkie odpowiedzi były poprawne.'
+      : pct>=70
+        ? 'Dobrze. Możesz przejść dalej albo powtórzyć tę sekcję.'
+        : 'Warto powtórzyć tę sekcję jeszcze raz przed przejściem dalej.';
+
+    $('#practiceArea').innerHTML=`<div class="panel result">
+      <div class="kicker">Koniec sekcji · ${practiceLabels[mode]}</div>
+      <div class="score">${correct}/${total}</div>
+      <h2>${pct}%</h2>
+      <p>${message}</p>
+      <div class="btn-row" style="justify-content:center;margin-top:20px">
+        <button class="btn secondary" id="repeatPractice">Powtórz sekcję</button>
+        <button class="btn" id="nextPractice">${nextMode ? 'Dalej: '+practiceLabels[nextMode] : 'Przejdź do testu'}</button>
+      </div>
+    </div>`;
+
+    $('#repeatPractice').onclick=()=>{
+      state.practiceIndex=0;
+      state.practiceAnswered=false;
+      state.practiceCorrect=0;
+      state.practiceTotal=0;
+      renderPractice();
+    };
+
+    $('#nextPractice').onclick=()=>{
+      if(nextMode){
+        state.practiceMode=nextMode;
+        state.practiceIndex=0;
+        state.practiceAnswered=false;
+        state.practiceCorrect=0;
+        state.practiceTotal=0;
+        state.levelsStep=0;
+        $('#practiceMode').value=nextMode;
+        renderPractice();
+      } else {
+        setScreen('test');
+      }
+    };
+  }
+
+  function renderLevels(){
+    const seq=levelData[state.levelsKind];
+    const step=state.levelsStep;
+    if(step>=seq.length){
+      $('#practiceArea').innerHTML=`<div class="panel result">
+        <div class="kicker">Koniec sekcji · Zbuduj organizm</div>
+        <h2>Gotowe.</h2>
+        <p>Ułożyłeś wszystkie poziomy we właściwej kolejności.</p>
+        <div class="levels" style="justify-content:center">${seq.map((x,i)=>`${i?'<span class="arrow">→</span>':''}<span class="level">${x}</span>`).join('')}</div>
+        <div class="btn-row" style="justify-content:center;margin-top:20px">
+          <button class="btn secondary" id="switchKind">${state.levelsKind==='animal'?'Przećwicz roślinę':'Przećwicz zwierzę'}</button>
+          <button class="btn" id="nextPracticeSection">Dalej: ${practiceLabels.fields}</button>
+        </div>
+      </div>`;
+      state.completed.add(5); updateProgress();
+      $('#switchKind').onclick=()=>{
+        state.levelsKind=state.levelsKind==='animal'?'plant':'animal';
+        state.levelsStep=0;
+        renderLevels();
+      };
+      $('#nextPracticeSection').onclick=()=>{
+        state.practiceMode='fields';
+        state.practiceIndex=0;
+        state.practiceAnswered=false;
+        state.practiceCorrect=0;
+        state.practiceTotal=0;
+        state.levelsStep=0;
+        $('#practiceMode').value='fields';
+        renderPractice();
+      };
+      return;
+    }
+
+    const correct=seq[step];
+    const available=shuffle(seq.filter(x=>!seq.slice(0,step).includes(x)));
+
+    $('#practiceArea').innerHTML=`<div class="panel question-card">
+      <div class="qmeta"><span>Zbuduj organizm: ${state.levelsKind==='animal'?'zwierzę':'roślina'}</span><span>${step+1} / ${seq.length}</span></div>
+      <h3 class="qtitle">Wybierz kolejny poziom budowy.</h3>
+      <div class="build-area">
+        <div class="build-seq">
+          ${seq.map((x,i)=>`<span class="slot ${i<step?'filled':''}">${i<step?x:'?'}</span>${i<seq.length-1?'<span class="arrow">→</span>':''}`).join('')}
+        </div>
+      </div>
+      <div class="option-row">${available.map(x=>`<button class="chip" data-level="${escapeAttr(x)}">${x}</button>`).join('')}</div>
+      <div class="feedback" id="feedback"></div>
+    </div>`;
+    $$('.chip').forEach(btn=>btn.onclick=()=>{
+      if(btn.dataset.level===correct){
+        state.levelsStep++;
+        const fb=$('#feedback'); fb.className='feedback show ok'; fb.textContent='Dobrze. Ten poziom jest następny.';
+        $$('.chip').forEach(b=>b.disabled=true);
+        setTimeout(renderLevels,650);
+      }else{
+        const fb=$('#feedback'); fb.className='feedback show bad'; fb.textContent='Jeszcze nie. Spójrz na ostatni ułożony poziom i wybierz element o jeden poziom większy.';
+      }
+    });
+  }
+
+  function startTest(){
+    state.testIndex=0; state.testScore=0; state.testWrong=[]; state.testAnswered=false;
+    state.testSet=shuffle([...testQuestions]);
+    renderTest();
+  }
+
+  function renderTest(){
+    if(state.testIndex>=state.testSet.length) return renderResult();
+    const item=state.testSet[state.testIndex];
+    const randomizedOpts=shuffle(item.opts);
+    $('#testArea').innerHTML=`<div class="panel question-card">
+      <div class="qmeta"><span>Test · ${state.testIndex+1} / ${state.testSet.length}</span><span>${state.testScore} pkt</span></div>
+      <h3 class="qtitle">${item.q}</h3>
+      <div class="answers">${randomizedOpts.map(x=>`<button class="answer" data-test-answer="${escapeAttr(x)}">${x}</button>`).join('')}</div>
+      <div class="feedback" id="testFeedback"></div>
+      <div class="nextline"><button class="btn small" id="testNext" style="display:none">Dalej</button></div>
+    </div>`;
+    $$('[data-test-answer]').forEach(btn=>btn.onclick=()=>answerTest(btn,item));
+  }
+
+  function answerTest(btn,item){
+    if(state.testAnswered) return;
+    state.testAnswered=true;
+    const chosen=btn.dataset.testAnswer;
+    const ok=chosen===item.a;
+    if(ok) state.testScore++;
+    else state.testWrong.push({q:item.q,a:item.a});
+    btn.classList.add(ok?'correct':'wrong');
+    $$('[data-test-answer]').forEach(b=>{
+      b.disabled=true;
+      if(b.dataset.testAnswer===item.a) b.classList.add('correct');
+    });
+    const fb=$('#testFeedback');
+    fb.className='feedback show '+(ok?'ok':'bad');
+    fb.textContent=ok
+      ? 'Dobrze. '+(item.why || '')
+      : 'Poprawna odpowiedź: '+item.a+'. '+(item.why || '');
+    $('#testNext').style.display='inline-block';
+    $('#testNext').onclick=()=>{
+      state.testIndex++; state.testAnswered=false; renderTest();
+    };
+  }
+
+  function renderResult(){
+    const n=state.testSet.length;
+    const pct=Math.round((state.testScore/n)*100);
+    state.completed.add(5); updateProgress();
+    let msg = pct>=90 ? 'Materiał jest bardzo dobrze opanowany.' :
+              pct>=70 ? 'Jest dobrze. Warto poprawić tylko kilka rzeczy.' :
+              'Wróć do błędów i zrób krótką powtórkę.';
+    $('#testArea').innerHTML=`<div class="panel result">
+      <div class="kicker">Wynik</div>
+      <div class="score">${state.testScore}/${n}</div>
+      <h2>${pct}%</h2>
+      <p>${msg}</p>
+      ${state.testWrong.length?`
+        <ul class="wrong-list">${state.testWrong.map(x=>`<li><b>${x.q}</b><br><span class="tiny">Zapamiętaj: ${x.a}</span></li>`).join('')}</ul>
+      `:''}
+      <div class="btn-row" style="justify-content:center;margin-top:20px">
+        ${state.testWrong.length?'<button class="btn secondary" id="retryWrong">Tylko błędy</button>':''}
+        <button class="btn" id="retryTest">Jeszcze raz</button>
+      </div>
+    </div>`;
+    $('#retryTest').onclick=startTest;
+    if($('#retryWrong')) $('#retryWrong').onclick=()=>{
+      const wrongQs = state.testWrong.map(w => testQuestions.find(t => t.q===w.q)).filter(Boolean);
+      state.testSet=wrongQs;
+      state.testIndex=0;state.testScore=0;state.testWrong=[];state.testAnswered=false;
+      renderTest();
+    };
+  }
+
+  function shuffle(items){
+    const arr=[...items];
+    for(let i=arr.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+  }
+
+  function escapeAttr(s){
+    return String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+  }
+
+  renderLearn();
+  updateProgress();
+})();
+</script>
+</body>
+</html>
