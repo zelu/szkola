@@ -1,0 +1,1162 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English – Unit 1: People and places</title>
+<style>
+:root{
+  --bg:#f5f7f8;
+  --card:#ffffff;
+  --text:#1f2933;
+  --muted:#66737f;
+  --line:#dfe5e8;
+  --primary:#176b73;
+  --primary-soft:#e8f3f4;
+  --accent:#d7772e;
+  --ok:#25734d;
+  --ok-soft:#eaf5ef;
+  --bad:#a33a32;
+  --bad-soft:#faecea;
+  --shadow:0 8px 24px rgba(27,39,48,.07);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button,input{font:inherit}
+button{touch-action:manipulation}
+.hidden{display:none!important}
+.app{
+  max-width:820px;
+  margin:0 auto;
+  padding:18px 14px 60px;
+}
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+.brand{
+  font-weight:800;
+  font-size:18px;
+  flex:1;
+}
+.home-btn{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:12px;
+  padding:9px 12px;
+  font-weight:700;
+  color:var(--text);
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+h1{
+  margin:0 0 8px;
+  font-size:clamp(28px,5vw,40px);
+  line-height:1.12;
+}
+h2{
+  margin:0 0 8px;
+  font-size:clamp(23px,4vw,30px);
+}
+h3{
+  margin:0 0 6px;
+  font-size:20px;
+}
+p{margin:8px 0}
+.muted{color:var(--muted)}
+.lead{font-size:18px;line-height:1.5}
+.stage-grid{
+  display:grid;
+  gap:14px;
+  margin-top:22px;
+}
+.stage{
+  width:100%;
+  text-align:left;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:18px;
+  padding:18px;
+  cursor:pointer;
+  box-shadow:0 4px 14px rgba(27,39,48,.04);
+}
+.stage:active{transform:scale(.995)}
+.stage-head{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.stage-num{
+  width:42px;height:42px;flex:0 0 42px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:var(--primary-soft);
+  color:var(--primary);
+  font-weight:900;
+}
+.stage-title{font-size:20px;font-weight:850}
+.stage-desc{margin-top:4px;color:var(--muted)}
+.stage-status{
+  margin-top:11px;
+  font-size:14px;
+  font-weight:750;
+  color:var(--primary);
+}
+.progress-shell{
+  height:11px;
+  border-radius:999px;
+  background:#e8edef;
+  overflow:hidden;
+  margin:14px 0 7px;
+}
+.progress-bar{
+  height:100%;
+  width:0;
+  background:var(--primary);
+  transition:width .2s ease;
+}
+.progress-label{
+  color:var(--muted);
+  font-size:14px;
+  font-weight:700;
+}
+.lesson-tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding-bottom:4px;
+  margin:16px 0;
+  scrollbar-width:none;
+}
+.lesson-tabs::-webkit-scrollbar{display:none}
+.tab{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:#fff;
+  padding:8px 12px;
+  font-weight:750;
+  color:var(--muted);
+}
+.tab.active{
+  background:var(--primary-soft);
+  color:var(--primary);
+  border-color:#b9d9dc;
+}
+.study-box{
+  min-height:330px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.kicker{
+  color:var(--primary);
+  font-weight:850;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:10px;
+}
+.big{
+  font-size:clamp(29px,6vw,46px);
+  font-weight:900;
+  line-height:1.1;
+  margin:6px 0 12px;
+}
+.rule{
+  background:#f7fafb;
+  border-left:4px solid var(--primary);
+  border-radius:12px;
+  padding:13px 14px;
+  margin:14px 0;
+  line-height:1.55;
+}
+.examples{
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+.example{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 12px;
+  background:#fff;
+}
+.en{font-weight:800}
+.pl{color:var(--muted);margin-left:7px}
+.listen{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--primary);
+  border-radius:11px;
+  padding:9px 12px;
+  font-weight:800;
+  margin-top:12px;
+}
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+.btn{
+  border:0;
+  border-radius:13px;
+  min-height:48px;
+  padding:0 18px;
+  font-weight:850;
+  cursor:pointer;
+}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-secondary{background:#e9eef0;color:var(--text)}
+.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--text)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.actions .btn-primary{margin-left:auto}
+.section-summary{
+  text-align:center;
+  padding:10px 4px;
+}
+.score-big{
+  font-size:52px;
+  font-weight:950;
+  color:var(--primary);
+  margin:6px 0;
+}
+.focus-card{
+  min-height:430px;
+  display:flex;
+  flex-direction:column;
+}
+.qmeta{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  color:var(--muted);
+  font-size:14px;
+  font-weight:750;
+  margin-bottom:18px;
+}
+.question{
+  font-size:clamp(23px,4.8vw,32px);
+  font-weight:900;
+  line-height:1.3;
+  margin:14px 0 20px;
+}
+.options{
+  display:grid;
+  gap:10px;
+}
+.option{
+  width:100%;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  padding:14px 15px;
+  text-align:left;
+  font-weight:750;
+  color:var(--text);
+  cursor:pointer;
+  min-height:52px;
+}
+.option:hover{border-color:#aab8bd}
+.option.selected{border:2px solid var(--primary);background:var(--primary-soft)}
+.option.correct{border:2px solid var(--ok);background:var(--ok-soft)}
+.option.wrong{border:2px solid var(--bad);background:var(--bad-soft)}
+.option:disabled{cursor:default;color:inherit}
+.answer-input{
+  width:100%;
+  border:2px solid #cfd8dc;
+  border-radius:14px;
+  padding:14px 15px;
+  font-size:20px;
+  outline:none;
+}
+.answer-input:focus{border-color:var(--primary)}
+.answer-input.good{border-color:var(--ok);background:var(--ok-soft)}
+.answer-input.bad{border-color:var(--bad);background:var(--bad-soft)}
+.feedback{
+  margin-top:16px;
+  border-radius:14px;
+  padding:13px 14px;
+  font-weight:750;
+  line-height:1.45;
+}
+.feedback.ok{background:var(--ok-soft);color:var(--ok)}
+.feedback.bad{background:var(--bad-soft);color:var(--bad)}
+.hint{
+  margin-top:12px;
+  background:#fff7ed;
+  border:1px solid #f0d5b8;
+  padding:12px 13px;
+  border-radius:12px;
+  color:#7d4b20;
+}
+.reorder-pool{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:12px 0;
+}
+.word{
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:10px 12px;
+  background:#fff;
+  font-weight:800;
+  cursor:pointer;
+}
+.word.used{opacity:.3}
+.reorder-line{
+  min-height:54px;
+  border:2px dashed #cbd5d9;
+  border-radius:13px;
+  padding:13px;
+  font-size:19px;
+  font-weight:800;
+}
+.review-list{
+  display:grid;
+  gap:10px;
+  margin-top:16px;
+}
+.review-item{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px 13px;
+}
+.review-item.bad{border-color:#e8b5b0;background:#fff8f7}
+.review-item.good{border-color:#badac9;background:#f7fcf9}
+.review-q{font-weight:800;margin-bottom:5px}
+.pill{
+  display:inline-block;
+  border-radius:999px;
+  padding:5px 9px;
+  background:#eef2f4;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+}
+.note{
+  background:#f7fafb;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px 14px;
+  margin-top:14px;
+}
+@media (max-width:600px){
+  .app{padding:12px 10px 44px}
+  .card{padding:17px;border-radius:17px}
+  .study-box{min-height:360px}
+  .focus-card{min-height:520px}
+  .actions{position:sticky;bottom:0;background:linear-gradient(transparent,#fff 18%);padding-top:18px;padding-bottom:3px}
+  .actions .btn{flex:1}
+  .actions .btn-primary{margin-left:0}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <button id="homeBtn" class="home-btn hidden">← Start</button>
+    <div class="brand">English • Unit 1</div>
+  </div>
+
+  <section id="homeView">
+    <div class="card">
+      <div class="kicker">People and places</div>
+      <h1>Angielski krok po kroku</h1>
+      <p class="lead">Najpierw spokojnie poznajesz materiał. Potem go utrwalasz. Na końcu robisz próbny sprawdzian.</p>
+      <div class="note">Na ekranie jest zawsze tylko jedno zadanie. Nie ma timera. Po błędzie dostajesz wskazówkę i możesz spróbować jeszcze raz.</div>
+
+      <div class="stage-grid">
+        <button class="stage" data-go="study">
+          <div class="stage-head">
+            <div class="stage-num">1</div>
+            <div>
+              <div class="stage-title">Nauka</div>
+              <div class="stage-desc">Krótkie zasady i przykłady. Bez odpytywania.</div>
+            </div>
+          </div>
+          <div class="stage-status" id="studyStatus">Zacznij tutaj</div>
+        </button>
+
+        <button class="stage" data-go="practice">
+          <div class="stage-head">
+            <div class="stage-num">2</div>
+            <div>
+              <div class="stage-title">Utrwalanie</div>
+              <div class="stage-desc">Jedno zadanie naraz, natychmiastowy feedback i druga próba.</div>
+            </div>
+          </div>
+          <div class="stage-status" id="practiceStatus">3 krótkie rundy</div>
+        </button>
+
+        <button class="stage" data-go="test">
+          <div class="stage-head">
+            <div class="stage-num">3</div>
+            <div>
+              <div class="stage-title">Quiz / test</div>
+              <div class="stage-desc">Mieszane zadania, także odpowiedzi wpisywane samodzielnie.</div>
+            </div>
+          </div>
+          <div class="stage-status" id="testStatus">20 pytań • bez podpowiedzi</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="studyView" class="hidden">
+    <div class="card">
+      <div class="kicker">Etap 1 • Nauka</div>
+      <h2>Najpierw poznaj materiał</h2>
+      <div class="progress-shell"><div id="studyProgress" class="progress-bar"></div></div>
+      <div id="studyProgressLabel" class="progress-label"></div>
+      <div id="studyTabs" class="lesson-tabs"></div>
+      <div id="studyCard" class="study-box"></div>
+      <div class="actions">
+        <button id="studyPrev" class="btn btn-secondary">Wstecz</button>
+        <button id="studyNext" class="btn btn-primary">Dalej</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="practiceView" class="hidden">
+    <div class="card focus-card">
+      <div class="kicker">Etap 2 • Utrwalanie</div>
+      <div class="progress-shell"><div id="practiceProgress" class="progress-bar"></div></div>
+      <div id="practiceProgressLabel" class="progress-label"></div>
+      <div id="practiceArea"></div>
+    </div>
+  </section>
+
+  <section id="testView" class="hidden">
+    <div class="card focus-card">
+      <div class="kicker">Etap 3 • Quiz / test</div>
+      <div class="progress-shell"><div id="testProgress" class="progress-bar"></div></div>
+      <div id="testProgressLabel" class="progress-label"></div>
+      <div id="testArea"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+
+const studyLessons = [
+  {
+    title:"Kraje i narodowości",
+    cards:[
+      {
+        title:"Country czy nationality?",
+        text:"Country to państwo. Nationality to narodowość. Uczymy się ich parami.",
+        examples:[
+          ["Poland","Polish"],
+          ["the UK","British"],
+          ["the USA","American"],
+          ["France","French"]
+        ],
+        speak:"Poland, Polish. The United Kingdom, British. The United States, American. France, French."
+      },
+      {
+        title:"Kolejne ważne pary",
+        text:"Nie próbuj zgadywać końcówki. Zapamiętuj całe pary.",
+        examples:[
+          ["Australia","Australian"],
+          ["Argentina","Argentinian"],
+          ["Brazil","Brazilian"],
+          ["China","Chinese"]
+        ],
+        speak:"Australia, Australian. Argentina, Argentinian. Brazil, Brazilian. China, Chinese."
+      },
+      {
+        title:"Jeszcze trzy pary",
+        text:"Te pary też występują w tym dziale.",
+        examples:[
+          ["Spain","Spanish"],
+          ["Turkey","Turkish"],
+          ["Poland","Polish"]
+        ],
+        speak:"Spain, Spanish. Turkey, Turkish. Poland, Polish."
+      }
+    ]
+  },
+  {
+    title:"Czasownik be",
+    cards:[
+      {
+        title:"I am • you are",
+        text:"Czasownik be zmienia formę zależnie od osoby.",
+        examples:[
+          ["I am eleven.","I’m eleven."],
+          ["You are eleven.","You’re eleven."],
+          ["We are students.","We’re students."],
+          ["They are friends.","They’re friends."]
+        ],
+        speak:"I am eleven. You're eleven. We're students. They're friends."
+      },
+      {
+        title:"He, she, it → is",
+        text:"Dla he, she i it używamy is.",
+        examples:[
+          ["He is eleven.","He’s eleven."],
+          ["She is French.","She’s French."],
+          ["It is orange.","It’s orange."]
+        ],
+        speak:"He's eleven. She's French. It's orange."
+      },
+      {
+        title:"Szybka ściąga",
+        text:"Najważniejszy układ do zapamiętania:",
+        examples:[
+          ["I","am"],
+          ["you / we / they","are"],
+          ["he / she / it","is"]
+        ],
+        speak:"I am. You are. We are. They are. He is. She is. It is."
+      }
+    ]
+  },
+  {
+    title:"Miejsca i liczby",
+    cards:[
+      {
+        title:"Miejsca z at",
+        text:"Te wyrażenia zapamiętuj jako gotowe całości.",
+        examples:[
+          ["at a café","w kawiarni"],
+          ["at a party","na imprezie"],
+          ["at a summer camp","na letnim obozie"],
+          ["at home","w domu"],
+          ["at school","w szkole"]
+        ],
+        speak:"At a cafe. At a party. At a summer camp. At home. At school."
+      },
+      {
+        title:"Miejsca z in i on",
+        text:"Tu zmienia się przyimek, więc warto zapamiętać całe wyrażenie.",
+        examples:[
+          ["in the garden","w ogrodzie"],
+          ["in the park","w parku"],
+          ["on holiday","na wakacjach"]
+        ],
+        speak:"In the garden. In the park. On holiday."
+      },
+      {
+        title:"Pełne dziesiątki",
+        text:"Najpierw opanuj pełne dziesiątki od 20 do 100.",
+        examples:[
+          ["20","twenty"],
+          ["30","thirty"],
+          ["40","forty"],
+          ["50","fifty"],
+          ["60","sixty"],
+          ["70","seventy"],
+          ["80","eighty"],
+          ["90","ninety"],
+          ["100","one hundred"]
+        ],
+        speak:"Twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred."
+      },
+      {
+        title:"Liczby pomiędzy",
+        text:"Łączymy dziesiątkę i jedności. W zapisie używamy łącznika.",
+        examples:[
+          ["21","twenty-one"],
+          ["48","forty-eight"],
+          ["63","sixty-three"],
+          ["99","ninety-nine"]
+        ],
+        speak:"Twenty-one. Forty-eight. Sixty-three. Ninety-nine."
+      }
+    ]
+  },
+  {
+    title:"a, an i brak rodzajnika",
+    cards:[
+      {
+        title:"a czy an?",
+        text:"Przed pojedynczym rzeczownikiem używamy a albo an. Patrzymy na dźwięk następnego słowa.",
+        examples:[
+          ["a pencil","ołówek"],
+          ["an apple","jabłko"],
+          ["a very big book","bardzo duża książka"],
+          ["an amazing watch","niesamowity zegarek"]
+        ],
+        speak:"A pencil. An apple. A very big book. An amazing watch."
+      },
+      {
+        title:"Liczba mnoga",
+        text:"Przy ogólnym opisie rzeczy w liczbie mnogiej nie dajemy a ani an.",
+        examples:[
+          ["They’re blue rubbers.","To są niebieskie gumki."],
+          ["They’re yellow pencils.","To są żółte ołówki."]
+        ],
+        speak:"They're blue rubbers. They're yellow pencils."
+      }
+    ]
+  },
+  {
+    title:"Pytania o siebie",
+    cards:[
+      {
+        title:"Imię i literowanie",
+        text:"Dwa podstawowe pytania:",
+        examples:[
+          ["What’s your name?","My name’s Lena."],
+          ["How do you spell Martin?","M-A-R-T-I-N."]
+        ],
+        speak:"What's your name? My name's Lena. How do you spell Martin? M A R T I N."
+      },
+      {
+        title:"Kraj i narodowość",
+        text:"To są dwa różne pytania.",
+        examples:[
+          ["Where are you from?","I’m from Poland."],
+          ["What’s your nationality?","I’m Polish."]
+        ],
+        speak:"Where are you from? I'm from Poland. What's your nationality? I'm Polish."
+      },
+      {
+        title:"Wiek",
+        text:"Na pytanie o wiek odpowiadamy: I’m + liczba.",
+        examples:[
+          ["How old are you?","I’m ten."],
+          ["How old are you?","I’m eleven."]
+        ],
+        speak:"How old are you? I'm ten. I'm eleven."
+      },
+      {
+        title:"Przydatne zwroty",
+        text:"W dziale pojawiają się też te krótkie zwroty.",
+        examples:[
+          ["What a mess!","Jaki bałagan!"],
+          ["Don’t worry. It’s OK.","Nie martw się. Wszystko w porządku."],
+          ["You’re amazing!","Jesteś wspaniały / wspaniała!"]
+        ],
+        speak:"What a mess! Don't worry. It's OK. You're amazing!"
+      }
+    ]
+  }
+];
+
+const practiceSections = [
+  {
+    title:"Runda 1: Kraje i narodowości",
+    items:[
+      mc("Poland → ?", ["Polish","French","Spanish","British"], "Polish", "Zapamiętuj parę: Poland – Polish."),
+      mc("British → ?", ["the UK","the USA","Brazil","Spain"], "the UK", "British to narodowość związana z the UK."),
+      mc("Turkey → ?", ["Turkish","Turkeyan","Chinese","Argentinian"], "Turkish", "Para to Turkey – Turkish."),
+      mc("Brazilian → ?", ["Brazil","Argentina","Australia","France"], "Brazil", "Brazilian odpowiada państwu Brazil."),
+      text("Wpisz narodowość: France →", "French", "Zaczyna się na F i nie ma końcówki -ian."),
+      text("Wpisz państwo: Spanish →", "Spain", "To państwo, którego narodowość to Spanish.")
+    ]
+  },
+  {
+    title:"Runda 2: Gramatyka",
+    items:[
+      mc("I ___ eleven.", ["am","is","are","be"], "am", "Dla I używamy am."),
+      mc("She ___ my friend.", ["is","am","are","be"], "is", "Dla she używamy is."),
+      mc("They ___ students.", ["are","is","am","be"], "are", "Dla they używamy are."),
+      mc("It’s ___ apple.", ["an","a","—","the"], "an", "Przed apple używamy an."),
+      mc("It’s ___ very big book.", ["a","an","—","the"], "a", "Bezpośrednio po rodzajniku jest very, więc używamy a."),
+      mc("They’re ___ yellow pencils.", ["—","a","an","one"], "—", "Przy ogólnym opisie liczby mnogiej nie używamy a/an.")
+    ]
+  },
+  {
+    title:"Runda 3: Miejsca, liczby i pytania",
+    items:[
+      mc("„w parku” to:", ["in the park","at the park","on the park","in park"], "in the park", "W podręczniku występuje wyrażenie in the park."),
+      mc("Dzieci są na letnim obozie. Wybierz poprawne wyrażenie.", ["at a summer camp","on a summer camp","in a summer camp","at summer"], "at a summer camp", "Zapamiętuj całe wyrażenie: at a summer camp."),
+      text("Napisz po angielsku: 48", "forty-eight", "40 to forty, a 8 to eight."),
+      text("Napisz po angielsku: 63", "sixty-three", "60 to sixty, a 3 to three."),
+      mc("Where are you from?", ["I’m from Poland.","I’m Polish.","I’m eleven.","My name’s Lena."], "I’m from Poland.", "Pytanie Where are you from? dotyczy kraju."),
+      mc("What’s your nationality?", ["I’m Polish.","I’m from Poland.","I’m ten.","My name’s Adam."], "I’m Polish.", "Pytanie o nationality wymaga nazwy narodowości.")
+    ]
+  }
+];
+
+function mc(q, options, answer, hint){ return {type:"mc",q,options,answer,hint}; }
+function text(q, answer, hint, alts=[]){ return {type:"text",q,answer,hint,alts}; }
+function reorder(q, words, answer){ return {type:"reorder",q,words,answer}; }
+
+const testPool = [
+  mc("Poland → ?",["Polish","Spanish","British","French"],"Polish"),
+  mc("Australia → ?",["Australian","American","Argentinian","Brazilian"],"Australian"),
+  mc("Chinese → ?",["China","France","Turkey","Brazil"],"China"),
+  mc("the USA → ?",["American","British","Australian","Argentinian"],"American"),
+  text("Wpisz narodowość: Spain →","Spanish"),
+  text("Wpisz państwo: Turkish →","Turkey"),
+  mc("I ___ eleven.",["am","is","are","be"],"am"),
+  mc("He ___ my dad.",["is","am","are","be"],"is"),
+  mc("We ___ students.",["are","is","am","be"],"are"),
+  text("Uzupełnij jednym słowem: She ___ French.","is"),
+  mc("It’s ___ pencil.",["a","an","—","one"],"a"),
+  mc("It’s ___ orange.",["an","a","—","one"],"an"),
+  mc("They’re ___ blue rubbers.",["—","a","an","one"],"—"),
+  mc("„w domu” to:",["at home","in home","on home","at the home"],"at home"),
+  mc("„na wakacjach” to:",["on holiday","at holiday","in holiday","on the holiday"],"on holiday"),
+  mc("„w ogrodzie” to:",["in the garden","at the garden","on the garden","in garden"],"in the garden"),
+  text("Napisz po angielsku: 30","thirty"),
+  text("Napisz po angielsku: 52","fifty-two"),
+  text("Napisz po angielsku: 77","seventy-seven"),
+  text("Napisz po angielsku: 99","ninety-nine"),
+  mc("How old are you?",["I’m ten.","I’m from Poland.","I’m Polish.","My name’s Mia."],"I’m ten."),
+  mc("Where are you from?",["I’m from Spain.","I’m Spanish.","I’m eleven.","I’m Ana."],"I’m from Spain."),
+  mc("What’s your nationality?",["I’m French.","I’m from France.","I’m ten.","My name’s Emile."],"I’m French."),
+  mc("How do you spell Martin?",["M-A-R-T-I-N.","I’m Martin.","Martin is eleven.","I’m French."],"M-A-R-T-I-N."),
+  reorder("Ułóż pytanie o imię.",["name?","your","What’s"],"What’s your name?"),
+  reorder("Ułóż pytanie o kraj pochodzenia.",["from?","are","Where","you"],"Where are you from?"),
+  reorder("Ułóż pytanie o wiek.",["you?","old","How","are"],"How old are you?"),
+  mc("Który zwrot znaczy „Nie martw się. Wszystko w porządku.”?",["Don’t worry. It’s OK.","What a mess!","You’re amazing!","Where are you from?"],"Don’t worry. It’s OK.")
+];
+
+let state = {
+  studyLesson:0,
+  studyCard:0,
+  studyDone:false,
+  practiceSection:0,
+  practiceDone:false,
+  testBest:null
+};
+
+try {
+  const saved = JSON.parse(localStorage.getItem("englishUnit1App") || "null");
+  if(saved) state = {...state, ...saved};
+} catch(e){}
+
+function save(){
+  localStorage.setItem("englishUnit1App", JSON.stringify(state));
+  updateHomeStatus();
+}
+function showView(name){
+  ["home","study","practice","test"].forEach(v=>$("#"+v+"View").classList.toggle("hidden",v!==name));
+  $("#homeBtn").classList.toggle("hidden", name==="home");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{
+  const go=b.dataset.go;
+  if(go==="study"){ showView("study"); renderStudy(); }
+  if(go==="practice"){ startPractice(state.practiceSection||0); }
+  if(go==="test"){ startTest(); }
+});
+$("#homeBtn").onclick=()=>showView("home");
+
+function updateHomeStatus(){
+  $("#studyStatus").textContent = state.studyDone ? "Ukończone" : "Zacznij tutaj";
+  $("#practiceStatus").textContent = state.practiceDone ? "Ukończone" : "3 krótkie rundy";
+  $("#testStatus").textContent = state.testBest===null ? "20 pytań • bez podpowiedzi" : `Najlepszy wynik: ${state.testBest}/20`;
+}
+updateHomeStatus();
+
+function renderStudyTabs(){
+  $("#studyTabs").innerHTML = studyLessons.map((l,i)=>
+    `<button class="tab ${i===state.studyLesson?"active":""}" data-i="${i}">${i+1}. ${l.title}</button>`
+  ).join("");
+  $("#studyTabs").querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
+    state.studyLesson=+b.dataset.i; state.studyCard=0; save(); renderStudy();
+  });
+}
+
+function renderStudy(){
+  renderStudyTabs();
+  const lesson=studyLessons[state.studyLesson];
+  const card=lesson.cards[state.studyCard];
+  const total=studyLessons.reduce((s,l)=>s+l.cards.length,0);
+  let before=0;
+  for(let i=0;i<state.studyLesson;i++) before+=studyLessons[i].cards.length;
+  const pos=before+state.studyCard+1;
+  $("#studyProgress").style.width=`${pos/total*100}%`;
+  $("#studyProgressLabel").textContent=`Karta ${pos} z ${total}`;
+
+  $("#studyCard").innerHTML=`
+    <div>
+      <div class="kicker">${lesson.title}</div>
+      <div class="big">${card.title}</div>
+      <p class="lead">${card.text}</p>
+      <div class="examples">
+        ${card.examples.map(e=>`<div class="example"><span class="en">${e[0]}</span><span class="pl">${e[1]}</span></div>`).join("")}
+      </div>
+      <button class="listen" id="listenBtn">🔊 Posłuchaj</button>
+    </div>
+  `;
+  $("#listenBtn").onclick=()=>speak(card.speak);
+
+  const atStart=state.studyLesson===0 && state.studyCard===0;
+  $("#studyPrev").disabled=atStart;
+  $("#studyNext").textContent = pos===total ? "Zakończ naukę" : "Dalej";
+}
+$("#studyPrev").onclick=()=>{
+  if(state.studyCard>0) state.studyCard--;
+  else if(state.studyLesson>0){
+    state.studyLesson--;
+    state.studyCard=studyLessons[state.studyLesson].cards.length-1;
+  }
+  save(); renderStudy();
+};
+$("#studyNext").onclick=()=>{
+  const lesson=studyLessons[state.studyLesson];
+  const lastCard=state.studyCard===lesson.cards.length-1;
+  const lastLesson=state.studyLesson===studyLessons.length-1;
+  if(lastCard && lastLesson){
+    state.studyDone=true; save(); showStudyFinish(); return;
+  }
+  if(state.studyCard<lesson.cards.length-1) state.studyCard++;
+  else { state.studyLesson++; state.studyCard=0; }
+  save(); renderStudy();
+};
+
+function showStudyFinish(){
+  $("#studyTabs").innerHTML="";
+  $("#studyProgress").style.width="100%";
+  $("#studyProgressLabel").textContent="Nauka ukończona";
+  $("#studyCard").innerHTML=`
+    <div class="section-summary">
+      <div class="kicker">Gotowe</div>
+      <h2>Materiał przejrzany</h2>
+      <p class="lead">Teraz przejdź do krótkiego utrwalania. Tam możesz popełniać błędy i od razu je poprawiać.</p>
+      <div class="actions" style="justify-content:center">
+        <button class="btn btn-secondary" id="repeatStudy">Powtórz naukę</button>
+        <button class="btn btn-primary" id="goPractice">Przejdź do utrwalania</button>
+      </div>
+    </div>`;
+  $("#studyPrev").classList.add("hidden");
+  $("#studyNext").classList.add("hidden");
+  $("#repeatStudy").onclick=()=>{
+    state.studyLesson=0;state.studyCard=0;save();
+    $("#studyPrev").classList.remove("hidden");$("#studyNext").classList.remove("hidden");
+    renderStudy();
+  };
+  $("#goPractice").onclick=()=>{
+    $("#studyPrev").classList.remove("hidden");$("#studyNext").classList.remove("hidden");
+    startPractice(0);
+  };
+}
+
+function speak(text){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-GB";
+  u.rate=.82;
+  speechSynthesis.speak(u);
+}
+
+let practice = null;
+
+function startPractice(sectionIndex=0){
+  showView("practice");
+  state.practiceSection=Math.max(0,Math.min(sectionIndex,practiceSections.length-1));
+  const base=practiceSections[state.practiceSection].items.map((x,i)=>({...x,_id:i}));
+  practice={
+    queue:shuffle(base),
+    current:null,
+    totalBase:base.length,
+    mastered:0,
+    firstTryGood:0,
+    attempts:0,
+    sectionIndex:state.practiceSection
+  };
+  nextPractice();
+}
+
+function nextPractice(){
+  if(practice.queue.length===0){ showPracticeSummary(); return; }
+  practice.current=practice.queue.shift();
+  practice.attempts=0;
+  renderPracticeQuestion();
+}
+
+function renderPracticeQuestion(){
+  const item=practice.current;
+  const done=practice.mastered;
+  $("#practiceProgress").style.width=`${Math.min(100,done/practice.totalBase*100)}%`;
+  $("#practiceProgressLabel").textContent=`${practiceSections[practice.sectionIndex].title} • opanowane ${done}/${practice.totalBase}`;
+
+  const answerUI = item.type==="mc" ? mcHTML(item,true) :
+                   item.type==="text" ? `<input id="pText" class="answer-input" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Wpisz odpowiedź">` :
+                   reorderHTML(item);
+
+  $("#practiceArea").innerHTML=`
+    <div class="qmeta"><span>Jedno zadanie naraz</span><span>bez pośpiechu</span></div>
+    <div class="question">${item.q}</div>
+    ${answerUI}
+    <div id="pHint"></div>
+    <div id="pFeedback"></div>
+    <div class="actions">
+      ${item.type==="reorder" ? '<button class="btn btn-secondary" id="pClear">Wyczyść</button>' : ''}
+      <button class="btn btn-primary" id="pCheck">Sprawdź</button>
+    </div>
+  `;
+  bindQuestionInteractions(item,"p");
+  $("#pCheck").onclick=checkPractice;
+  if($("#pClear")) $("#pClear").onclick=()=>clearReorder("p");
+}
+
+function checkPractice(){
+  const item=practice.current;
+  const val=getAnswer(item,"p");
+  if(!val){ showMiniFeedback("p","Najpierw wybierz albo wpisz odpowiedź.","bad"); return; }
+  practice.attempts++;
+  const ok=answerMatches(item,val);
+  markAnswerUI(item,"p",ok);
+
+  if(ok){
+    if(practice.attempts===1) practice.firstTryGood++;
+    practice.mastered++;
+    showMiniFeedback("p","Dobrze. Przechodzimy dalej.","ok");
+    disableQuestionUI("p");
+    replaceActionWithNext("p",nextPractice);
+  } else if(practice.attempts===1){
+    $("#pHint").innerHTML=`<div class="hint"><b>Wskazówka:</b> ${item.hint || genericHint(item)}</div>`;
+    showMiniFeedback("p","Jeszcze nie. Spójrz na wskazówkę i spróbuj drugi raz.","bad");
+    if(item.type==="mc"){
+      document.querySelectorAll("#practiceArea .option").forEach(b=>b.classList.remove("selected","wrong"));
+    }
+    if(item.type==="text"){
+      $("#pText").classList.remove("bad");
+      $("#pText").value="";
+      $("#pText").focus();
+    }
+    if(item.type==="reorder") clearReorder("p");
+  } else {
+    showMiniFeedback("p",`Poprawna odpowiedź: ${item.answer}`,"bad");
+    disableQuestionUI("p");
+    const returned={...item};
+    practice.queue.push(returned);
+    replaceActionWithNext("p",nextPractice,"Dalej");
+  }
+}
+
+function showPracticeSummary(){
+  const sec=practiceSections[practice.sectionIndex];
+  const pct=Math.round(practice.firstTryGood/practice.totalBase*100);
+  $("#practiceProgress").style.width="100%";
+  $("#practiceProgressLabel").textContent=`${sec.title} • zakończona`;
+  $("#practiceArea").innerHTML=`
+    <div class="section-summary">
+      <div class="kicker">Podsumowanie rundy</div>
+      <h2>${sec.title}</h2>
+      <div class="score-big">${practice.firstTryGood}/${practice.totalBase}</div>
+      <p class="lead">Tyle zadań udało się zrobić poprawnie za pierwszym razem. Trudniejsze pytania wróciły później w tej samej rundzie.</p>
+      <div class="actions" style="justify-content:center">
+        <button class="btn btn-secondary" id="repeatPractice">Powtórz rundę</button>
+        ${practice.sectionIndex<practiceSections.length-1
+          ? '<button class="btn btn-primary" id="nextPracticeSection">Następna runda</button>'
+          : '<button class="btn btn-accent" id="toTest">Przejdź do testu</button>'}
+      </div>
+    </div>`;
+  $("#repeatPractice").onclick=()=>startPractice(practice.sectionIndex);
+  if($("#nextPracticeSection")) $("#nextPracticeSection").onclick=()=>{
+    state.practiceSection=practice.sectionIndex+1; save(); startPractice(state.practiceSection);
+  };
+  if($("#toTest")) $("#toTest").onclick=()=>{
+    state.practiceDone=true; save(); startTest();
+  };
+}
+
+let testState=null;
+
+function startTest(){
+  showView("test");
+  const chosen=shuffle(testPool).slice(0,20).map(x=>cloneQuestion(x));
+  testState={items:chosen,index:0,answers:Array(20).fill(null)};
+  renderTestQuestion();
+}
+function cloneQuestion(x){
+  const y=JSON.parse(JSON.stringify(x));
+  if(y.type==="mc") y.options=shuffle(y.options);
+  if(y.type==="reorder") y.words=shuffle(y.words);
+  return y;
+}
+function renderTestQuestion(){
+  const i=testState.index;
+  const item=testState.items[i];
+  $("#testProgress").style.width=`${i/20*100}%`;
+  $("#testProgressLabel").textContent=`Pytanie ${i+1} z 20`;
+  const answerUI = item.type==="mc" ? mcHTML(item,false) :
+                   item.type==="text" ? `<input id="tText" class="answer-input" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Wpisz odpowiedź">` :
+                   reorderHTML(item);
+
+  $("#testArea").innerHTML=`
+    <div class="qmeta"><span>Sprawdzian</span><span>bez podpowiedzi</span></div>
+    <div class="question">${item.q}</div>
+    ${answerUI}
+    <div class="actions">
+      ${item.type==="reorder" ? '<button class="btn btn-secondary" id="tClear">Wyczyść</button>' : ''}
+      <button class="btn btn-primary" id="tNext">${i===19?"Zakończ test":"Dalej"}</button>
+    </div>
+  `;
+  bindQuestionInteractions(item,"t");
+  if($("#tClear")) $("#tClear").onclick=()=>clearReorder("t");
+  $("#tNext").onclick=()=>{
+    const val=getAnswer(item,"t");
+    if(!val) return;
+    testState.answers[i]=val;
+    if(i===19) finishTest();
+    else {testState.index++;renderTestQuestion();}
+  };
+}
+
+function finishTest(){
+  let good=0;
+  const rows=testState.items.map((item,i)=>{
+    const user=testState.answers[i];
+    const ok=answerMatches(item,user);
+    if(ok) good++;
+    return {item,user,ok};
+  });
+  state.testBest = state.testBest===null ? good : Math.max(state.testBest,good);
+  save();
+  $("#testProgress").style.width="100%";
+  $("#testProgressLabel").textContent="Test zakończony";
+  let message = good>=18 ? "Bardzo dobrze. Materiał jest opanowany." :
+                good>=15 ? "Dobry wynik. Warto poprawić kilka trudniejszych punktów." :
+                good>=11 ? "Część materiału jest już opanowana. Wróć do błędów i zrób utrwalanie." :
+                "Warto wrócić do nauki i utrwalania, a potem spróbować ponownie.";
+
+  $("#testArea").innerHTML=`
+    <div class="section-summary">
+      <div class="kicker">Wynik</div>
+      <div class="score-big">${good}/20</div>
+      <p class="lead">${message}</p>
+    </div>
+    <div class="review-list">
+      ${rows.filter(r=>!r.ok).map(r=>`
+        <div class="review-item bad">
+          <div class="review-q">${r.item.q}</div>
+          <div>Twoja odpowiedź: <b>${escapeHTML(r.user)}</b></div>
+          <div>Poprawna odpowiedź: <b>${escapeHTML(r.item.answer)}</b></div>
+        </div>`).join("") || '<div class="review-item good"><b>Wszystkie odpowiedzi poprawne.</b></div>'}
+    </div>
+    <div class="actions">
+      <button class="btn btn-secondary" id="backPractice">Wróć do utrwalania</button>
+      <button class="btn btn-primary" id="retryTest">Zrób nowy test</button>
+    </div>
+  `;
+  $("#backPractice").onclick=()=>startPractice(0);
+  $("#retryTest").onclick=startTest;
+}
+
+function mcHTML(item,shuffleNow){
+  const opts=shuffleNow?shuffle(item.options):item.options;
+  return `<div class="options">${opts.map((o,i)=>`<button type="button" class="option" data-val="${escapeAttr(o)}">${escapeHTML(o)}</button>`).join("")}</div>`;
+}
+function reorderHTML(item){
+  const words=shuffle(item.words);
+  return `
+    <div class="reorder-pool">${words.map(w=>`<button type="button" class="word" data-word="${escapeAttr(w)}">${escapeHTML(w)}</button>`).join("")}</div>
+    <div class="reorder-line"></div>`;
+}
+function bindQuestionInteractions(item,prefix){
+  if(item.type==="mc"){
+    document.querySelectorAll(`#${prefix==="p"?"practiceArea":"testArea"} .option`).forEach(b=>b.onclick=()=>{
+      document.querySelectorAll(`#${prefix==="p"?"practiceArea":"testArea"} .option`).forEach(x=>x.classList.remove("selected"));
+      b.classList.add("selected");
+    });
+  }
+  if(item.type==="text"){
+    const el=$("#"+prefix+"Text");
+    el.addEventListener("keydown",e=>{
+      if(e.key==="Enter"){
+        e.preventDefault();
+        if(prefix==="p") $("#pCheck").click(); else $("#tNext").click();
+      }
+    });
+    setTimeout(()=>el.focus(),50);
+  }
+  if(item.type==="reorder"){
+    const area=prefix==="p"?"#practiceArea":"#testArea";
+    const line=document.querySelector(`${area} .reorder-line`);
+    line.dataset.parts="[]";
+    document.querySelectorAll(`${area} .word`).forEach(b=>b.onclick=()=>{
+      if(b.classList.contains("used")) return;
+      b.classList.add("used");
+      const parts=JSON.parse(line.dataset.parts||"[]");
+      parts.push(b.dataset.word);
+      line.dataset.parts=JSON.stringify(parts);
+      line.textContent=parts.join(" ");
+    });
+  }
+}
+function clearReorder(prefix){
+  const area=prefix==="p"?"#practiceArea":"#testArea";
+  const line=document.querySelector(`${area} .reorder-line`);
+  if(!line)return;
+  line.dataset.parts="[]";line.textContent="";
+  document.querySelectorAll(`${area} .word`).forEach(b=>b.classList.remove("used"));
+}
+function getAnswer(item,prefix){
+  const area=prefix==="p"?"#practiceArea":"#testArea";
+  if(item.type==="mc") return document.querySelector(`${area} .option.selected`)?.dataset.val || "";
+  if(item.type==="text") return $("#"+prefix+"Text").value.trim();
+  if(item.type==="reorder") return document.querySelector(`${area} .reorder-line`).textContent.trim();
+  return "";
+}
+function norm(s){
+  return (s||"").trim().replace(/[’]/g,"'").replace(/\s+/g," ").toLowerCase();
+}
+function answerMatches(item,val){
+  const candidates=[item.answer,...(item.alts||[])].map(norm);
+  return candidates.includes(norm(val));
+}
+function markAnswerUI(item,prefix,ok){
+  const area=prefix==="p"?"#practiceArea":"#testArea";
+  if(item.type==="mc"){
+    const sel=document.querySelector(`${area} .option.selected`);
+    if(sel) sel.classList.add(ok?"correct":"wrong");
+  }
+  if(item.type==="text") $("#"+prefix+"Text").classList.add(ok?"good":"bad");
+}
+function disableQuestionUI(prefix){
+  const area=prefix==="p"?"#practiceArea":"#testArea";
+  document.querySelectorAll(`${area} button.option, ${area} button.word`).forEach(b=>b.disabled=true);
+  const inp=document.querySelector(`${area} .answer-input`); if(inp) inp.disabled=true;
+}
+function showMiniFeedback(prefix,text,type){
+  const el=$("#"+prefix+"Feedback");
+  if(!el)return;
+  el.className=`feedback ${type}`;
+  el.textContent=text;
+}
+function replaceActionWithNext(prefix,fn,label="Dalej"){
+  const area=prefix==="p"?"#practiceArea":"#testArea";
+  const actions=document.querySelector(`${area} .actions`);
+  actions.innerHTML=`<button class="btn btn-primary" id="${prefix}Continue">${label}</button>`;
+  $("#"+prefix+"Continue").onclick=fn;
+}
+function genericHint(item){
+  if(item.type==="text") return "Przypomnij sobie przykład z części Nauka.";
+  return "Porównaj każdą odpowiedź z zasadą z części Nauka.";
+}
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function escapeHTML(s){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+function escapeAttr(s){return escapeHTML(s)}
+
+renderStudy();
+</script>
+</body>
+</html>
