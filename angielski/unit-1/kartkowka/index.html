@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Angielski – interaktywna nauka słówek</title>
+  <style>
+    :root{--bg:#f6f7fb;--card:#fff;--text:#1f2937;--muted:#6b7280;--border:#d9dee8;--accent:#5b6ee1;--accent-soft:#eef0ff;--good:#238636;--good-soft:#eaf7ee;--bad:#c43131;--bad-soft:#fdecec;--warn:#9a6700;--warn-soft:#fff6d8;--shadow:0 8px 22px rgba(20,30,60,.08)}
+    *{box-sizing:border-box} html{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif} body{margin:0;background:var(--bg);color:var(--text)}
+    .app{width:min(760px,100%);margin:0 auto;padding:18px 14px 42px} h1{font-size:clamp(24px,5vw,34px);margin:4px 0 6px;line-height:1.1}.subtitle{color:var(--muted);margin-bottom:18px;line-height:1.45}
+    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}button{font:inherit;cursor:pointer;touch-action:manipulation}
+    .tab,.chip,.secondary,.primary,.choice{min-height:46px;border-radius:14px;border:1px solid var(--border);background:var(--card);color:var(--text)}
+    .tab{font-weight:800;padding:10px 8px}.tab.active{background:var(--accent-soft);border-color:var(--accent)}
+    .topline{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;margin-bottom:14px}.progress{height:9px;border-radius:999px;background:#e6e9ef;overflow:hidden}.progress>div{height:100%;width:0;background:var(--accent);transition:width .18s ease}.counter,.stars{font-size:14px;font-weight:800;white-space:nowrap}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}.chip{padding:9px 12px;font-weight:700;font-size:14px}.chip.active{background:var(--accent-soft);border-color:var(--accent)}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.eyebrow{font-size:14px;color:var(--muted);font-weight:800;margin-bottom:10px}.big{font-size:clamp(25px,6vw,38px);line-height:1.18;font-weight:900;margin:4px 0 18px;overflow-wrap:anywhere}
+    .primary{width:100%;padding:12px 16px;font-weight:900;background:var(--accent-soft);border-color:var(--accent)}.secondary{padding:10px 14px;font-weight:800}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.hidden{display:none!important}.choices{display:grid;gap:9px}.choice{text-align:left;padding:12px 14px;font-weight:800}.choice.correct{background:var(--good-soft);border-color:var(--good)}.choice.wrong{background:var(--bad-soft);border-color:var(--bad)}
+    .input{width:100%;min-height:50px;padding:12px 14px;font:inherit;font-size:18px;border-radius:14px;border:1px solid var(--border);background:#fff;color:var(--text);outline:none}.input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(91,110,225,.13)}
+    .feedback{margin-top:14px;border-radius:14px;border:1px solid var(--border);padding:13px 14px;line-height:1.4}.feedback.good{background:var(--good-soft);border-color:var(--good)}.feedback.bad{background:var(--bad-soft);border-color:var(--bad)}.feedback.near{background:var(--warn-soft);border-color:#d39a00}.mini{font-size:14px;color:var(--muted)}
+    .result{text-align:center}.result .score{font-size:clamp(30px,8vw,48px);font-weight:900;margin:8px 0 4px}.mistakes{text-align:left;margin-top:18px}.mistake{padding:10px 0;border-bottom:1px solid var(--border)}.mistake:last-child{border-bottom:none}.streak{font-weight:900}
+    @media(max-width:520px){.app{padding:14px 10px 30px}.card{padding:18px}.tabs{gap:6px}.tab{font-size:14px}.topline{grid-template-columns:1fr auto}.stars{grid-column:2}.counter{grid-column:2}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <h1>Angielski: szybka nauka słówek</h1>
+  <div class="subtitle">Najpierw przypomnienie, potem trening i test obejmujące wszystkie 36 haseł z czterech ramek. Odpowiedź dostajesz od razu, a w części pytań trzeba wpisać słowo lub zwrot samodzielnie.</div>
+  <div class="tabs"><button class="tab active" data-mode="learn" type="button">📖 Nauka</button><button class="tab" data-mode="train" type="button">⚡ Trening</button><button class="tab" data-mode="test" type="button">🏁 Test</button></div>
+  <div class="topline"><div class="progress"><div id="progressBar"></div></div><div id="progressText" class="counter">0 / 0</div><div id="stars" class="stars">⭐ 0</div></div>
+
+  <section id="learnView">
+    <div class="chips" id="categoryChips"></div>
+    <div class="card">
+      <div id="learnCategory" class="eyebrow"></div><div id="learnPl" class="big"></div>
+      <button id="revealBtn" class="primary" type="button">Pokaż po angielsku</button>
+      <div id="learnAnswer" class="hidden"><div id="learnEn" class="big"></div><div class="row"><button id="speakBtn" class="secondary" type="button">🔊 Posłuchaj</button><button id="againBtn" class="secondary" type="button">🔁 Jeszcze raz</button><button id="knowBtn" class="primary" style="width:auto;flex:1" type="button">✓ Umiem</button></div></div>
+    </div>
+  </section>
+
+  <section id="quizView" class="hidden">
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:center;margin-top:0"><div id="qType" class="eyebrow" style="margin:0"></div><div id="streak" class="streak">🔥 0</div></div>
+      <div id="prompt" class="big"></div><div id="choices" class="choices"></div>
+      <form id="openForm" class="hidden"><label for="answerInput" class="eyebrow" style="display:block">Wpisz po angielsku:</label><input id="answerInput" class="input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Twoja odpowiedź…"/><button id="checkBtn" class="primary" style="margin-top:10px" type="submit">Sprawdź</button></form>
+      <div id="feedback" class="feedback hidden" aria-live="polite"></div><button id="nextBtn" class="primary hidden" style="margin-top:10px" type="button">Dalej →</button>
+    </div>
+  </section>
+
+  <section id="resultView" class="card result hidden">
+    <div id="resultEmoji" style="font-size:44px">🎉</div><div id="resultTitle" class="score"></div><div id="resultText" class="subtitle" style="margin-bottom:0"></div><div id="mistakesBox" class="mistakes hidden"></div>
+    <div class="row" style="justify-content:center;margin-top:18px"><button id="retryMistakesBtn" class="secondary hidden" type="button">Poćwicz błędy</button><button id="restartBtn" class="primary" style="width:auto" type="button">Jeszcze raz</button></div>
+  </section>
+</main>
+<script>
+(()=>{
+const data=[
+{en:'Brazil',pl:'Brazylia',cat:'Kraje i kontynenty'},{en:'Canada',pl:'Kanada',cat:'Kraje i kontynenty'},{en:'China',pl:'Chiny',cat:'Kraje i kontynenty'},{en:'Egypt',pl:'Egipt',cat:'Kraje i kontynenty'},{en:'Norway',pl:'Norwegia',cat:'Kraje i kontynenty'},{en:'Africa',pl:'Afryka',cat:'Kraje i kontynenty'},{en:'Antarctica',pl:'Antarktyda',cat:'Kraje i kontynenty'},{en:'Asia',pl:'Azja',cat:'Kraje i kontynenty'},{en:'Australia',pl:'Australia',cat:'Kraje i kontynenty'},{en:'Europe',pl:'Europa',cat:'Kraje i kontynenty'},{en:'North America',pl:'Ameryka Północna',cat:'Kraje i kontynenty'},{en:'South America',pl:'Ameryka Południowa',cat:'Kraje i kontynenty'},
+{en:'spring',pl:'wiosna',cat:'Pory roku i pogoda'},{en:'summer',pl:'lato',cat:'Pory roku i pogoda'},{en:'autumn',pl:'jesień',cat:'Pory roku i pogoda'},{en:'winter',pl:'zima',cat:'Pory roku i pogoda'},{en:'cloudy',pl:'pochmurnie',cat:'Pory roku i pogoda'},{en:'cold',pl:'zimno',cat:'Pory roku i pogoda'},{en:'foggy',pl:'mgliście',cat:'Pory roku i pogoda'},{en:'freezing',pl:'mroźnie',cat:'Pory roku i pogoda'},{en:'hot',pl:'gorąco',cat:'Pory roku i pogoda'},{en:'snowy',pl:'śnieżnie',cat:'Pory roku i pogoda'},{en:'sunny',pl:'słonecznie',cat:'Pory roku i pogoda'},{en:'warm',pl:'ciepło',cat:'Pory roku i pogoda'},{en:'wet',pl:'mokro, deszczowo',cat:'Pory roku i pogoda'},{en:'windy',pl:'wietrznie',cat:'Pory roku i pogoda'},
+{en:"It's time for ...",pl:'Czas na…',cat:'Przydatne zwroty'},{en:'Oh no! Not again!',pl:'O nie, znowu?!',cat:'Przydatne zwroty'},{en:'See you later!',pl:'Do zobaczenia!',cat:'Przydatne zwroty'},
+{en:'Can you help me, please?',pl:'Czy może mi Pan/Pani pomóc?',cat:'Na lekcji angielskiego'},{en:'Can you repeat that, please?',pl:'Czy może Pan/Pani powtórzyć?',cat:'Na lekcji angielskiego'},{en:'Excuse me, ...',pl:'Przepraszam, …',cat:'Na lekcji angielskiego'},{en:"I think it's ...",pl:'Wydaje mi się, że…',cat:'Na lekcji angielskiego'},{en:"I'm sorry, I don't know.",pl:'Przykro mi, nie wiem.',cat:'Na lekcji angielskiego'},{en:'What does ... mean?',pl:'Co znaczy…?',cat:'Na lekcji angielskiego'},{en:'What is ... in English?',pl:'Jak po angielsku powiedzieć…?',cat:'Na lekcji angielskiego'}];
+const categories=['Wszystkie','Kraje i kontynenty','Pory roku i pogoda','Przydatne zwroty','Na lekcji angielskiego'];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let mode='learn',selectedCategory='Wszystkie',learnList=[],learnIndex=0,stars=0,streak=0,questions=[],qIndex=0,correctCount=0,mistakes=[],answered=false,forcedPool=null;
+const shuffle=arr=>{const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const normalize=s=>String(s).toLowerCase().replace(/[’‘]/g,"'").replace(/…/g,'...').replace(/[!?.,]/g,'').replace(/\s+/g,' ').trim();
+function distance(a,b){a=normalize(a);b=normalize(b);const d=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)d[i][0]=i;for(let j=0;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
+function setProgress(c,t){$('#progressBar').style.width=t?Math.round(c/t*100)+'%':'0%';$('#progressText').textContent=`${c} / ${t}`}
+function addStars(n){stars+=n;$('#stars').textContent=`⭐ ${stars}`}
+function buildChips(){const box=$('#categoryChips');box.innerHTML='';categories.forEach(cat=>{const b=document.createElement('button');b.type='button';b.className='chip'+(cat===selectedCategory?' active':'');b.textContent=cat;b.addEventListener('click',()=>{selectedCategory=cat;buildChips();resetLearn()});box.appendChild(b)})}
+function resetLearn(){learnList=shuffle(selectedCategory==='Wszystkie'?data:data.filter(x=>x.cat===selectedCategory));learnIndex=0;renderLearn()}
+function renderLearn(){if(!learnList.length)return;const item=learnList[learnIndex%learnList.length];$('#learnCategory').textContent=item.cat;$('#learnPl').textContent=item.pl;$('#learnEn').textContent=item.en;$('#learnAnswer').classList.add('hidden');$('#revealBtn').classList.remove('hidden');setProgress((learnIndex%learnList.length)+1,learnList.length)}
+$('#revealBtn').addEventListener('click',()=>{$('#revealBtn').classList.add('hidden');$('#learnAnswer').classList.remove('hidden')});
+$('#speakBtn').addEventListener('click',()=>{if('speechSynthesis'in window){speechSynthesis.cancel();const item=learnList[learnIndex%learnList.length];const u=new SpeechSynthesisUtterance(item.en.replace(/\.\.\./g,''));u.lang='en-GB';speechSynthesis.speak(u)}});
+$('#againBtn').addEventListener('click',()=>{learnIndex=(learnIndex+1)%learnList.length;renderLearn()});$('#knowBtn').addEventListener('click',()=>{addStars(1);learnIndex=(learnIndex+1)%learnList.length;renderLearn()});
+function createQuestions(count,testMode){const pool=(forcedPool&&forcedPool.length)?forcedPool:data,picked=[];while(picked.length<count){for(const item of shuffle(pool)){if(picked.length<count)picked.push(item)}}return picked.map((item,i)=>{const open=testMode?(i%2===1):(i%3!==0);if(open)return{kind:'open',item};const direction=Math.random()<.5?'en-pl':'pl-en';const same=data.filter(x=>x.cat===item.cat&&x!==item);const distract=shuffle(same.length>=3?same:data.filter(x=>x!==item)).slice(0,3);return{kind:'closed',item,direction,options:shuffle([item,...distract])}})}
+function startQuiz(which){mode=which;qIndex=0;correctCount=0;streak=0;mistakes=[];answered=false;const count=(forcedPool&&forcedPool.length)?forcedPool.length:data.length;questions=createQuestions(count,which==='test');$('#learnView').classList.add('hidden');$('#resultView').classList.add('hidden');$('#quizView').classList.remove('hidden');renderQuestion()}
+function renderQuestion(){answered=false;const q=questions[qIndex];$('#feedback').className='feedback hidden';$('#nextBtn').classList.add('hidden');$('#choices').innerHTML='';$('#choices').classList.toggle('hidden',q.kind!=='closed');$('#openForm').classList.toggle('hidden',q.kind!=='open');$('#answerInput').value='';$('#answerInput').disabled=false;$('#checkBtn').disabled=false;$('#streak').textContent=`🔥 ${streak}`;setProgress(qIndex+1,questions.length);if(q.kind==='open'){$('#qType').textContent='✍️ Pisownia';$('#prompt').textContent=q.item.pl;setTimeout(()=>$('#answerInput').focus(),60)}else{$('#qType').textContent='⚡ Wybierz odpowiedź';$('#prompt').textContent=q.direction==='en-pl'?q.item.en:q.item.pl;q.options.forEach(opt=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=q.direction==='en-pl'?opt.pl:opt.en;b.addEventListener('click',()=>answerClosed(b,opt===q.item,q));$('#choices').appendChild(b)})}}
+function showFeedback(ok,html,kind=''){const box=$('#feedback');box.className='feedback '+(ok?'good':kind==='near'?'near':'bad');box.innerHTML=html;box.classList.remove('hidden');if(ok){correctCount++;streak++;addStars(streak>=3?2:1)}else streak=0;$('#streak').textContent=`🔥 ${streak}`;$('#nextBtn').textContent=qIndex===questions.length-1?'Zobacz wynik':'Dalej →';$('#nextBtn').classList.remove('hidden')}
+function answerClosed(btn,ok,q){if(answered)return;answered=true;$$('#choices .choice').forEach(b=>b.disabled=true);if(ok){btn.classList.add('correct');showFeedback(true,'<strong>✅ Dobrze!</strong><div class="mini">Szybki punkt i lecimy dalej.</div>')}else{btn.classList.add('wrong');mistakes.push(q.item);const correctText=q.direction==='en-pl'?q.item.pl:q.item.en;$$('#choices .choice').forEach(b=>{if(b.textContent===correctText)b.classList.add('correct')});showFeedback(false,`<strong>❌ Jeszcze nie.</strong><div>Poprawna odpowiedź: <b>${correctText}</b></div>`)}}
+$('#openForm').addEventListener('submit',e=>{e.preventDefault();if(answered)return;const q=questions[qIndex],typed=$('#answerInput').value.trim();if(!typed){const box=$('#feedback');box.className='feedback near';box.innerHTML='<strong>Wpisz odpowiedź.</strong>';box.classList.remove('hidden');return}answered=true;$('#answerInput').disabled=true;$('#checkBtn').disabled=true;const exact=normalize(typed)===normalize(q.item.en),d=distance(typed,q.item.en);if(exact){showFeedback(true,'<strong>✅ Idealnie!</strong><div class="mini">Pisownia poprawna.</div>')}else{mistakes.push(q.item);const near=d<=2;showFeedback(false,`<strong>${near?'🟡 Prawie!':'❌ Sprawdź pisownię.'}</strong><div>Wpisałeś: <b>${escapeHtml(typed)}</b></div><div>Poprawnie: <b>${q.item.en}</b></div>`,near?'near':'')}});
+function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+$('#nextBtn').addEventListener('click',()=>{if(qIndex<questions.length-1){qIndex++;renderQuestion()}else showResult()});
+function showResult(){$('#quizView').classList.add('hidden');$('#resultView').classList.remove('hidden');setProgress(questions.length,questions.length);const pct=Math.round(correctCount/questions.length*100);$('#resultEmoji').textContent=pct>=90?'🏆':pct>=70?'🎉':pct>=50?'🙂':'💪';$('#resultTitle').textContent=`${correctCount} / ${questions.length}`;$('#resultText').textContent=pct>=90?'Bardzo dobry wynik. Pisownia też jest opanowana.':pct>=70?'Dobry wynik. Warto poprawić kilka słówek.':'Zrób krótką rundę tylko z błędami i spróbuj ponownie.';const unique=[...new Map(mistakes.map(x=>[x.en,x])).values()];if(unique.length){const box=$('#mistakesBox');box.classList.remove('hidden');box.innerHTML='<strong>Do powtórki:</strong>'+unique.map(x=>`<div class="mistake"><b>${x.en}</b><div class="mini">${x.pl}</div></div>`).join('');$('#retryMistakesBtn').classList.remove('hidden')}else{$('#mistakesBox').classList.add('hidden');$('#retryMistakesBtn').classList.add('hidden')}forcedPool=unique}
+$('#retryMistakesBtn').addEventListener('click',()=>{if(forcedPool&&forcedPool.length)startQuiz('train')});$('#restartBtn').addEventListener('click',()=>{forcedPool=null;startQuiz(mode==='test'?'test':'train')});
+$$('.tab').forEach(btn=>btn.addEventListener('click',()=>{$$('.tab').forEach(x=>x.classList.remove('active'));btn.classList.add('active');forcedPool=null;mode=btn.dataset.mode;$('#resultView').classList.add('hidden');if(mode==='learn'){$('#quizView').classList.add('hidden');$('#learnView').classList.remove('hidden');resetLearn()}else startQuiz(mode)}));
+buildChips();resetLearn();
+})();
+</script>
+</body>
+</html>
