@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#f6f7fb" />
+<title>Historia – Jak mierzymy czas?</title>
+<style>
+  :root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#667085;
+    --line:#dfe3ea;
+    --accent:#3559e0;
+    --accent-soft:#eef2ff;
+    --good:#16794b;
+    --good-soft:#edf8f2;
+    --bad:#b42318;
+    --bad-soft:#fff1f0;
+    --warn:#9a6700;
+    --warn-soft:#fff8e7;
+    --shadow:0 10px 30px rgba(31,41,55,.08);
+    --radius:18px;
+  }
+
+  *{box-sizing:border-box}
+  html{background:var(--bg)}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.45;
+  }
+
+  button,input{font:inherit}
+  button{touch-action:manipulation}
+
+  .app{
+    width:min(760px,100%);
+    margin:0 auto;
+    padding:calc(18px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:18px;
+  }
+
+  .brand{
+    font-weight:800;
+    letter-spacing:-.02em;
+    font-size:1.02rem;
+  }
+
+  .pill{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 12px;
+    color:var(--muted);
+    font-weight:700;
+    font-size:.9rem;
+  }
+
+  .screen{display:none}
+  .screen.active{display:block}
+
+  .hero,.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    border-radius:var(--radius);
+  }
+
+  .hero{padding:24px}
+  .card{padding:22px}
+
+  h1,h2,h3,p{margin-top:0}
+  h1{
+    font-size:clamp(1.65rem,5vw,2.25rem);
+    line-height:1.1;
+    letter-spacing:-.035em;
+    margin-bottom:10px;
+  }
+  h2{
+    font-size:clamp(1.35rem,4vw,1.75rem);
+    line-height:1.15;
+    letter-spacing:-.025em;
+    margin-bottom:12px;
+  }
+  h3{
+    font-size:1.05rem;
+    margin-bottom:8px;
+  }
+
+  .sub{color:var(--muted); margin-bottom:0}
+  .small{font-size:.91rem;color:var(--muted)}
+
+  .menu{
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+  }
+
+  .mode-btn{
+    text-align:left;
+    padding:18px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:#fff;
+    color:var(--text);
+    cursor:pointer;
+  }
+  .mode-btn strong{display:block;font-size:1.08rem;margin-bottom:3px}
+  .mode-btn span{display:block;color:var(--muted);font-size:.92rem}
+  .mode-btn.primary{border-color:#cbd5ff;background:var(--accent-soft)}
+
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:12px;
+  }
+
+  .back{
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:12px;
+    padding:9px 12px;
+    cursor:pointer;
+    font-weight:700;
+  }
+
+  .progress-wrap{
+    height:8px;
+    background:#e9edf3;
+    border-radius:999px;
+    overflow:hidden;
+    margin:12px 0 18px;
+  }
+  .progress{
+    height:100%;
+    width:0;
+    background:var(--accent);
+    border-radius:999px;
+    transition:width .25s ease;
+  }
+
+  .lesson-index{
+    color:var(--muted);
+    font-weight:700;
+    font-size:.9rem;
+  }
+
+  .rule{
+    border-left:4px solid var(--accent);
+    background:var(--accent-soft);
+    border-radius:12px;
+    padding:13px 14px;
+    margin:14px 0;
+  }
+
+  .example{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px;
+    margin:12px 0;
+    background:#fbfcfe;
+  }
+
+  .big-example{
+    font-size:1.22rem;
+    font-weight:800;
+    text-align:center;
+    margin:8px 0 4px;
+  }
+
+  .timeline{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:8px;
+    margin:18px 0 8px;
+  }
+  .timeline .era{
+    padding:11px 8px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    text-align:center;
+    font-weight:800;
+    background:#fff;
+  }
+  .timeline .zero{
+    font-size:.8rem;
+    color:var(--muted);
+    text-align:center;
+  }
+
+  .roman-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:7px;
+    margin-top:14px;
+  }
+  .roman-cell{
+    padding:9px 4px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    text-align:center;
+    background:#fff;
+  }
+  .roman-cell b{display:block}
+  .roman-cell span{font-size:.78rem;color:var(--muted)}
+
+  .lesson-nav{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:18px;
+  }
+
+  .btn{
+    border:none;
+    border-radius:13px;
+    padding:13px 16px;
+    min-height:48px;
+    cursor:pointer;
+    font-weight:800;
+    background:var(--accent);
+    color:#fff;
+  }
+  .btn.secondary{
+    background:#fff;
+    color:var(--text);
+    border:1px solid var(--line);
+  }
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn.full{width:100%}
+
+  .q-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    margin-bottom:6px;
+    color:var(--muted);
+    font-size:.9rem;
+    font-weight:700;
+  }
+
+  .question{
+    font-size:clamp(1.25rem,4.5vw,1.62rem);
+    line-height:1.25;
+    font-weight:800;
+    letter-spacing:-.02em;
+    margin:10px 0 18px;
+  }
+
+  .answers{
+    display:grid;
+    gap:10px;
+  }
+  .answer{
+    width:100%;
+    min-height:54px;
+    padding:13px 14px;
+    background:#fff;
+    color:var(--text);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    text-align:left;
+    cursor:pointer;
+    font-weight:750;
+  }
+  .answer:hover{border-color:#b9c2d0}
+  .answer.selected{border-color:var(--accent);background:var(--accent-soft)}
+  .answer.good{border-color:#8dd1ad;background:var(--good-soft)}
+  .answer.bad{border-color:#f1a7a1;background:var(--bad-soft)}
+
+  .input-row{display:flex;gap:10px}
+  .text-input{
+    width:100%;
+    min-height:54px;
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    padding:12px 14px;
+    font-size:1.05rem;
+    outline:none;
+  }
+  .text-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(53,89,224,.10)}
+
+  .feedback{
+    display:none;
+    margin-top:14px;
+    border-radius:13px;
+    padding:12px 14px;
+    font-weight:700;
+  }
+  .feedback.show{display:block}
+  .feedback.good{background:var(--good-soft);color:var(--good)}
+  .feedback.bad{background:var(--bad-soft);color:var(--bad)}
+  .feedback.hint{background:var(--warn-soft);color:var(--warn)}
+
+  .helper{
+    background:#f8fafc;
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:10px 12px;
+    color:var(--muted);
+    font-size:.9rem;
+    margin-bottom:14px;
+  }
+
+  .stats{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:12px;
+  }
+  .stat{
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:999px;
+    padding:7px 10px;
+    font-size:.87rem;
+    font-weight:800;
+  }
+
+  .summary{
+    display:grid;
+    gap:12px;
+    margin-top:16px;
+  }
+  .summary-box{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px;
+    background:#fff;
+  }
+
+  .score{
+    font-size:2.3rem;
+    font-weight:900;
+    letter-spacing:-.04em;
+    margin:8px 0;
+  }
+
+  .mistakes{
+    display:grid;
+    gap:10px;
+    margin-top:14px;
+  }
+  .mistake{
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:12px;
+    background:#fff;
+  }
+  .mistake b{display:block;margin-bottom:4px}
+
+  .test-note{
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:12px 14px;
+    color:var(--muted);
+    background:#fbfcfe;
+    margin-bottom:14px;
+  }
+
+  .hidden{display:none !important}
+
+  @media (max-width:520px){
+    .app{padding-left:12px;padding-right:12px}
+    .hero,.card{padding:18px}
+    .roman-grid{grid-template-columns:repeat(4,1fr)}
+    .lesson-nav{flex-direction:column-reverse}
+    .lesson-nav .btn{width:100%}
+    .input-row{flex-direction:column}
+    .input-row .btn{width:100%}
+    .topbar{align-items:flex-start}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">Historia · klasa 4</div>
+    <div class="pill" id="headerStatus">Jak mierzymy czas?</div>
+  </header>
+
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero">
+        <h1>Jak mierzymy czas?</h1>
+        <p class="sub">Najpierw zrozum zasady, potem poćwicz, a na końcu sprawdź się w teście.</p>
+
+        <div class="menu">
+          <button class="mode-btn primary" onclick="startLearning()">
+            <strong>1. Nauka</strong>
+            <span>6 krótkich lekcji z przykładami. Bez odpytywania.</span>
+          </button>
+          <button class="mode-btn" onclick="startTraining()">
+            <strong>2. Trening</strong>
+            <span>Jedno zadanie naraz, podpowiedzi i natychmiastowy feedback.</span>
+          </button>
+          <button class="mode-btn" onclick="startTest()">
+            <strong>3. Test</strong>
+            <span>15 pytań. Bez podpowiedzi i bez odpowiedzi aż do końca.</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="learning" class="screen">
+      <div class="topbar">
+        <button class="back" onclick="goHome()">← Menu</button>
+        <span class="lesson-index" id="lessonIndex"></span>
+      </div>
+      <div class="progress-wrap"><div class="progress" id="lessonProgress"></div></div>
+      <div class="card" id="lessonCard"></div>
+      <div class="lesson-nav">
+        <button class="btn secondary" id="lessonPrev" onclick="changeLesson(-1)">Wstecz</button>
+        <button class="btn" id="lessonNext" onclick="changeLesson(1)">Dalej</button>
+      </div>
+    </section>
+
+    <section id="training" class="screen">
+      <div class="topbar">
+        <button class="back" onclick="goHome()">← Menu</button>
+        <div class="stats">
+          <span class="stat" id="trainStars">⭐ 0</span>
+          <span class="stat" id="trainStreak">Seria: 0</span>
+        </div>
+      </div>
+      <div class="progress-wrap"><div class="progress" id="trainProgress"></div></div>
+      <div class="card">
+        <div class="q-meta">
+          <span id="trainCount"></span>
+          <span id="trainTopic"></span>
+        </div>
+        <div class="helper" id="trainHelper"></div>
+        <div class="question" id="trainQuestion"></div>
+        <div id="trainAnswerArea"></div>
+        <div id="trainFeedback" class="feedback"></div>
+        <button id="trainNext" class="btn full hidden" style="margin-top:14px" onclick="nextTraining()">Następne zadanie</button>
+      </div>
+    </section>
+
+    <section id="trainingSummary" class="screen">
+      <div class="card">
+        <h2>Trening zakończony</h2>
+        <p class="sub">Najważniejsze jest to, co już umiesz i co warto powtórzyć.</p>
+        <div class="score" id="trainSummaryScore"></div>
+        <div id="trainSummaryText"></div>
+        <div class="menu">
+          <button class="btn" onclick="startTraining()">Jeszcze jeden trening</button>
+          <button class="btn secondary" onclick="goHome()">Wróć do menu</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="testIntro" class="screen">
+      <div class="card">
+        <h2>Test</h2>
+        <div class="test-note">
+          15 pytań. Nie ma podpowiedzi ani informacji, czy odpowiedź jest dobra. Wynik i poprawne odpowiedzi zobaczysz dopiero na końcu.
+        </div>
+        <p><b>Zakres:</b> era, wieki, tysiąclecia, cyfry rzymskie I–XXI oraz obliczanie upływu czasu.</p>
+        <button class="btn full" onclick="beginTest()">Zaczynam test</button>
+        <button class="btn secondary full" style="margin-top:10px" onclick="goHome()">Wróć</button>
+      </div>
+    </section>
+
+    <section id="test" class="screen">
+      <div class="topbar">
+        <button class="back" onclick="confirmLeaveTest()">← Przerwij</button>
+        <span class="pill" id="testCount"></span>
+      </div>
+      <div class="progress-wrap"><div class="progress" id="testProgress"></div></div>
+      <div class="card">
+        <div class="q-meta"><span id="testTopic"></span><span>Bez podpowiedzi</span></div>
+        <div class="question" id="testQuestion"></div>
+        <div id="testAnswerArea"></div>
+        <button id="testNext" class="btn full" style="margin-top:16px" onclick="nextTest()" disabled>Dalej</button>
+      </div>
+    </section>
+
+    <section id="testSummary" class="screen">
+      <div class="card">
+        <h2>Wynik testu</h2>
+        <div class="score" id="testScore"></div>
+        <p id="testMessage" class="sub"></p>
+        <div class="summary" id="topicSummary"></div>
+        <div id="mistakesWrap"></div>
+        <div class="menu">
+          <button class="btn" onclick="startTest()">Zrób test jeszcze raz</button>
+          <button class="btn secondary" onclick="startTraining()">Poćwicz</button>
+          <button class="btn secondary" onclick="goHome()">Wróć do menu</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const lessons = [
+  {
+    title:"1. Nasza era i przed naszą erą",
+    body:`
+      <p>Historycy porządkują lata względem początku naszej ery.</p>
+      <div class="timeline">
+        <div class="era">p.n.e.<br><span class="small">przed naszą erą</span></div>
+        <div class="zero">nie ma<br>roku 0</div>
+        <div class="era">n.e.<br><span class="small">nasza era</span></div>
+      </div>
+      <div class="rule"><b>Ważne:</b> po 1 roku p.n.e. następuje 1 rok n.e. Nie ma roku 0.</div>
+      <div class="example">
+        <b>Jak czytać?</b><br>
+        44 r. p.n.e. = wydarzenie miało miejsce 44 lata przed początkiem naszej ery.<br>
+        966 r. n.e. = wydarzenie miało miejsce w naszej erze.
+      </div>`
+  },
+  {
+    title:"2. Wiek i tysiąclecie",
+    body:`
+      <p><b>Wiek</b> to 100 lat. <b>Tysiąclecie</b> to 1000 lat.</p>
+      <div class="rule">
+        I wiek n.e. trwał od roku <b>1 do 100</b>.<br>
+        II wiek n.e. trwał od roku <b>101 do 200</b>.
+      </div>
+      <div class="example">
+        <b>Tysiąclecia:</b><br>
+        I tysiąclecie n.e.: 1–1000<br>
+        II tysiąclecie n.e.: 1001–2000<br>
+        III tysiąclecie n.e.: 2001–3000
+      </div>
+      <p class="small">Czyli rok 2000 należy jeszcze do II tysiąclecia, a 2001 rozpoczyna III.</p>`
+  },
+  {
+    title:"3. Cyfry rzymskie do XXI",
+    body:`
+      <p>Wieki zapisujemy cyframi rzymskimi. Najważniejsze znaki to <b>I = 1</b>, <b>V = 5</b>, <b>X = 10</b>.</p>
+      <div class="roman-grid">
+        ${Array.from({length:21},(_,i)=>{
+          const romans=["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI"];
+          return `<div class="roman-cell"><b>${romans[i]}</b><span>${i+1}</span></div>`;
+        }).join("")}
+      </div>
+      <div class="rule"><b>Dwa ważne przykłady:</b> IV = 4, IX = 9. Mniejsza cyfra przed większą oznacza odejmowanie.</div>`
+  },
+  {
+    title:"4. Jak ustalić, który to wiek?",
+    body:`
+      <p>Spójrz na rok i znajdź przedział stu lat, do którego należy.</p>
+      <div class="example">
+        <div class="big-example">966 → X wiek</div>
+        <span class="small">X wiek trwa od 901 do 1000.</span>
+      </div>
+      <div class="example">
+        <div class="big-example">1400 → XIV wiek</div>
+        <span class="small">XIV wiek trwa od 1301 do 1400.</span>
+      </div>
+      <div class="example">
+        <div class="big-example">1401 → XV wiek</div>
+        <span class="small">XV wiek trwa od 1401 do 1500.</span>
+      </div>
+      <div class="rule"><b>Pułapka z zerami:</b> rok kończący się na „00” należy jeszcze do poprzedniego wieku.</div>`
+  },
+  {
+    title:"5. Kiedy zaczyna się i kończy wiek?",
+    body:`
+      <p>Dla naszej ery można użyć prostego schematu:</p>
+      <div class="rule">
+        <b>XV wiek n.e.</b><br>
+        zaczyna się w <b>1401</b> roku,<br>
+        kończy się w <b>1500</b> roku.
+      </div>
+      <p>Dla lat p.n.e. liczby lat maleją, gdy zbliżamy się do naszej ery.</p>
+      <div class="rule">
+        <b>V wiek p.n.e.</b><br>
+        zaczyna się w <b>500 r. p.n.e.</b>,<br>
+        kończy się w <b>401 r. p.n.e.</b>
+      </div>
+      <p class="small">I wiek p.n.e. trwa od 100 r. p.n.e. do 1 r. p.n.e.</p>`
+  },
+  {
+    title:"6. Ile lat minęło?",
+    body:`
+      <p>Jeżeli oba wydarzenia są w tej samej erze, zwykle odejmujesz mniejszą liczbę od większej.</p>
+      <div class="example">
+        <div class="big-example">1025 − 966 = 59 lat</div>
+      </div>
+      <p>Jeżeli jedno wydarzenie jest p.n.e., a drugie n.e., pamiętaj, że <b>nie ma roku 0</b>.</p>
+      <div class="example">
+        <div class="big-example">44 p.n.e. → 14 n.e.</div>
+        <div style="text-align:center">44 + 14 − 1 = <b>57 lat</b></div>
+      </div>
+      <div class="rule"><b>Dlaczego −1?</b> Bo między 1 r. p.n.e. a 1 r. n.e. mija jeden rok, a nie dwa.</div>`
+  }
+];
+
+const trainingBank = [
+  {id:"t1", topic:"Pojęcia", type:"mc", q:"Ile lat ma jeden wiek?", options:["10","100","500","1000"], a:"100", hint:"Pomyśl o przedziale od 1 do 100."},
+  {id:"t2", topic:"Pojęcia", type:"mc", q:"Ile lat ma jedno tysiąclecie?", options:["100","500","1000","10 000"], a:"1000", hint:"Nazwa „tysiąclecie” podpowiada wielkość."},
+  {id:"t3", topic:"Era", type:"mc", q:"Co oznacza skrót „p.n.e.”?", options:["po naszej erze","przed naszą erą","początek nowej epoki","pierwszy nowy etap"], a:"przed naszą erą", hint:"To lata wcześniejsze niż początek naszej ery."},
+  {id:"t4", topic:"Era", type:"mc", q:"Który rok następuje bezpośrednio po 1 r. p.n.e.?", options:["0 r.","1 r. n.e.","2 r. n.e.","100 r. n.e."], a:"1 r. n.e.", hint:"W rachubie historycznej nie używamy roku 0."},
+  {id:"t5", topic:"Cyfry rzymskie", type:"input", q:"Zapisz cyframi rzymskimi liczbę 14.", a:["XIV"], hint:"10 to X, a 4 to IV.", answerText:"XIV"},
+  {id:"t6", topic:"Cyfry rzymskie", type:"input", q:"Jaką liczbę oznacza XIX?", a:["19"], hint:"X to 10, IX to 9.", answerText:"19"},
+  {id:"t7", topic:"Cyfry rzymskie", type:"mc", q:"Który zapis oznacza 21?", options:["XIX","XX","XXI","XVI"], a:"XXI", hint:"20 zapisujemy XX, potem dodajemy jeszcze 1."},
+  {id:"t8", topic:"Który to wiek?", type:"mc", q:"Rok 966 należy do którego wieku?", options:["IX","X","XI","XII"], a:"X", hint:"X wiek obejmuje lata 901–1000."},
+  {id:"t9", topic:"Który to wiek?", type:"mc", q:"Rok 1400 należy do którego wieku?", options:["XIII","XIV","XV","XVI"], a:"XIV", hint:"Rok zakończony na 00 zamyka dany wiek."},
+  {id:"t10", topic:"Który to wiek?", type:"mc", q:"Rok 1401 należy do którego wieku?", options:["XIII","XIV","XV","XVI"], a:"XV", hint:"1401 jest pierwszym rokiem nowego stulecia po 1400."},
+  {id:"t11", topic:"Który to wiek?", type:"mc", q:"Rok 2000 należy do którego wieku?", options:["XIX","XX","XXI","XXII"], a:"XX", hint:"Rok 2000 kończy wiek, który zaczął się w 1901."},
+  {id:"t12", topic:"Który to wiek?", type:"mc", q:"Rok 2001 należy do którego wieku?", options:["XIX","XX","XXI","XXII"], a:"XXI", hint:"Nowy wiek zaczął się po zakończeniu roku 2000."},
+  {id:"t13", topic:"p.n.e.", type:"mc", q:"490 r. p.n.e. należy do którego wieku p.n.e.?", options:["IV","V","VI","VII"], a:"V", hint:"V wiek p.n.e. obejmuje lata 500–401 p.n.e."},
+  {id:"t14", topic:"p.n.e.", type:"mc", q:"44 r. p.n.e. należy do którego wieku p.n.e.?", options:["I","II","III","IV"], a:"I", hint:"I wiek p.n.e. trwa od 100 do 1 r. p.n.e."},
+  {id:"t15", topic:"Granice wieku", type:"mc", q:"Kiedy zaczyna się XV wiek n.e.?", options:["1400","1401","1500","1501"], a:"1401", hint:"XIV wiek kończy się w 1400 roku."},
+  {id:"t16", topic:"Granice wieku", type:"mc", q:"Kiedy kończy się XV wiek n.e.?", options:["1499","1500","1501","1599"], a:"1500", hint:"Wiek ma dokładnie 100 lat: 1401–…"},
+  {id:"t17", topic:"Granice wieku", type:"mc", q:"Który przedział to V wiek p.n.e.?", options:["501–400 p.n.e.","500–401 p.n.e.","499–400 p.n.e.","400–301 p.n.e."], a:"500–401 p.n.e.", hint:"W latach p.n.e. liczby maleją, gdy czas płynie w stronę naszej ery."},
+  {id:"t18", topic:"Granice wieku", type:"mc", q:"Który przedział to I wiek p.n.e.?", options:["1–100 p.n.e.","100–1 p.n.e.","101–200 p.n.e.","200–101 p.n.e."], a:"100–1 p.n.e.", hint:"To ostatnie 100 lat przed naszą erą."},
+  {id:"t19", topic:"Upływ czasu", type:"input", q:"Ile lat minęło od 966 r. do 1025 r.?", a:["59"], hint:"Oba lata są w n.e. Odejmij wcześniejszy rok od późniejszego.", answerText:"59 lat"},
+  {id:"t20", topic:"Upływ czasu", type:"input", q:"Ile lat minęło od 1410 r. do 1525 r.?", a:["115"], hint:"Oba wydarzenia są w tej samej erze.", answerText:"115 lat"},
+  {id:"t21", topic:"Upływ czasu", type:"input", q:"Ile lat minęło od 490 r. p.n.e. do 480 r. p.n.e.?", a:["10"], hint:"W tej samej erze p.n.e. wystarczy znaleźć różnicę między liczbami.", answerText:"10 lat"},
+  {id:"t22", topic:"Upływ czasu", type:"input", q:"Ile lat minęło od 44 r. p.n.e. do 14 r. n.e.?", a:["57"], hint:"Dodaj obie liczby, ale pamiętaj: nie ma roku 0.", answerText:"57 lat"},
+  {id:"t23", topic:"Tysiąclecia", type:"mc", q:"Rok 2000 należy do którego tysiąclecia n.e.?", options:["I","II","III","IV"], a:"II", hint:"II tysiąclecie trwa od 1001 do 2000."},
+  {id:"t24", topic:"Tysiąclecia", type:"mc", q:"Rok 2026 należy do którego tysiąclecia n.e.?", options:["I","II","III","IV"], a:"III", hint:"III tysiąclecie rozpoczęło się w 2001 roku."},
+  {id:"t25", topic:"Cyfry rzymskie", type:"input", q:"Zapisz cyframi rzymskimi liczbę 18.", a:["XVIII"], hint:"15 to XV, potem dodaj trzy jedynki.", answerText:"XVIII"},
+  {id:"t26", topic:"Cyfry rzymskie", type:"input", q:"Jaką liczbę oznacza XVI?", a:["16"], hint:"X to 10, V to 5, I to 1.", answerText:"16"},
+  {id:"t27", topic:"Który to wiek?", type:"input", q:"Wpisz cyframi rzymskimi wiek, do którego należy rok 1791.", a:["XVIII"], hint:"XVIII wiek obejmuje lata 1701–1800.", answerText:"XVIII"},
+  {id:"t28", topic:"Granice wieku", type:"input", q:"W którym roku zaczyna się XIII wiek n.e.?", a:["1201"], hint:"XII wiek kończy się w roku 1200.", answerText:"1201"},
+  {id:"t29", topic:"Granice wieku", type:"input", q:"W którym roku kończy się XIII wiek n.e.?", a:["1300"], hint:"XIII wiek zaczyna się w 1201 i trwa 100 lat.", answerText:"1300"},
+  {id:"t30", topic:"Upływ czasu", type:"input", q:"Ile lat minęło od 1 r. p.n.e. do 1 r. n.e.?", a:["1"], hint:"Pomiędzy tymi latami nie ma roku 0.", answerText:"1 rok"}
+];
+
+const testTemplate = [
+  {id:"q1",topic:"Pojęcia",type:"mc",q:"Ile lat ma jeden wiek?",options:["10","100","500","1000"],a:"100"},
+  {id:"q2",topic:"Pojęcia",type:"mc",q:"Które zdanie jest prawdziwe?",options:["Tysiąclecie ma 100 lat.","Wiek ma 1000 lat.","Tysiąclecie ma 1000 lat.","Wiek ma 10 lat."],a:"Tysiąclecie ma 1000 lat."},
+  {id:"q3",topic:"Cyfry rzymskie",type:"mc",q:"Który zapis oznacza liczbę 14?",options:["XII","XIV","XVI","XIX"],a:"XIV"},
+  {id:"q4",topic:"Cyfry rzymskie",type:"input",q:"Jaką liczbę oznacza XXI?",a:["21"],answerText:"21"},
+  {id:"q5",topic:"Era",type:"mc",q:"Który rok następuje po 1 r. p.n.e.?",options:["0 r.","1 r. n.e.","2 r. n.e.","100 r. n.e."],a:"1 r. n.e."},
+  {id:"q6",topic:"Który to wiek?",type:"mc",q:"Do którego wieku należy rok 966?",options:["IX","X","XI","XII"],a:"X"},
+  {id:"q7",topic:"Który to wiek?",type:"mc",q:"Do którego wieku należy rok 1400?",options:["XIII","XIV","XV","XVI"],a:"XIV"},
+  {id:"q8",topic:"Który to wiek?",type:"mc",q:"Do którego wieku należy rok 1401?",options:["XIII","XIV","XV","XVI"],a:"XV"},
+  {id:"q9",topic:"p.n.e.",type:"mc",q:"Do którego wieku p.n.e. należy rok 490 p.n.e.?",options:["IV","V","VI","VII"],a:"V"},
+  {id:"q10",topic:"Granice wieku",type:"input",q:"W którym roku zaczyna się XVIII wiek n.e.?",a:["1701"],answerText:"1701"},
+  {id:"q11",topic:"Granice wieku",type:"mc",q:"Który przedział to III wiek p.n.e.?",options:["300–201 p.n.e.","301–200 p.n.e.","200–101 p.n.e.","400–301 p.n.e."],a:"300–201 p.n.e."},
+  {id:"q12",topic:"Tysiąclecia",type:"mc",q:"Do którego tysiąclecia n.e. należy rok 2001?",options:["I","II","III","IV"],a:"III"},
+  {id:"q13",topic:"Upływ czasu",type:"input",q:"Ile lat minęło od 966 r. do 1025 r.?",a:["59"],answerText:"59 lat"},
+  {id:"q14",topic:"Upływ czasu",type:"input",q:"Ile lat minęło od 490 r. p.n.e. do 480 r. p.n.e.?",a:["10"],answerText:"10 lat"},
+  {id:"q15",topic:"Upływ czasu",type:"input",q:"Ile lat minęło od 44 r. p.n.e. do 14 r. n.e.?",a:["57"],answerText:"57 lat"}
+];
+
+let lessonPos = 0;
+let trainQueue = [];
+let trainPos = 0;
+let trainCorrect = 0;
+let trainStars = 0;
+let trainStreak = 0;
+let trainAttempt = 0;
+let trainCurrentDone = false;
+let trainWeak = new Set();
+
+let testQuestions = [];
+let testPos = 0;
+let testAnswers = {};
+let testSelection = null;
+
+const screens = ["home","learning","training","trainingSummary","testIntro","test","testSummary"];
+
+function showScreen(id){
+  screens.forEach(s=>document.getElementById(s).classList.toggle("active",s===id));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function goHome(){
+  document.getElementById("headerStatus").textContent="Jak mierzymy czas?";
+  showScreen("home");
+}
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function normalize(v){
+  return String(v).trim().toUpperCase().replace(/\s+/g," ");
+}
+function isCorrect(q,value){
+  const answers=Array.isArray(q.a)?q.a:[q.a];
+  return answers.some(a=>normalize(a)===normalize(value));
+}
+function answerLabel(q){
+  return q.answerText || (Array.isArray(q.a)?q.a[0]:q.a);
+}
+function safeText(s){
+  return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+/* LEARNING */
+function startLearning(){
+  lessonPos=0;
+  document.getElementById("headerStatus").textContent="Nauka";
+  showScreen("learning");
+  renderLesson();
+}
+function changeLesson(delta){
+  const next=lessonPos+delta;
+  if(next<0) return;
+  if(next>=lessons.length){
+    startTraining();
+    return;
+  }
+  lessonPos=next;
+  renderLesson();
+}
+function renderLesson(){
+  const l=lessons[lessonPos];
+  document.getElementById("lessonCard").innerHTML=`<h2>${l.title}</h2>${l.body}`;
+  document.getElementById("lessonIndex").textContent=`${lessonPos+1} z ${lessons.length}`;
+  document.getElementById("lessonProgress").style.width=`${((lessonPos+1)/lessons.length)*100}%`;
+  document.getElementById("lessonPrev").disabled=lessonPos===0;
+  document.getElementById("lessonNext").textContent=lessonPos===lessons.length-1?"Przejdź do treningu":"Dalej";
+}
+
+/* TRAINING */
+function startTraining(){
+  document.getElementById("headerStatus").textContent="Trening";
+  const selected=shuffle(trainingBank).slice(0,12);
+  trainQueue=[...selected];
+  trainPos=0;
+  trainCorrect=0;
+  trainStars=0;
+  trainStreak=0;
+  trainAttempt=0;
+  trainCurrentDone=false;
+  trainWeak=new Set();
+  showScreen("training");
+  renderTraining();
+}
+function trainingHelper(topic){
+  const helpers={
+    "Pojęcia":"Ściąga: wiek = 100 lat · tysiąclecie = 1000 lat",
+    "Era":"Ściąga: po 1 r. p.n.e. jest 1 r. n.e. · nie ma roku 0",
+    "Cyfry rzymskie":"Ściąga: I = 1 · V = 5 · X = 10",
+    "Który to wiek?":"Ściąga: 901–1000 = X w. · 1301–1400 = XIV w. · 1401–1500 = XV w.",
+    "p.n.e.":"Ściąga: I w. p.n.e. = 100–1 · V w. p.n.e. = 500–401",
+    "Granice wieku":"Ściąga: XV w. n.e. = 1401–1500",
+    "Upływ czasu":"Ściąga: ta sama era → różnica · p.n.e. → n.e. → dodaj lata i odejmij 1",
+    "Tysiąclecia":"Ściąga: I = 1–1000 · II = 1001–2000 · III = 2001–3000"
+  };
+  return helpers[topic]||"";
+}
+function renderTraining(){
+  if(trainPos>=trainQueue.length){
+    finishTraining();
+    return;
+  }
+  trainAttempt=0;
+  trainCurrentDone=false;
+  const q=trainQueue[trainPos];
+
+  document.getElementById("trainStars").textContent=`⭐ ${trainStars}`;
+  document.getElementById("trainStreak").textContent=`Seria: ${trainStreak}`;
+  document.getElementById("trainCount").textContent=`Zadanie ${trainPos+1} z ${trainQueue.length}`;
+  document.getElementById("trainTopic").textContent=q.topic;
+  document.getElementById("trainHelper").textContent=trainingHelper(q.topic);
+  document.getElementById("trainQuestion").textContent=q.q;
+  document.getElementById("trainProgress").style.width=`${(trainPos/trainQueue.length)*100}%`;
+
+  const fb=document.getElementById("trainFeedback");
+  fb.className="feedback";
+  fb.textContent="";
+  document.getElementById("trainNext").classList.add("hidden");
+
+  const area=document.getElementById("trainAnswerArea");
+  area.innerHTML="";
+
+  if(q.type==="mc"){
+    const wrap=document.createElement("div");
+    wrap.className="answers";
+    shuffle(q.options).forEach(opt=>{
+      const b=document.createElement("button");
+      b.className="answer";
+      b.textContent=opt;
+      b.onclick=()=>submitTraining(opt,b);
+      wrap.appendChild(b);
+    });
+    area.appendChild(wrap);
+  } else {
+    const row=document.createElement("div");
+    row.className="input-row";
+    const input=document.createElement("input");
+    input.className="text-input";
+    input.id="trainInput";
+    input.autocomplete="off";
+    input.inputMode=/^\d+$/.test(Array.isArray(q.a)?q.a[0]:q.a)?"numeric":"text";
+    input.placeholder="Wpisz odpowiedź";
+    input.addEventListener("keydown",e=>{if(e.key==="Enter") submitTraining(input.value,input);});
+    const b=document.createElement("button");
+    b.className="btn";
+    b.textContent="Sprawdź";
+    b.onclick=()=>submitTraining(input.value,input);
+    row.append(input,b);
+    area.appendChild(row);
+    setTimeout(()=>input.focus(),100);
+  }
+}
+function lockTrainingInputs(){
+  document.querySelectorAll("#trainAnswerArea button, #trainAnswerArea input").forEach(el=>el.disabled=true);
+}
+function submitTraining(value,element){
+  if(trainCurrentDone) return;
+  const q=trainQueue[trainPos];
+  const fb=document.getElementById("trainFeedback");
+  trainAttempt++;
+
+  if(isCorrect(q,value)){
+    trainCurrentDone=true;
+    trainCorrect++;
+    trainStreak++;
+    trainStars += trainAttempt===1 ? 2 : 1;
+    lockTrainingInputs();
+    if(element && element.classList) element.classList.add("good");
+    fb.className="feedback good show";
+    fb.textContent=trainAttempt===1 ? "Dobrze! ⭐ +2" : "Dobrze. Poprawione! ⭐ +1";
+    document.getElementById("trainNext").classList.remove("hidden");
+    document.getElementById("trainStars").textContent=`⭐ ${trainStars}`;
+    document.getElementById("trainStreak").textContent=`Seria: ${trainStreak}`;
+    return;
+  }
+
+  trainStreak=0;
+  trainWeak.add(q.id);
+  document.getElementById("trainStreak").textContent="Seria: 0";
+
+  if(trainAttempt===1){
+    fb.className="feedback hint show";
+    fb.textContent=`Jeszcze raz. Podpowiedź: ${q.hint}`;
+    if(element && element.classList && element.classList.contains("answer")) element.classList.add("bad");
+    if(q.type==="input"){
+      element.value="";
+      element.focus();
+    }
+  } else {
+    trainCurrentDone=true;
+    lockTrainingInputs();
+    fb.className="feedback bad show";
+    fb.innerHTML=`Poprawna odpowiedź: <b>${safeText(answerLabel(q))}</b>`;
+    document.getElementById("trainNext").classList.remove("hidden");
+
+    const repeats=trainQueue.filter(x=>x.id===q.id).length;
+    if(repeats<2 && trainQueue.length<18){
+      trainQueue.push(q);
+    }
+  }
+}
+function nextTraining(){
+  trainPos++;
+  renderTraining();
+}
+function finishTraining(){
+  showScreen("trainingSummary");
+  document.getElementById("trainProgress").style.width="100%";
+  document.getElementById("trainSummaryScore").textContent=`⭐ ${trainStars}`;
+  const weakCount=trainWeak.size;
+  let text=`<div class="summary-box"><b>Poprawnie ukończone zadania:</b> ${trainCorrect}</div>`;
+  if(weakCount===0){
+    text+=`<div class="summary-box"><b>Bez błędów.</b> Możesz przejść do testu.</div>`;
+  }else{
+    text+=`<div class="summary-box"><b>Do powtórki:</b> ${weakCount} ${weakCount===1?"typ zadania":"typów zadań"}. Błędne zadania były dokładane ponownie do kolejki.</div>`;
+  }
+  document.getElementById("trainSummaryText").innerHTML=text;
+}
+
+/* TEST */
+function startTest(){
+  document.getElementById("headerStatus").textContent="Test";
+  showScreen("testIntro");
+}
+function beginTest(){
+  testQuestions=testTemplate.map(q=>({...q, options:q.options?shuffle(q.options):undefined}));
+  testPos=0;
+  testAnswers={};
+  testSelection=null;
+  showScreen("test");
+  renderTest();
+}
+function renderTest(){
+  const q=testQuestions[testPos];
+  testSelection=null;
+  document.getElementById("testCount").textContent=`${testPos+1} / ${testQuestions.length}`;
+  document.getElementById("testProgress").style.width=`${(testPos/testQuestions.length)*100}%`;
+  document.getElementById("testTopic").textContent=q.topic;
+  document.getElementById("testQuestion").textContent=q.q;
+  document.getElementById("testNext").disabled=true;
+  document.getElementById("testNext").textContent=testPos===testQuestions.length-1?"Zakończ test":"Dalej";
+
+  const area=document.getElementById("testAnswerArea");
+  area.innerHTML="";
+  if(q.type==="mc"){
+    const wrap=document.createElement("div");
+    wrap.className="answers";
+    q.options.forEach(opt=>{
+      const b=document.createElement("button");
+      b.className="answer";
+      b.textContent=opt;
+      b.onclick=()=>{
+        wrap.querySelectorAll(".answer").forEach(x=>x.classList.remove("selected"));
+        b.classList.add("selected");
+        testSelection=opt;
+        document.getElementById("testNext").disabled=false;
+      };
+      wrap.appendChild(b);
+    });
+    area.appendChild(wrap);
+  }else{
+    const input=document.createElement("input");
+    input.className="text-input";
+    input.autocomplete="off";
+    input.placeholder="Wpisz odpowiedź";
+    input.inputMode=/^\d+$/.test(Array.isArray(q.a)?q.a[0]:q.a)?"numeric":"text";
+    input.addEventListener("input",()=>{
+      testSelection=input.value.trim();
+      document.getElementById("testNext").disabled=!testSelection;
+    });
+    input.addEventListener("keydown",e=>{
+      if(e.key==="Enter" && input.value.trim()) nextTest();
+    });
+    area.appendChild(input);
+    setTimeout(()=>input.focus(),100);
+  }
+}
+function nextTest(){
+  if(testSelection===null || String(testSelection).trim()==="") return;
+  testAnswers[testQuestions[testPos].id]=testSelection;
+  testPos++;
+  if(testPos>=testQuestions.length){
+    finishTest();
+  }else{
+    renderTest();
+  }
+}
+function confirmLeaveTest(){
+  if(confirm("Przerwać test? Odpowiedzi z tej próby zostaną utracone.")) goHome();
+}
+function finishTest(){
+  document.getElementById("testProgress").style.width="100%";
+  let correct=0;
+  const perTopic={};
+  const mistakes=[];
+
+  testQuestions.forEach(q=>{
+    const user=testAnswers[q.id];
+    const ok=isCorrect(q,user);
+    if(ok) correct++;
+    if(!perTopic[q.topic]) perTopic[q.topic]={ok:0,total:0};
+    perTopic[q.topic].total++;
+    if(ok) perTopic[q.topic].ok++;
+    else mistakes.push({q,user,correct:answerLabel(q)});
+  });
+
+  const pct=Math.round(correct/testQuestions.length*100);
+  showScreen("testSummary");
+  document.getElementById("testScore").textContent=`${correct} / ${testQuestions.length} · ${pct}%`;
+
+  let msg="";
+  if(pct>=90) msg="Bardzo dobre opanowanie materiału.";
+  else if(pct>=75) msg="Materiał jest w większości opanowany. Warto poprawić kilka słabszych miejsc.";
+  else if(pct>=55) msg="Podstawy są, ale warto wrócić do treningu i przećwiczyć błędy.";
+  else msg="Najlepiej wrócić do nauki i zrobić jeszcze jedną krótką rundę treningową.";
+  document.getElementById("testMessage").textContent=msg;
+
+  const topicBox=document.getElementById("topicSummary");
+  topicBox.innerHTML=Object.entries(perTopic).map(([topic,s])=>
+    `<div class="summary-box"><b>${safeText(topic)}</b><br><span class="small">${s.ok} z ${s.total} poprawnie</span></div>`
+  ).join("");
+
+  const wrap=document.getElementById("mistakesWrap");
+  if(mistakes.length===0){
+    wrap.innerHTML=`<div class="summary-box" style="margin-top:14px"><b>Wszystkie odpowiedzi poprawne.</b></div>`;
+  }else{
+    wrap.innerHTML=`
+      <h3 style="margin-top:20px">Pytania do powtórki</h3>
+      <div class="mistakes">
+        ${mistakes.map(m=>`
+          <div class="mistake">
+            <b>${safeText(m.q.q)}</b>
+            <div class="small">Twoja odpowiedź: ${safeText(m.user || "brak")}</div>
+            <div>Poprawna odpowiedź: <b>${safeText(m.correct)}</b></div>
+          </div>`).join("")}
+      </div>`;
+  }
+
+  try{
+    localStorage.setItem("historia-czas-last-score",JSON.stringify({correct,total:testQuestions.length,pct,date:new Date().toISOString()}));
+  }catch(e){}
+}
+</script>
+</body>
+</html>
