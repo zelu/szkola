@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#f7f7fb">
+<title>Kolejność wykonywania działań</title>
+<style>
+:root{
+  --bg:#f7f7fb;--card:#ffffff;--ink:#172033;--muted:#667085;--line:#d9deea;
+  --accent:#3157d5;--accent-soft:#edf1ff;--good:#198754;--good-soft:#e9f7ef;
+  --bad:#c43b3b;--bad-soft:#fff0f0;--gold:#f3b51b;--roof:#f0b35d;
+  --floor1:#8fb8f5;--floor2:#9ad5ac;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+button{font:inherit;color:inherit;touch-action:manipulation}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.app{max-width:920px;margin:0 auto;padding:18px 16px 56px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+.title{font-size:clamp(22px,4vw,34px);font-weight:900;line-height:1.08}
+.subtitle{color:var(--muted);margin-top:5px;font-size:14px}
+.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.nav button{min-height:52px;border:1px solid var(--line);background:var(--card);border-radius:14px;font-weight:800;padding:8px}
+.nav button.active{border-color:var(--accent);background:var(--accent-soft);color:#173aa3}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px}
+.card + .card{margin-top:14px}
+.section-title{font-size:20px;font-weight:900;margin:0 0 8px}
+.muted{color:var(--muted)}
+.rule-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}
+.rule-pill{background:#f3f5f9;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-weight:800}
+.math{font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.house-wrap{max-width:560px;margin:18px auto 8px}
+.house-svg{display:block;width:100%;height:auto}
+.house-note{text-align:center;font-weight:800;margin-top:8px}
+.house-subnote{text-align:center;color:var(--muted);font-size:14px;margin-top:5px}
+.mini-house-wrap{max-width:300px;margin:8px auto 2px;text-align:center}
+.mini-house-label{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.06em;margin-bottom:4px}
+.mini-house-svg{display:block;width:100%;height:auto}
+.mini-house-note{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px}
+.example-box{margin-top:16px;border:1px solid var(--line);background:#fbfcff;border-radius:16px;padding:14px}
+.example-math{font-size:clamp(28px,6vw,44px);font-weight:900;text-align:center;margin:10px 0}
+.example-order{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap}
+.example-chip{padding:7px 10px;border-radius:10px;background:var(--good-soft);border:1px solid #b9dec8;font-weight:800}
+.topline{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}
+.counter{font-weight:900}.level{font-size:13px;font-weight:800;border-radius:999px;background:#f1f3f7;padding:6px 10px}
+.instruction{background:#f5f7fb;border-radius:14px;padding:12px 14px;text-align:center;margin-bottom:14px}
+.training-expression{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:7px;padding:24px 6px 18px;min-height:110px}
+.num,.paren{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:62px;font-size:clamp(27px,5vw,38px);font-weight:900}
+.op-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:62px;min-height:62px;border:2px solid var(--line);border-radius:16px;background:#fff;font-size:clamp(28px,5vw,38px);font-weight:900;transition:.12s transform,.12s border-color,.12s background-color}
+.op-btn.done{border-color:var(--good);background:var(--good-soft);color:#0d663d}
+.op-btn.wrong{border-color:var(--bad);background:var(--bad-soft);transform:scale(.96)}
+.power-btn{min-width:46px;min-height:46px;font-size:22px;align-self:flex-start;transform:translateY(-10px);margin-left:-6px;margin-right:-3px;border-radius:13px}
+.power-btn.done{transform:translateY(-10px)}
+.power-btn.wrong{transform:translateY(-10px) scale(.96)}
+.quiz-question sup,.example-math sup{font-size:.58em;vertical-align:super;line-height:0}
+.op-badge{position:absolute;right:-9px;top:-11px;min-width:29px;height:29px;padding:0 7px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:var(--good);color:white;border:2px solid white;font-size:14px;font-weight:900}
+.feedback{display:none;margin-top:12px;border-radius:14px;border:2px solid var(--line);padding:12px 14px;text-align:center}
+.feedback.show{display:block}.feedback.good{border-color:#9dd1b3;background:var(--good-soft)}.feedback.bad{border-color:#efb2b2;background:var(--bad-soft)}
+.feedback strong{display:block;font-size:18px;margin-bottom:3px}
+.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.primary,.secondary{min-height:52px;border-radius:14px;padding:10px 18px;font-weight:900;border:1px solid transparent}
+.primary{background:var(--accent);color:white;flex:1}
+.secondary{background:#fff;border-color:var(--line)}
+.training-progress{height:9px;background:#eceff5;border-radius:999px;overflow:hidden;margin-bottom:14px}
+.training-progress > div{height:100%;background:var(--accent);width:0;transition:width .2s}
+.quiz-intro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.quiz-intro-grid > div{background:#f5f7fb;border-radius:14px;padding:12px;text-align:center}
+.quiz-intro-grid b{display:block;font-size:22px;margin-bottom:3px}
+.reward-line{display:flex;gap:5px;align-items:center;margin-top:12px}
+.reward-node{flex:1;height:9px;border-radius:999px;background:#e6e9f0}
+.reward-node:last-child{background:#ffd36d}
+.quiz-status{position:sticky;top:0;z-index:10;background:rgba(247,247,251,.96);backdrop-filter:blur(8px);padding:8px 0 12px;margin-bottom:10px}
+.status-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}
+.status-top{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px}
+.points-big{font-weight:900}.game-clock{font-weight:900;font-variant-numeric:tabular-nums;background:#fff7dc;border:1px solid #f1d47a;border-radius:12px;padding:8px 11px;white-space:nowrap}
+.points-track{height:14px;background:#e9edf5;border-radius:999px;overflow:hidden;margin-top:10px;position:relative}
+.points-fill{height:100%;width:0;background:linear-gradient(90deg,#3157d5,#6580df);transition:width .25s}
+.thresholds{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:4px}
+.quiz-question{font-size:clamp(30px,7vw,48px);font-weight:900;text-align:center;padding:24px 8px 18px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:620px;margin:0 auto}
+.answer-btn{min-height:72px;border:2px solid var(--line);border-radius:16px;background:#fff;font-size:25px;font-weight:900}
+.answer-btn.wrong{border-color:var(--bad);background:var(--bad-soft);color:#8b2525}
+.answer-btn.correct{border-color:var(--good);background:var(--good-soft);color:#0d663d}
+.answer-btn:disabled{opacity:1}
+.quiz-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:14px;font-weight:700}
+.result-score{text-align:center;font-size:52px;font-weight:900;margin:12px 0 4px}
+.result-clock{text-align:center;font-size:30px;font-weight:900;margin:10px 0}
+.hidden{display:none!important}
+@media(max-width:620px){
+  .app{padding-left:10px;padding-right:10px}
+  .nav button{font-size:14px;padding:7px}
+  .quiz-intro-grid{grid-template-columns:1fr}
+  .answers{gap:9px}
+  .answer-btn{min-height:64px}
+  .card{padding:14px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="header">
+    <div>
+      <div class="title">Kolejność wykonywania działań</div>
+      <div class="subtitle">Nauka → trening kolejności → quiz</div>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Etapy nauki">
+    <button class="active" data-tab="learn" type="button">1. Nauka</button>
+    <button data-tab="train" type="button">2. Trening</button>
+    <button data-tab="quiz" type="button">3. Quiz</button>
+  </nav>
+
+  <section id="learn" class="panel active">
+    <div class="card">
+      <h2 class="section-title">Domek działań</h2>
+      <div class="muted">Zaczynamy od najwyższego piętra, które występuje w działaniu, i schodzimy w dół.</div>
+
+      <div class="house-wrap">
+        <svg class="house-svg" viewBox="0 0 560 545" role="img" aria-label="Domek kolejności działań: nawiasy, potęgi, mnożenie i dzielenie, dodawanie i odejmowanie">
+          <defs>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#8490a8" flood-opacity=".20"/>
+            </filter>
+          </defs>
+          <g filter="url(#shadow)">
+            <path d="M70 150 L280 25 L490 150 Z" fill="#f0b35d" stroke="#c78732" stroke-width="4"/>
+            <rect x="92" y="150" width="376" height="95" rx="5" fill="#c7b4ee" stroke="#8d72cb" stroke-width="4"/>
+            <rect x="92" y="245" width="376" height="110" rx="5" fill="#8fb8f5" stroke="#5d8dcc" stroke-width="4"/>
+            <rect x="92" y="355" width="376" height="120" rx="5" fill="#9ad5ac" stroke="#65aa79" stroke-width="4"/>
+            <rect x="70" y="473" width="420" height="16" rx="8" fill="#65758b"/>
+          </g>
+          <text x="280" y="82" text-anchor="middle" font-size="23" font-weight="900" fill="#3f2b13">NAWIASY</text>
+          <rect x="238" y="96" width="84" height="46" rx="13" fill="#fff" fill-opacity=".94" stroke="#c78732" stroke-width="3"/>
+          <text x="280" y="128" text-anchor="middle" font-size="28" font-weight="900" fill="#3f2b13">( )</text>
+
+          <text x="280" y="181" text-anchor="middle" font-size="21" font-weight="900" fill="#37245e">POTĘGI</text>
+          <rect x="239" y="193" width="82" height="42" rx="13" fill="#fff" fill-opacity=".94" stroke="#8d72cb" stroke-width="3"/>
+          <text x="280" y="222" text-anchor="middle" font-size="25" font-weight="900" fill="#37245e">2³</text>
+
+          <text x="280" y="279" text-anchor="middle" font-size="21" font-weight="900" fill="#152d57">MNOŻENIE I DZIELENIE</text>
+          <rect x="207" y="294" width="58" height="48" rx="14" fill="#fff" fill-opacity=".94" stroke="#5d8dcc" stroke-width="3"/>
+          <rect x="295" y="294" width="58" height="48" rx="14" fill="#fff" fill-opacity=".94" stroke="#5d8dcc" stroke-width="3"/>
+          <text x="236" y="329" text-anchor="middle" font-size="34" font-weight="900" fill="#152d57">·</text>
+          <text x="324" y="328" text-anchor="middle" font-size="32" font-weight="900" fill="#152d57">:</text>
+
+          <text x="280" y="391" text-anchor="middle" font-size="21" font-weight="900" fill="#174e2c">DODAWANIE I ODEJMOWANIE</text>
+          <rect x="207" y="407" width="58" height="50" rx="14" fill="#fff" fill-opacity=".94" stroke="#65aa79" stroke-width="3"/>
+          <rect x="295" y="407" width="58" height="50" rx="14" fill="#fff" fill-opacity=".94" stroke="#65aa79" stroke-width="3"/>
+          <text x="236" y="442" text-anchor="middle" font-size="32" font-weight="900" fill="#174e2c">+</text>
+          <text x="324" y="441" text-anchor="middle" font-size="32" font-weight="900" fill="#174e2c">−</text>
+
+          <path d="M520 110 L520 425" stroke="#667085" stroke-width="4" stroke-linecap="round"/>
+          <path d="M507 410 L520 428 L533 410" fill="none" stroke="#667085" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="520" y="91" text-anchor="middle" font-size="14" font-weight="800" fill="#667085">SCHODZIMY</text>
+        </svg>
+      </div>
+
+      <div class="house-note">Na tym samym piętrze liczymy od lewej do prawej.</div>
+      <div class="house-subnote">Najpierw nawiasy, potem potęgi. „·” i „:” są równie ważne, tak samo „+” i „−”.</div>
+
+      <div class="rule-strip">
+        <div class="rule-pill">① Nawiasy</div>
+        <div class="rule-pill">② Potęgi</div>
+        <div class="rule-pill">③ · oraz :</div>
+        <div class="rule-pill">④ + oraz −</div>
+      </div>
+      <div class="example-box">
+        <div class="muted" style="font-weight:800;text-align:center">PRZYKŁAD</div>
+        <div class="example-math math">(2 + 2)<sup>2</sup> : 4 + 1</div>
+        <div class="example-order">
+          <span class="example-chip">1. ( )</span><span>→</span>
+          <span class="example-chip">2. potęga</span><span>→</span>
+          <span class="example-chip">3. :</span><span>→</span>
+          <span class="example-chip">4. +</span>
+        </div>
+        <div class="house-subnote">Nie musisz jeszcze liczyć wyniku. Najpierw naucz się widzieć kolejność.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="train" class="panel">
+    <div class="card">
+      <div class="topline">
+        <div>
+          <div class="counter" id="train-counter">Zadanie 1 z 80</div>
+          <div class="muted" style="font-size:13px;margin-top:3px">Klikaj wyłącznie znaki działań.</div>
+        </div>
+        <span class="level" id="train-level">Łatwy</span>
+      </div>
+      <div class="training-progress"><div id="train-progress"></div></div>
+      <div class="instruction">
+        <b id="train-instruction">Wybierz działanie nr 1.</b><br>
+        <span class="muted">Poprawne działanie zrobi się zielone i dostanie numer.</span>
+      </div>
+      <div id="train-expression" class="training-expression math" aria-label="Działanie treningowe"></div>
+      <div class="mini-house-wrap" aria-label="Ściąga kolejności wykonywania działań">
+        <div class="mini-house-label">ŚCIĄGA</div>
+        <svg class="mini-house-svg" viewBox="0 0 300 285" role="img" aria-label="Nawiasy, potem potęgi, mnożenie i dzielenie, dodawanie i odejmowanie">
+          <path d="M28 76 L150 8 L272 76 Z" fill="#f0b35d" stroke="#c78732" stroke-width="3"/>
+          <rect x="42" y="76" width="216" height="58" fill="#c7b4ee" stroke="#8d72cb" stroke-width="3"/>
+          <rect x="42" y="134" width="216" height="64" fill="#8fb8f5" stroke="#5d8dcc" stroke-width="3"/>
+          <rect x="42" y="198" width="216" height="70" rx="0 0 10 10" fill="#9ad5ac" stroke="#65aa79" stroke-width="3"/>
+
+          <text x="150" y="37" text-anchor="middle" font-size="13" font-weight="900" fill="#3f2b13">NAWIASY</text>
+          <rect x="125" y="44" width="50" height="28" rx="9" fill="#fff" fill-opacity=".95" stroke="#c78732" stroke-width="2"/>
+          <text x="150" y="65" text-anchor="middle" font-size="18" font-weight="900" fill="#3f2b13">( )</text>
+
+          <text x="150" y="94" text-anchor="middle" font-size="12" font-weight="900" fill="#37245e">POTĘGI</text>
+          <rect x="126" y="101" width="48" height="27" rx="9" fill="#fff" fill-opacity=".95" stroke="#8d72cb" stroke-width="2"/>
+          <text x="150" y="121" text-anchor="middle" font-size="17" font-weight="900" fill="#37245e">2³</text>
+
+          <text x="150" y="153" text-anchor="middle" font-size="12" font-weight="900" fill="#152d57">MNOŻENIE I DZIELENIE</text>
+          <rect x="108" y="161" width="34" height="31" rx="9" fill="#fff" fill-opacity=".95" stroke="#5d8dcc" stroke-width="2"/>
+          <rect x="158" y="161" width="34" height="31" rx="9" fill="#fff" fill-opacity=".95" stroke="#5d8dcc" stroke-width="2"/>
+          <text x="125" y="184" text-anchor="middle" font-size="21" font-weight="900" fill="#152d57">·</text>
+          <text x="175" y="182" text-anchor="middle" font-size="20" font-weight="900" fill="#152d57">:</text>
+
+          <text x="150" y="218" text-anchor="middle" font-size="12" font-weight="900" fill="#174e2c">DODAWANIE I ODEJMOWANIE</text>
+          <rect x="108" y="227" width="34" height="31" rx="9" fill="#fff" fill-opacity=".95" stroke="#65aa79" stroke-width="2"/>
+          <rect x="158" y="227" width="34" height="31" rx="9" fill="#fff" fill-opacity=".95" stroke="#65aa79" stroke-width="2"/>
+          <text x="125" y="250" text-anchor="middle" font-size="20" font-weight="900" fill="#174e2c">+</text>
+          <text x="175" y="249" text-anchor="middle" font-size="20" font-weight="900" fill="#174e2c">−</text>
+        </svg>
+        <div class="mini-house-note">Nawiasy → potęgi → · i : → + i −. Na tym samym piętrze: od lewej do prawej.</div>
+      </div>
+      <div id="train-feedback" class="feedback" aria-live="polite"></div>
+      <div class="action-row">
+        <button id="train-next" type="button" class="primary hidden">Następne zadanie</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" class="panel">
+    <div id="quiz-intro" class="card">
+      <h2 class="section-title">Quiz: 30 pytań</h2>
+      <div class="muted">Tutaj liczymy już cały wynik, także z potęgami. W każdym pytaniu wybierasz jedną z czterech odpowiedzi.</div>
+      <div class="quiz-intro-grid">
+        <div><b>+2 pkt</b>dobrze za 1. razem</div>
+        <div><b>+1 pkt</b>dobrze za 2. razem</div>
+        <div><b>+0 pkt</b>od 3. próby</div>
+      </div>
+      <div style="font-weight:800">Nagrody za punkty</div>
+      <div class="muted" style="font-size:14px;margin-top:5px">Co każde 10% wyniku dostajesz +5 minut grania. Idealne 100% daje łącznie pełną godzinę.</div>
+      <div class="reward-line" aria-label="Progi nagród">
+        <span class="reward-node"></span><span class="reward-node"></span><span class="reward-node"></span><span class="reward-node"></span><span class="reward-node"></span>
+        <span class="reward-node"></span><span class="reward-node"></span><span class="reward-node"></span><span class="reward-node"></span><span class="reward-node"></span>
+      </div>
+      <button id="quiz-start" class="primary" type="button" style="width:100%;margin-top:18px">Zaczynam quiz</button>
+    </div>
+
+    <div id="quiz-game" class="hidden">
+      <div class="quiz-status">
+        <div class="status-card">
+          <div class="status-top">
+            <div>
+              <div class="points-big"><span id="quiz-points">0</span> / 60 pkt</div>
+              <div class="muted" style="font-size:12px;margin-top:2px" id="next-threshold">Do pierwszego progu: 6 pkt</div>
+            </div>
+            <div class="game-clock">🎮 <span id="game-clock">00:00</span></div>
+          </div>
+          <div class="points-track" aria-label="Postęp punktów">
+            <div id="points-fill" class="points-fill"></div>
+          </div>
+          <div class="thresholds"><span>0%</span><span>20%</span><span>40%</span><span>60%</span><span>80%</span><span>100%</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="quiz-meta">
+          <span id="quiz-counter">Pytanie 1 z 30</span>
+          <span id="quiz-level">Łatwy</span>
+          <span id="quiz-attempt">Próba 1</span>
+        </div>
+        <div id="quiz-expression" class="quiz-question math"></div>
+
+        <div id="quiz-answers" class="answers"></div>
+        <div id="quiz-feedback" class="feedback" aria-live="polite"></div>
+        <div class="action-row">
+          <button id="quiz-next" type="button" class="primary hidden">Następne pytanie</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz-result" class="card hidden">
+      <h2 class="section-title" style="text-align:center">Quiz zakończony</h2>
+      <div id="result-score" class="result-score">0 / 60</div>
+      <div id="result-percent" class="muted" style="text-align:center;font-weight:800"></div>
+      <div id="result-clock" class="result-clock">🎮 00:00</div>
+      <div id="result-text" class="muted" style="text-align:center"></div>
+      <div class="action-row">
+        <button id="quiz-restart" type="button" class="primary">Zagraj quiz jeszcze raz</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  const TRAINING_FIXED = [{"expr": "8 + 3 · 4", "level": "Łatwy"}, {"expr": "18 : 3 + 4", "level": "Łatwy"}, {"expr": "25 - 3 · 6", "level": "Łatwy"}, {"expr": "24 : 6 · 2", "level": "Łatwy"}, {"expr": "7 + 12 : 4", "level": "Łatwy"}, {"expr": "5 · 3 + 9", "level": "Łatwy"}, {"expr": "20 - 8 : 2", "level": "Łatwy"}, {"expr": "6 + 2 · 5", "level": "Łatwy"}, {"expr": "16 : 4 + 7", "level": "Łatwy"}, {"expr": "9 · 2 - 5", "level": "Łatwy"}, {"expr": "2^2 + 3 · 4", "level": "Łatwy · potęgi"}, {"expr": "3^2 - 5", "level": "Łatwy · potęgi"}, {"expr": "18 : 3 + 2^2", "level": "Łatwy · potęgi"}, {"expr": "4 + 2^3", "level": "Łatwy · potęgi"}, {"expr": "2^3 + 12 : 4", "level": "Łatwy · potęgi"}, {"expr": "5 · 2 + 3^2", "level": "Łatwy · potęgi"}, {"expr": "20 - 2^3", "level": "Łatwy · potęgi"}, {"expr": "3^2 + 6 : 2", "level": "Łatwy · potęgi"}, {"expr": "2^4 - 7", "level": "Łatwy · potęgi"}, {"expr": "24 : 6 + 2^3", "level": "Łatwy · potęgi"}, {"expr": "(2 + 3)^2 - 5", "level": "Średni"}, {"expr": "3^2 + 18 : 3 · 2", "level": "Średni"}, {"expr": "40 - 2^3 · 3", "level": "Średni"}, {"expr": "48 : 2^3 + 5", "level": "Średni"}, {"expr": "2 · 3^2 + 16 : 4", "level": "Średni"}, {"expr": "(6 - 2)^2 : 4 + 3", "level": "Średni"}, {"expr": "5 + 2^4 : 4", "level": "Średni"}, {"expr": "3 · (2 + 2)^2 - 5", "level": "Średni"}, {"expr": "64 : 2^3 + 3 · 4", "level": "Średni"}, {"expr": "2^3 · 3 - 10 : 2", "level": "Średni"}, {"expr": "(9 - 6)^2 + 24 : 6", "level": "Średni"}, {"expr": "50 - 3^2 · 4 + 2", "level": "Średni"}, {"expr": "4^2 : 2 + 3 · 5", "level": "Średni"}, {"expr": "7 + (5 - 2)^2 · 2", "level": "Średni"}, {"expr": "72 : 3^2 + 4 · 3 - 2", "level": "Średni"}, {"expr": "3 · (2^2 + 4) - 5", "level": "Trudny"}, {"expr": "100 : (2 + 3)^2 + 7", "level": "Trudny"}, {"expr": "2^4 + 36 : 3^2 - 5", "level": "Trudny"}, {"expr": "5 · (3^2 - 4) + 2", "level": "Trudny"}, {"expr": "100 - 2^3 · 3^2 + 4", "level": "Trudny"}, {"expr": "64 : 2^3 · 3 - 7", "level": "Trudny"}, {"expr": "(10 - 2^2) · 3 + 18 : 3", "level": "Trudny"}, {"expr": "4 · (2^3 + 1) - 3^2", "level": "Trudny"}, {"expr": "2^5 : 4 + 3^2 · 2", "level": "Trudny"}, {"expr": "90 : (2^2 + 5) + 3^2", "level": "Trudny"}, {"expr": "6 + 3^2 · (8 - 5) - 4", "level": "Trudny"}, {"expr": "120 : 2^3 - 2 · 3^2 + 5", "level": "Trudny"}, {"expr": "(3^2 + 7) : 2 + 4^2", "level": "Trudny"}, {"expr": "5 · (2^3 - 3) + 24 : 2^2", "level": "Trudny"}, {"expr": "2^4 · 3 - (9 - 5)^2 + 6", "level": "Trudny"}];
+  const TRAINING_MIX = [{"expr": "4^2 + 3", "level": "Łatwy"}, {"expr": "2^3 · 2 - 5", "level": "Łatwy"}, {"expr": "27 : 3^2 + 6", "level": "Łatwy"}, {"expr": "3 + 2^4 : 4", "level": "Łatwy"}, {"expr": "5 · 2^2 - 7", "level": "Łatwy"}, {"expr": "6 + 2^3 · 2 - 5", "level": "Średni"}, {"expr": "45 : 3^2 + 4 · 3", "level": "Średni"}, {"expr": "(7 - 3)^2 + 18 : 3", "level": "Średni"}, {"expr": "3^2 · 2 + 20 : 5 - 4", "level": "Średni"}, {"expr": "64 : 2^3 + 5 · 2", "level": "Średni"}, {"expr": "4 + 3^2 · 3 - 8", "level": "Średni"}, {"expr": "2 · (5 + 3)^2 : 8", "level": "Średni"}, {"expr": "36 : 2^2 + 2^3 - 4", "level": "Średni"}, {"expr": "(8 - 5)^2 · 3 + 7", "level": "Średni"}, {"expr": "50 - 2^4 · 2 + 6", "level": "Średni"}, {"expr": "4 · (3^2 - 5) + 24 : 3", "level": "Trudny"}, {"expr": "96 : (2^3 + 4) + 5 · 3", "level": "Trudny"}, {"expr": "2^5 - 3^2 · 2 + 7", "level": "Trudny"}, {"expr": "7 + 2^3 · (9 - 6) - 5", "level": "Trudny"}, {"expr": "144 : 3^2 + 2^4 - 6", "level": "Trudny"}, {"expr": "(2^3 + 7) · 2 - 3^2", "level": "Trudny"}, {"expr": "5 · (4^2 : 2 - 3) + 6", "level": "Trudny"}, {"expr": "100 - 3^2 · (7 - 3) + 8", "level": "Trudny"}, {"expr": "2^4 + 72 : 3^2 · 2 - 5", "level": "Trudny"}, {"expr": "6 · (2^3 - 4) + 5^2 : 5", "level": "Trudny"}, {"expr": "128 : 2^4 + 3 · (2^2 + 1)", "level": "Trudny"}, {"expr": "3^3 - 2^3 + 4 · 5", "level": "Trudny"}, {"expr": "(12 - 2^3)^2 : 4 + 3", "level": "Trudny"}, {"expr": "4^2 · 3 - 2 · (3^2 + 2)", "level": "Trudny"}, {"expr": "90 : (3^2 + 1) + 2^4", "level": "Trudny"}];
+  const QUIZ_BASE = [{"expr": "8 + 3 · 4", "answer": 20, "level": "Łatwy"}, {"expr": "2^2 + 5", "answer": 9, "level": "Łatwy"}, {"expr": "3^2 - 4", "answer": 5, "level": "Łatwy"}, {"expr": "18 : 3 + 2^2", "answer": 10, "level": "Łatwy"}, {"expr": "2^3 + 6", "answer": 14, "level": "Łatwy"}, {"expr": "5 · 2 + 3^2", "answer": 19, "level": "Łatwy"}, {"expr": "20 - 2^3", "answer": 12, "level": "Łatwy"}, {"expr": "24 : 6 + 2^3", "answer": 12, "level": "Łatwy"}, {"expr": "2^4 - 7", "answer": 9, "level": "Łatwy"}, {"expr": "3^2 + 12 : 4", "answer": 12, "level": "Łatwy"}, {"expr": "(2 + 3)^2 - 5", "answer": 20, "level": "Średni"}, {"expr": "3^2 + 18 : 3 · 2", "answer": 21, "level": "Średni"}, {"expr": "40 - 2^3 · 3", "answer": 16, "level": "Średni"}, {"expr": "48 : 2^3 + 5", "answer": 11, "level": "Średni"}, {"expr": "2 · 3^2 + 16 : 4", "answer": 22, "level": "Średni"}, {"expr": "(6 - 2)^2 : 4 + 3", "answer": 7, "level": "Średni"}, {"expr": "5 + 2^4 : 4", "answer": 9, "level": "Średni"}, {"expr": "3 · (2 + 2)^2 - 5", "answer": 43, "level": "Średni"}, {"expr": "64 : 2^3 + 3 · 4", "answer": 20, "level": "Średni"}, {"expr": "7 + (5 - 2)^2 · 2", "answer": 25, "level": "Średni"}, {"expr": "3 · (2^2 + 4) - 5", "answer": 19, "level": "Trudny"}, {"expr": "100 : (2 + 3)^2 + 7", "answer": 11, "level": "Trudny"}, {"expr": "2^4 + 36 : 3^2 - 5", "answer": 15, "level": "Trudny"}, {"expr": "5 · (3^2 - 4) + 2", "answer": 27, "level": "Trudny"}, {"expr": "100 - 2^3 · 3^2 + 4", "answer": 32, "level": "Trudny"}, {"expr": "64 : 2^3 · 3 - 7", "answer": 17, "level": "Trudny"}, {"expr": "(10 - 2^2) · 3 + 18 : 3", "answer": 24, "level": "Trudny"}, {"expr": "4 · (2^3 + 1) - 3^2", "answer": 27, "level": "Trudny"}, {"expr": "2^5 : 4 + 3^2 · 2", "answer": 26, "level": "Trudny"}, {"expr": "2^4 · 3 - (9 - 5)^2 + 6", "answer": 38, "level": "Trudny"}];
+
+  const tabs = [...document.querySelectorAll('[data-tab]')];
+  const panels = [...document.querySelectorAll('.panel')];
+
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    const id = btn.dataset.tab;
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    panels.forEach(p => p.classList.toggle('active', p.id === id));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }));
+
+  const shuffle = arr => {
+    const out = arr.slice();
+    for (let i = out.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  };
+
+  const displaySymbol = ch => ch === '-' ? '−' : ch;
+
+  const superscriptDigits = str => String(str).replace(/[0-9]/g, d => ({
+    '0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'
+  })[d]);
+
+  function tokenizeForTraining(expr) {
+    const tokens = [];
+    let i = 0;
+    let opId = 0;
+    let depth = 0;
+
+    while (i < expr.length) {
+      const ch = expr[i];
+      if (/\s/.test(ch)) { i++; continue; }
+
+      if (/\d/.test(ch)) {
+        let j = i + 1;
+        while (j < expr.length && /\d/.test(expr[j])) j++;
+        tokens.push({type:'num', text:expr.slice(i,j)});
+        i = j;
+        continue;
+      }
+
+      if (ch === '(') {
+        tokens.push({type:'paren', text:'('});
+        depth++;
+        i++;
+        continue;
+      }
+
+      if (ch === ')') {
+        depth = Math.max(0, depth - 1);
+        tokens.push({type:'paren', text:')'});
+        i++;
+        continue;
+      }
+
+      if (ch === '^') {
+        let j = i + 1;
+        while (j < expr.length && /\d/.test(expr[j])) j++;
+        const exponent = expr.slice(i + 1, j);
+        tokens.push({
+          type:'op',
+          text:superscriptDigits(exponent),
+          raw:'^',
+          exponent,
+          id:opId++,
+          depth,
+          precedence:3,
+          position:i
+        });
+        i = j;
+        continue;
+      }
+
+      if (['+','-','·',':'].includes(ch)) {
+        tokens.push({
+          type:'op',
+          text:displaySymbol(ch),
+          raw:ch,
+          id:opId++,
+          depth,
+          precedence:(ch === '·' || ch === ':') ? 2 : 1,
+          position:i
+        });
+        i++;
+        continue;
+      }
+
+      i++;
+    }
+
+    const order = tokens
+      .filter(t => t.type === 'op')
+      .slice()
+      .sort((a,b) => {
+        if (a.depth !== b.depth) return b.depth - a.depth;
+        if (a.precedence !== b.precedence) return b.precedence - a.precedence;
+        return a.position - b.position;
+      })
+      .map(t => t.id);
+
+    return {tokens, order};
+  }
+
+  function formatMathHTML(expr) {
+    return expr
+      .replaceAll('-', '−')
+      .replace(/\^(\d+)/g, (_, exp) => `<sup>${exp}</sup>`);
+  }
+
+  // ---------------- Training ----------------
+  const trainingTasks = TRAINING_FIXED.concat(shuffle(TRAINING_MIX));
+  let trainIndex = 0;
+  let trainStep = 0;
+  let trainDone = new Map();
+
+  const trainCounter = document.getElementById('train-counter');
+  const trainLevel = document.getElementById('train-level');
+  const trainProgress = document.getElementById('train-progress');
+  const trainInstruction = document.getElementById('train-instruction');
+  const trainExpression = document.getElementById('train-expression');
+  const trainFeedback = document.getElementById('train-feedback');
+  const trainNext = document.getElementById('train-next');
+
+  function renderTraining() {
+    const task = trainingTasks[trainIndex];
+    const parsed = tokenizeForTraining(task.expr);
+
+    trainCounter.textContent = `Zadanie ${trainIndex + 1} z ${trainingTasks.length}`;
+    trainLevel.textContent = trainIndex < TRAINING_FIXED.length ? task.level : `Mix · ${task.level}`;
+    trainProgress.style.width = `${((trainIndex + (trainStep / Math.max(1, parsed.order.length))) / trainingTasks.length) * 100}%`;
+    trainInstruction.textContent = trainStep < parsed.order.length
+      ? `Wybierz działanie nr ${trainStep + 1}.`
+      : 'Cała kolejność jest gotowa.';
+    trainFeedback.className = 'feedback';
+    trainFeedback.innerHTML = '';
+    trainNext.classList.add('hidden');
+    trainExpression.innerHTML = '';
+
+    parsed.tokens.forEach(token => {
+      if (token.type === 'op') {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'op-btn' + (token.raw === '^' ? ' power-btn' : '');
+        btn.textContent = token.text;
+        btn.dataset.opId = token.id;
+        btn.setAttribute('aria-label', `Działanie ${token.text}`);
+
+        if (trainDone.has(token.id)) {
+          btn.classList.add('done');
+          btn.disabled = true;
+          const badge = document.createElement('span');
+          badge.className = 'op-badge';
+          badge.textContent = trainDone.get(token.id);
+          btn.appendChild(badge);
+        } else {
+          btn.addEventListener('click', () => chooseTrainingOperator(btn, token.id, parsed.order));
+        }
+        trainExpression.appendChild(btn);
+      } else {
+        const span = document.createElement('span');
+        span.className = token.type === 'num' ? 'num' : 'paren';
+        span.textContent = token.text;
+        trainExpression.appendChild(span);
+      }
+    });
+
+    if (trainStep >= parsed.order.length) {
+      trainProgress.style.width = `${((trainIndex + 1) / trainingTasks.length) * 100}%`;
+      trainFeedback.className = 'feedback show good';
+      trainFeedback.innerHTML = '<strong>Dobra kolejność.</strong>Wszystkie działania mają właściwe numery.';
+      trainNext.textContent = trainIndex === 59 ? 'Zakończ trening' : 'Następne zadanie';
+      trainNext.classList.remove('hidden');
+    }
+  }
+
+  function chooseTrainingOperator(btn, id, order) {
+    const expected = order[trainStep];
+
+    if (id !== expected) {
+      btn.classList.add('wrong');
+      trainFeedback.className = 'feedback show bad';
+      trainFeedback.innerHTML = '<strong>Jeszcze nie.</strong>Sprawdź kolejno: nawiasy, potęgi, · i :, a potem + i −. Na tym samym piętrze idziemy od lewej.';
+      setTimeout(() => btn.classList.remove('wrong'), 380);
+      return;
+    }
+
+    trainStep++;
+    trainDone.set(id, trainStep);
+    renderTraining();
+
+    if (trainStep < order.length) {
+      trainFeedback.className = 'feedback show good';
+      trainFeedback.innerHTML = `<strong>Dobrze. To działanie nr ${trainStep}.</strong>Teraz znajdź działanie nr ${trainStep + 1}.`;
+    }
+  }
+
+  trainNext.addEventListener('click', () => {
+    if (trainIndex === trainingTasks.length - 1) {
+      trainIndex = 0;
+    } else {
+      trainIndex++;
+    }
+    trainStep = 0;
+    trainDone = new Map();
+    renderTraining();
+  });
+
+  renderTraining();
+
+  // ---------------- Quiz ----------------
+  const MAX_POINTS = 60;
+  let quizQuestions = [];
+  let quizIndex = 0;
+  let quizAttempts = 0;
+  let quizPoints = 0;
+  let gameMinutes = 0;
+  let quizLocked = false;
+
+  const quizIntro = document.getElementById('quiz-intro');
+  const quizGame = document.getElementById('quiz-game');
+  const quizResult = document.getElementById('quiz-result');
+  const quizStart = document.getElementById('quiz-start');
+  const quizCounter = document.getElementById('quiz-counter');
+  const quizAttempt = document.getElementById('quiz-attempt');
+  const quizLevel = document.getElementById('quiz-level');
+  const quizExpression = document.getElementById('quiz-expression');
+  const quizAnswers = document.getElementById('quiz-answers');
+  const quizFeedback = document.getElementById('quiz-feedback');
+  const quizNext = document.getElementById('quiz-next');
+  const quizPointsEl = document.getElementById('quiz-points');
+  const pointsFill = document.getElementById('points-fill');
+  const gameClock = document.getElementById('game-clock');
+  const nextThreshold = document.getElementById('next-threshold');
+
+  function minutesForScore(score) {
+    if (score >= MAX_POINTS) return 60;
+    const reachedTens = Math.floor(score / 6); // 6 pkt = 10% z 60 pkt
+    return Math.min(45, reachedTens * 5);
+  }
+
+  function formatMinutes(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${String(hours).padStart(2,'0')}:${String(mins).padStart(2,'0')}`;
+  }
+
+  function updateQuizStatus(showRewardMessage = false) {
+    const oldMinutes = gameMinutes;
+    gameMinutes = minutesForScore(quizPoints);
+    quizPointsEl.textContent = quizPoints;
+    pointsFill.style.width = `${Math.min(100, (quizPoints / MAX_POINTS) * 100)}%`;
+    gameClock.textContent = formatMinutes(gameMinutes);
+
+    if (quizPoints >= MAX_POINTS) {
+      nextThreshold.textContent = '100% — pełna godzina zdobyta';
+    } else {
+      const next = Math.min(MAX_POINTS, (Math.floor(quizPoints / 6) + 1) * 6);
+      const diff = Math.max(0, next - quizPoints);
+      nextThreshold.textContent = `Do kolejnego progu: ${diff} pkt`;
+    }
+
+    return showRewardMessage && gameMinutes > oldMinutes
+      ? (gameMinutes === 60 ? 'Osiągnięte 100%: masz pełną dodatkową godzinę grania.' : `Nowy próg: masz już ${gameMinutes} dodatkowych minut grania.`)
+      : '';
+  }
+
+  function makeOptions(answer) {
+    const options = new Set([answer]);
+    const deltas = shuffle([1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,8,-8,10,-10]);
+    for (const d of deltas) {
+      if (options.size >= 4) break;
+      const n = answer + d;
+      if (n >= 0) options.add(n);
+    }
+    return shuffle([...options]);
+  }
+
+  function startQuiz() {
+    quizQuestions = QUIZ_BASE.map(q => ({...q, options:makeOptions(q.answer)}));
+    quizIndex = 0;
+    quizAttempts = 0;
+    quizPoints = 0;
+    gameMinutes = 0;
+    quizLocked = false;
+    quizIntro.classList.add('hidden');
+    quizResult.classList.add('hidden');
+    quizGame.classList.remove('hidden');
+    updateQuizStatus();
+    renderQuizQuestion();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function renderQuizQuestion() {
+    quizLocked = false;
+    quizAttempts = 0;
+    const q = quizQuestions[quizIndex];
+
+    quizCounter.textContent = `Pytanie ${quizIndex + 1} z 30`;
+    quizLevel.textContent = q.level;
+    quizAttempt.textContent = 'Próba 1';
+    quizExpression.innerHTML = formatMathHTML(q.expr);
+    quizAnswers.innerHTML = '';
+    quizFeedback.className = 'feedback';
+    quizFeedback.innerHTML = '';
+    quizNext.classList.add('hidden');
+
+    q.options.forEach(value => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'answer-btn';
+      btn.textContent = value;
+      btn.addEventListener('click', () => chooseQuizAnswer(btn, value));
+      quizAnswers.appendChild(btn);
+    });
+  }
+
+  function chooseQuizAnswer(btn, value) {
+    if (quizLocked || btn.disabled) return;
+
+    const q = quizQuestions[quizIndex];
+    quizAttempts++;
+
+    if (value !== q.answer) {
+      btn.classList.add('wrong');
+      btn.disabled = true;
+      quizFeedback.className = 'feedback show bad';
+
+      if (quizAttempts === 1) {
+        quizFeedback.innerHTML = '<strong>Jeszcze nie.</strong>Sprawdź kolejność działań i spróbuj drugi raz. Nadal możesz zdobyć 1 punkt.';
+      } else {
+        quizFeedback.innerHTML = '<strong>Jeszcze nie.</strong>Spróbuj ponownie. Za to pytanie nie ma już punktu, ale nadal warto znaleźć poprawny wynik.';
+      }
+
+      quizAttempt.textContent = `Próba ${quizAttempts + 1}`;
+      return;
+    }
+
+    quizLocked = true;
+    btn.classList.add('correct');
+    [...quizAnswers.querySelectorAll('button')].forEach(b => b.disabled = true);
+
+    const earned = quizAttempts === 1 ? 2 : quizAttempts === 2 ? 1 : 0;
+    quizPoints += earned;
+    const rewardMessage = updateQuizStatus(true);
+
+    quizFeedback.className = 'feedback show good';
+    let msg = earned === 2
+      ? '<strong>Dobrze za pierwszym razem. +2 pkt.</strong>'
+      : earned === 1
+        ? '<strong>Dobrze za drugim razem. +1 pkt.</strong>'
+        : '<strong>Dobrze. Wynik znaleziony.</strong>Za to pytanie: 0 pkt.';
+
+    if (rewardMessage) msg += `<br><b>${rewardMessage}</b>`;
+    quizFeedback.innerHTML = msg;
+
+    quizNext.textContent = quizIndex === 29 ? 'Zobacz wynik' : 'Następne pytanie';
+    quizNext.classList.remove('hidden');
+  }
+
+  function finishQuiz() {
+    quizGame.classList.add('hidden');
+    quizResult.classList.remove('hidden');
+
+    const percent = Math.round((quizPoints / MAX_POINTS) * 100);
+    document.getElementById('result-score').textContent = `${quizPoints} / ${MAX_POINTS}`;
+    document.getElementById('result-percent').textContent = `${percent}% możliwych punktów`;
+    document.getElementById('result-clock').textContent = `🎮 ${formatMinutes(gameMinutes)}`;
+
+    let text;
+    if (percent === 100) text = 'Komplet punktów. Zdobyta została pełna dodatkowa godzina grania.';
+    else if (percent >= 80) text = 'Bardzo uważna praca. Większość odpowiedzi była poprawna od razu.';
+    else if (percent >= 60) text = 'Dobra podstawa. Warto powtórzyć kilka trudniejszych przykładów.';
+    else text = 'Wróć do treningu kolejności i spróbuj quizu ponownie.';
+    document.getElementById('result-text').textContent = text;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  quizStart.addEventListener('click', startQuiz);
+  document.getElementById('quiz-restart').addEventListener('click', startQuiz);
+
+  quizNext.addEventListener('click', () => {
+    if (quizIndex === 29) {
+      finishQuiz();
+    } else {
+      quizIndex++;
+      renderQuizQuestion();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  });
+})();
+</script>
+</body>
+</html>
