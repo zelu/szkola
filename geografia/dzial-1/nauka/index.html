@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Geografia · Mapa Polski | Nauka, trening i test</title>
+<style>
+:root{--ink:#182a34;--muted:#536671;--line:#d9e2e3;--paper:#f6f8f6;--white:#fff;--teal:#13665b;--tealsoft:#e6f3ee;--gold:#a46305;--goldsoft:#fff4dd;--bad:#ad3640;--badsoft:#fff0f1;--focus:#004c9b;--radius:19px;--shadow:0 5px 28px rgba(17,42,48,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:17px;line-height:1.55}button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:3px}button:disabled{cursor:not-allowed;opacity:.5}.hide{display:none!important}
+.topbar{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.topinner{max-width:950px;margin:auto;min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 22px}.brand{display:flex;gap:11px;align-items:center;text-decoration:none;color:var(--ink);font-size:17px;font-weight:800}.logo{display:grid;place-items:center;background:var(--teal);color:white;width:39px;height:39px;border-radius:12px;font-size:22px}.status{color:var(--muted);font-size:13px}.smallBtn{border:1px solid var(--line);border-radius:12px;background:white;padding:10px 13px;color:var(--ink);font-size:14px;font-weight:700}.smallBtn:hover{background:var(--paper)}main{max-width:950px;margin:0 auto;padding:23px 18px 85px}.hero{padding:26px 12px 15px}.eyebrow{font-size:12px;letter-spacing:.08em;font-weight:800;text-transform:uppercase;color:var(--teal)}h1{font-size:clamp(29px,4.3vw,44px);line-height:1.17;letter-spacing:-.035em;margin:8px 0 12px}h2{font-size:clamp(22px,3.4vw,30px);line-height:1.22;letter-spacing:-.02em;margin:0 0 12px}h3{font-size:20px;line-height:1.3;margin:0 0 10px}.lead{max-width:710px;color:var(--muted);margin:0 0 18px;font-size:17px}.mainnav{display:flex;gap:8px;flex-wrap:wrap;margin:21px 0}.navbtn{padding:11px 17px;min-height:47px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--ink);font-weight:750}.navbtn.active{background:var(--teal);border-color:var(--teal);color:white}.panel{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,4vw,29px);box-shadow:var(--shadow);margin-bottom:16px}.quiet{color:var(--muted)}.tiny{font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.unit{display:flex;flex-direction:column;align-items:stretch;gap:8px;text-align:left;border:1px solid var(--line);background:#fff;padding:18px;border-radius:17px;color:var(--ink);min-height:137px}.unit:hover{border-color:#4f9e8d;background:#fafdfb}.unitTitle{font-size:20px;font-weight:800;line-height:1.3}.unitNo{color:var(--teal);font-size:13px;font-weight:850;text-transform:uppercase}.unitMeta{font-size:14px;color:var(--muted)}.primary{background:var(--teal);color:white;border:2px solid var(--teal);border-radius:13px;padding:13px 23px;font-weight:800;min-height:52px}.primary:hover{background:#0b4f46}.secondary{background:#fff;color:var(--ink);border:2px solid var(--line);border-radius:13px;padding:12px 21px;font-weight:760;min-height:52px}.secondary:hover{background:var(--paper)}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-top:21px}.actions .right{margin-left:auto}.progressTrack{height:9px;background:#e6eded;border-radius:20px;overflow:hidden;margin:13px 0 19px}.progressFill{height:100%;background:var(--teal);border-radius:20px;transition:width .2s}.metaLine{display:flex;justify-content:space-between;gap:12px;align-items:center;font-weight:760;font-size:13px;color:var(--muted)}.stepTitle{font-size:clamp(24px,4vw,35px);margin:6px 0 18px;line-height:1.22}.lessonText{font-size:clamp(17px,2.2vw,20px);line-height:1.65;max-width:760px}.lessonText p{margin:0 0 15px}.lessonText ul,.lessonText ol{padding-left:26px;margin:8px 0}.lessonText li{margin:8px 0}.key{font-weight:800;color:#075f54}.example{border-left:4px solid #5d9f91;background:#edf6f3;padding:14px 18px;border-radius:0 11px 11px 0;margin:18px 0;font-size:17px}.note{font-size:15px;color:#475d67;margin:12px 0 0}.visual{margin:20px auto 14px;max-width:760px;border:1px solid #e3e7de;border-radius:14px;background:#fafbf7;overflow:hidden}.visual svg{display:block;width:100%;height:auto;max-height:360px}.visualLabel{padding:7px 13px 10px;text-align:center;font-size:13px;color:var(--muted)}.question{font-size:clamp(22px,3.3vw,29px);line-height:1.4;font-weight:820;margin:13px 0 18px;white-space:pre-line}.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}.option{border:2px solid #d4dfdf;background:#fff;color:var(--ink);border-radius:14px;min-height:66px;padding:15px 17px;text-align:left;font-weight:730;line-height:1.35;display:flex;gap:13px;align-items:center;overflow-wrap:anywhere}.option:hover:not(:disabled){border-color:var(--teal);background:#f7fcf9}.letter{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#edf1f1;font-size:14px}.option.selected{border-color:var(--teal);background:var(--tealsoft)}.option.correct{border-color:var(--teal);background:var(--tealsoft)}.option.wrong{border-color:var(--bad);background:var(--badsoft)}.fieldrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.answerInput{font-size:24px;font-weight:700;max-width:300px;width:100%;min-height:60px;border:2px solid #bdcecf;border-radius:12px;padding:9px 15px;background:#fff;color:var(--ink)}.unitSuffix{font-size:18px;color:var(--muted);font-weight:740}.hintBtn{border:0;background:none;color:var(--teal);text-decoration:underline;text-underline-offset:3px;font-size:15px;padding:8px 0;font-weight:700}.feedback{padding:15px 18px;border-radius:13px;margin-top:16px;border:1px solid #b0d9c7;background:#eaf7f0}.feedback.wrong{border-color:#f1bbb9;background:#fff2f0}.feedback b{display:block;margin-bottom:4px;font-size:18px}.feedback p{margin:6px 0}.hintBox{border-left:4px solid #c28e2c;background:var(--goldsoft);padding:11px 15px;border-radius:0 10px 10px 0;color:#6e4b13;margin:8px 0 14px}.reviewRow{border-top:1px solid var(--line);padding:13px 0}.reviewRow:first-child{border-top:0}.reviewRow p{margin:6px 0}.tag{display:inline-flex;background:#e8f0ee;border-radius:8px;padding:3px 9px;font-size:12px;font-weight:800;color:#21544d}.tag.bad{background:var(--badsoft);color:var(--bad)}.stats{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 18px}.stat{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 16px;min-width:120px}.stat strong{display:block;font-size:25px}.stat small{font-size:12px;color:var(--muted)}.callout{background:#f2f6f5;padding:17px;border-radius:13px;margin:15px 0}.topicPills{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.topicPill{font-size:13px;background:#f3f6f4;border-radius:100px;padding:5px 11px;color:#365861}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:16px 0}.check{padding:14px;border:1px solid var(--line);border-radius:13px;background:white}.check b{display:block}.check span{font-size:13px;color:var(--muted)}.resetLine{margin-top:30px;border-top:1px solid var(--line);padding-top:15px}.separator{height:1px;background:var(--line);margin:18px 0}.footer{font-size:12px;color:var(--muted);margin-top:24px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:660px){.topinner{padding:9px 14px}.status{display:none}.hero{padding:15px 3px 9px}.grid,.choices,.checks{grid-template-columns:1fr}.panel{padding:17px}.option{min-height:61px}.actions{gap:8px}.actions>.primary,.actions>.secondary{flex:1}.actions .right{margin:0}.navbtn{flex:1}.visual svg{max-height:265px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topinner"><a href="#" class="brand" id="homeLink" aria-label="Strona główna"><span class="logo" aria-hidden="true">G</span><span>Geografia <span class="tiny">· Mapa Polski</span></span></a><span class="status">Nauka bez pośpiechu · działa offline</span><button class="smallBtn" id="homeBtn" type="button">Menu</button></div></header>
+<main id="app" aria-live="polite"></main>
+<script>
+'use strict';
+const UNITS=[
+  {id:'map',name:'Mapa i skala',short:'Mapa i skala',subtitle:'Elementy mapy, znaki, rodzaje skali i przeliczanie',range:'Strony 8–11'},
+  {id:'distance',name:'Odległości na mapie i w terenie',short:'Odległości',subtitle:'Linijka, kilka odcinków, nitka i podziałka liniowa',range:'Strony 12–14'},
+  {id:'terrain',name:'Ukształtowanie powierzchni',short:'Teren i poziomice',subtitle:'Wysokości, poziomice, formy terenu i barwy',range:'Strony 15–20'},
+  {id:'reading',name:'Czytamy mapę najbliższej okolicy',short:'Czytanie map',subtitle:'Rodzaje map, plan miasta, mapa turystyczna i orientowanie',range:'Strony 21–27'}
+];
+const LESSONS={map:[],distance:[],terrain:[],reading:[]};
+function L(unit,title,html,visual){LESSONS[unit].push({title,html,visual});}
+// Karty nauki. Jedna krótka porcja wiedzy na ekran.
+L('map','Co to jest mapa?',`<p><span class="key">Mapa</span> pokazuje Ziemię lub jej fragment <b>z góry</b>, na płaskiej powierzchni i <b>w pomniejszeniu</b>.</p><div class="example">Mapa okolicy pokazuje drogi, rzeki i budynki tak, jakbyśmy patrzyli na nie z lotu ptaka.</div>`,'simpleMap');
+L('map','Cztery elementy mapy',`<p>Każda mapa powinna zawierać <b>4 elementy</b>:</p><ol><li><b>Tytuł</b> – co przedstawia mapa.</li><li><b>Treść</b> – obiekty pokazane na mapie.</li><li><b>Legendę</b> – wyjaśnienie znaków.</li><li><b>Skalę</b> – informację o pomniejszeniu.</li></ol>`,'simpleMap');
+L('map','Czym jest treść mapy?',`<p>Treść mapy to wszystkie ważne obiekty i informacje umieszczone na mapie.</p><p>Pokazujemy je za pomocą <span class="key">znaków kartograficznych</span>, np. symbolu szpitala, linii drogi albo zielonej plamy lasu.</p>`,'symbols');
+L('map','Znaki punktowe',`<p><span class="key">Znak punktowy</span> oznacza pojedynczy obiekt.</p><div class="example">Przykłady: muzeum, przystanek, poczta, samotne drzewo, parking.</div><p>To niewielki znaczek umieszczony w konkretnym miejscu.</p>`,'symbols');
+L('map','Znaki liniowe',`<p><span class="key">Znak liniowy</span> pokazuje obiekt, który ma wyraźny przebieg.</p><div class="example">Przykłady: droga, rzeka, linia kolejowa, szlak turystyczny.</div><p>Zazwyczaj rysuje się je liniami w różnych kolorach lub stylach.</p>`,'symbols');
+L('map','Znaki powierzchniowe',`<p><span class="key">Znak powierzchniowy</span> pokazuje duży obszar.</p><div class="example">Przykłady: las, jezioro, zabudowa miejska, cmentarz, łąka.</div><p>Najczęściej widzimy kolorową plamę.</p>`,'symbols');
+L('map','Tytuł i legenda',`<p><b>Tytuł</b> mówi, jaki obszar lub zjawisko przedstawia mapa.</p><p><b>Legenda</b> wyjaśnia wszystkie użyte znaki kartograficzne.</p><div class="example">Gdy widzisz znak <b>P</b>, zajrzyj do legendy: może oznaczać parking.</div>`,'simpleMap');
+L('map','Po co jest skala?',`<p><span class="key">Skala</span> informuje, ile razy zmniejszono na mapie odległości i wymiary w terenie.</p><p>Bez skali nie wiadomo, jak daleko od siebie leżą dwa miejsca.</p><div class="example">Skala <b>1:10 000</b> oznacza: 1 cm na mapie to 10 000 cm w rzeczywistości.</div>`,'scaleBar');
+L('map','Skala liczbowa',`<p><b>Skala liczbowa</b> ma postać <span class="key">1:1000</span>, <span class="key">1:30 000</span> itd.</p><p>W skali <b>1:1000</b> jeden centymetr na mapie odpowiada 1000 centymetrów w terenie.</p><div class="example">1000 cm = <b>10 m</b>.</div>`,'scaleBar');
+L('map','Skala mianowana',`<p><b>Skala mianowana</b> zapisuje odległość słowami i jednostkami.</p><div class="example"><b>1 cm – 100 m</b> oznacza: jeden centymetr na mapie to sto metrów w terenie.</div><p>To ten sam zapis co skala liczbowa <b>1:10 000</b>.</p>`,'scaleBar');
+L('map','Podziałka liniowa',`<p><b>Podziałka liniowa</b> to narysowana linia z podziałem na odcinki i opisanymi odległościami.</p><p>Można na niej odczytać odległość w terenie bez mnożenia.</p><p>Ma też często krótki <b>odcinek wsteczny</b> na lewo od zera, podzielony na drobniejsze części.</p>`,'scaleBar');
+L('map','Zamiana centymetrów',`<p>Przeliczając skalę, pamiętaj tylko o dwóch krokach:</p><ol><li><b>100 cm = 1 m</b> → podziel centymetry przez 100.</li><li><b>1000 m = 1 km</b> → podziel metry przez 1000.</li></ol><div class="example">100 000 cm = 1000 m = <b>1 km</b>.</div>`,'scaleBar');
+L('map','Przeliczanie skali krok po kroku',`<p>Przykład: skala <b>1:250 000</b>.</p><ol><li>1 cm na mapie = 250 000 cm w terenie.</li><li>250 000 : 100 = <b>2500 m</b>.</li><li>2500 : 1000 = <b>2,5 km</b>.</li></ol><div class="example">Zapis mianowany: <b>1 cm – 2,5 km</b>.</div>`,'scaleBar');
+L('map','Duży obszar, mniejsza skala',`<p>Na mapie miasta widać dużo szczegółów. Na mapie całej Polski widać mniej szczegółów.</p><p><b>Im większy mianownik skali, tym większy obszar może objąć mapa, ale tym mniej szczegółów widać.</b></p><div class="example">1:10 000 to skala <b>większa</b> niż 1:1 000 000.</div>`,'scaleCompare');
+L('map','Jak zrobić podziałkę liniową?',`<ol><li>Przelicz skalę na mianowaną.</li><li>Narysuj linię z jednakowymi odcinkami, np. po <b>1 cm</b>.</li><li>Podpisz 0, 1, 2, 3… zgodnie z odległością w terenie.</li><li>Po lewej od zera możesz dodać <b>odcinek wsteczny</b>, podzielony na 10 mniejszych części.</li></ol><div class="example">Dla 1:100 000 podpisy: 0, 1, 2, 3, 4, 5 km.</div>`,'scaleBar');
+
+L('distance','Co właściwie mierzymy?',`<p>Na mapie możesz mierzyć:</p><ul><li>odległość <b>w linii prostej</b>,</li><li>długość trasy składającej się z <b>prostych odcinków</b>,</li><li>długość <b>krętej</b> trasy.</li></ul><p>W zależności od kształtu trasy wybierasz linijkę albo nitkę.</p>`,'route');
+L('distance','Odległość w linii prostej: krok 1',`<p><b>1.</b> Zmierz linijką odległość między punktami na mapie.</p><div class="example">Odcinek AB ma <b>3 cm</b>.</div><p>Zapisz wynik w centymetrach.</p>`,'route');
+L('distance','Odległość w linii prostej: krok 2',`<p><b>2.</b> Odczytaj skalę, np. <b>1:30 000</b>.</p><p><b>3.</b> Zamień ją: 1 cm = 30 000 cm = <b>300 m</b>.</p><p><b>4.</b> Pomnóż: 3 · 300 m = <b>900 m</b> = 0,9 km.</p>`,'scaleBar');
+L('distance','Trasa z kilku odcinków',`<p>Jeśli trasa składa się z prostych części:</p><ol><li>Zmierz każdą część.</li><li>Dodaj wszystkie odcinki.</li><li>Przelicz sumę na odległość w terenie za pomocą skali.</li></ol><div class="example">6 cm + 3 cm = 9 cm. Przy 1:30 000 otrzymasz <b>9 · 300 m = 2700 m = 2,7 km</b>.</div>`,'route');
+L('distance','Trasa kręta: przyda się nitka',`<p><b>Nitką</b> łatwiej zmierzyć drogę z licznymi zakrętami, np. szlak turystyczny.</p><ol><li>Ułóż nitkę dokładnie wzdłuż trasy.</li><li>Zaznacz na niej koniec.</li><li>Wyprostuj nitkę i porównaj z podziałką liniową.</li></ol>`,'curvedRoute');
+L('distance','Odcinek wsteczny podziałki',`<p>To krótka część podziałki <b>na lewo od zera</b>.</p><p>Jeżeli główny odcinek oznacza 250 m, a odcinek wsteczny podzielono na 10 części, każda ma <b>25 m</b>.</p><div class="example">750 m + 125 m = <b>875 m</b>.</div>`,'scaleBar');
+L('distance','Podziałka: odczytywanie bez mnożenia',`<p>Przyłóż początek zmierzonego odcinka do <b>zera</b> podziałki, a jego koniec odczytaj na liczbach.</p><p>Jeśli odległość mieści się między kreskami, można wykorzystać drobny odcinek wsteczny.</p><p>Na mapie nie zawsze da się odczytać długość z dokładnością do jednego metra.</p>`,'scaleBar');
+L('distance','Co zapamiętać o jednostkach?',`<p>Wszystkie obliczenia wykonuj w <b>jednej jednostce</b>.</p><ul><li>100 cm = <b>1 m</b></li><li>1000 m = <b>1 km</b></li><li>1 km = <b>100 000 cm</b></li></ul><div class="example">1500 m = <b>1,5 km</b>.</div>`,'scaleBar');
+
+L('terrain','Wysokość bezwzględna',`<p><span class="key">Wysokość bezwzględna</span> to wysokość punktu mierzona od <b>poziomu morza</b>.</p><p>Zapisujemy ją w <b>m n.p.m.</b> (metry nad poziomem morza).</p><div class="example">Szczyt: <b>720 m n.p.m.</b> – znajduje się 720 metrów ponad poziomem morza.</div>`,'height');
+L('terrain','Wysokość względna',`<p><span class="key">Wysokość względna</span> to różnica wysokości między <b>dwoma miejscami</b>, np. szczytem a dnem doliny.</p><div class="example">Szczyt: 720 m n.p.m.<br>Dolina: 200 m n.p.m.<br><b>720 − 200 = 520 m</b> wysokości względnej.</div><p>Wysokość względną podajemy w metrach, bez „n.p.m.”.</p>`,'height');
+L('terrain','Wysokość zależy od punktu startu',`<p>Ten sam szczyt ma <b>jedną wysokość bezwzględną</b>, ale różne wysokości względne, jeśli ruszasz z różnych miejsc.</p><div class="example">Szczyt 2000 m n.p.m.: od podnóża 1200 m n.p.m. to <b>800 m</b>; od podnóża 400 m n.p.m. to <b>1600 m</b>.</div>`,'height');
+L('terrain','Czym są poziomice?',`<p><span class="key">Poziomica</span> (inaczej <b>izohipsa</b>) jest linią łączącą punkty o <b>tej samej wysokości bezwzględnej</b>.</p><p>Gdy naniesiemy poziomice na mapę, otrzymamy <b>mapę poziomicową</b>.</p>`,'hill');
+L('terrain','Góra na mapie poziomicowej',`<p>Górę lub pagórek poznasz po <b>zamkniętych poziomicach</b>, których wartości <b>rosną do środka</b>.</p><div class="example">400 m → 450 m → 500 m → 550 m → szczyt.</div>`,'hill');
+L('terrain','Kotlina na mapie poziomicowej',`<p><b>Kotlina</b> to teren wklęsły, otoczony wyżej położonym obszarem.</p><p>Na mapie poziomice otaczają jej środek prawie ze wszystkich stron, a wartości <b>maleją ku środkowi</b>.</p>`,'basin');
+L('terrain','Dolina na mapie poziomicowej',`<p><b>Dolina</b> jest wydłużonym obniżeniem. Często płynie nią rzeka.</p><p>Na mapie poziomice układają się w pobliżu rzeki, a wysokości <b>maleją w kierunku dna doliny</b>.</p>`,'valley');
+L('terrain','Dwa szczyty i przełęcz',`<p>Dwie pobliskie góry mają <b>dwa wierzchołki</b>, wokół których zamykają się coraz wyższe poziomice.</p><p>Niższe miejsce <b>pomiędzy szczytami</b> to <span class="key">przełęcz</span>.</p>`,'saddle');
+L('terrain','Stromy czy łagodny stok?',`<p>Obserwuj <b>odstępy między poziomicami</b>:</p><ul><li><b>blisko siebie</b> → stok <b>stromy</b>,</li><li><b>daleko od siebie</b> → stok <b>łagodny</b>.</li></ul><p>Nie musisz nic liczyć, żeby to rozpoznać.</p>`,'slopes');
+L('terrain','Co odczytamy z poziomic?',`<p>Mapa poziomicowa pozwala ustalić:</p><ul><li>wysokość bezwzględną punktów,</li><li>różnicę wysokości (względną),</li><li>stromiznę stoku,</li><li>kształt form terenu: góry, doliny, kotliny.</li></ul><p>Gdy punkt leży między dwiema poziomicami, podajemy jego <b>przybliżoną</b> wysokość.</p>`,'hill');
+L('terrain','Mapa hipsometryczna',`<p>To mapa pokazująca ukształtowanie terenu za pomocą <b>poziomic i barw hipsometrycznych</b>.</p><p><b>Skala barw</b> w legendzie pokazuje, jakie wysokości odpowiadają danym kolorom.</p>`,'hypsometric');
+L('terrain','Niziny i wyżyny',`<p>Według podziału z podręcznika:</p><ul><li><b>Niziny</b>: od 0 do 300 m n.p.m. – odcienie <span class="key">zieleni</span>.</li><li><b>Wyżyny</b>: zwykle powyżej 300 m n.p.m., z wysokościami względnymi do 300 m – odcienie <b>żółci</b>.</li></ul><p>Na schemacie podręcznika wyżyny pokazano od 300 do 500 m n.p.m.</p>`,'hypsometric');
+L('terrain','Góry i depresje',`<p><b>Góry</b>: w podziale z książki są położone powyżej 500 m n.p.m. i mają wysokość względną ponad 300 m. Na mapie mają odcienie <b>pomarańczowe i czerwone</b>.</p><p><b>Depresja</b>: obszar lądowy <b>poniżej poziomu morza</b>, zaznaczany <b>ciemnozielono</b>.</p>`,'hypsometric');
+L('terrain','Woda na mapie',`<p>Morza, jeziora i rzeki zaznacza się <b>kolorem niebieskim</b>.</p><p>Na mapach pokazujących głębokości wody ciemniejszy niebieski zazwyczaj oznacza <b>większą głębokość</b>.</p><div class="example">Nie myl niebieskiego jeziora z zielonym obszarem nizinnym.</div>`,'hypsometric');
+L('terrain','Formy wypukłe i wklęsłe',`<p><b>Wypukłe</b> to pagórki, wzgórza i góry.</p><p><b>Wklęsłe</b> to m.in. doliny i kotliny.</p><div class="example">Jeśli teren jest wyższy w środku – myśl o wzniesieniu. Jeśli niższy w środku – myśl o zagłębieniu.</div>`,'hill');
+
+L('reading','Po co mamy różne mapy?',`<p>Nie każda mapa pokazuje to samo. Rodzaj mapy wybieramy <b>według tego, co chcemy sprawdzić</b>.</p><p>Innych informacji potrzebuje turysta, innych kierowca, a jeszcze innych osoba analizująca lasy i pola.</p>`,'kinds');
+L('reading','Mapa ogólnogeograficzna',`<p>Pokazuje <b>podstawowe informacje</b> o obszarze: ukształtowanie powierzchni, największe rzeki i jeziora, miasta, drogi, granice państw.</p><div class="example">Przyda się, gdy chcesz zobaczyć ogólny obraz Polski.</div>`,'kinds');
+L('reading','Mapa krajobrazowa',`<p>Pokazuje przede wszystkim, <b>jak zagospodarowano teren</b>.</p><div class="example">Pola, łąki, lasy, zabudowa miejska, tereny przemysłowe.</div>`,'kinds');
+L('reading','Mapa turystyczna',`<p>Pomaga planować wycieczki i zwiedzanie.</p><p>Znajdziesz na niej <b>szlaki turystyczne, miejsca noclegowe, zabytki, punkty widokowe</b> i inne atrakcje.</p>`,'tourist');
+L('reading','Plan miasta',`<p>Plan obejmuje <b>niewielki obszar</b>, np. miasto albo osiedle, ale pokazuje go bardzo dokładnie.</p><p>Pomaga znaleźć <b>ulice, budynki, przystanki, muzea, poczty i parki</b>.</p>`,'city');
+L('reading','Mapa cyfrowa',`<p>Mapa cyfrowa to mapa <b>elektroniczna</b>, np. w telefonie.</p><p>Możesz ją przybliżać, oddalać, wybierać informacje, sprawdzać drogę i korzystać z aktualizacji.</p><p>Jej zaletą jest też wygoda w nawigacji.</p>`,'kinds');
+L('reading','Cztery główne kierunki',`<p>Na wielu mapach północ (N) jest u góry, południe (S) na dole, zachód (W) z lewej, a wschód (E) z prawej.</p><p>Tak jest, <b>jeśli mapa jest ustawiona północą do góry</b>.</p>`,'compass');
+L('reading','Kierunki pośrednie',`<p>Pomiędzy kierunkami głównymi mamy m.in.:</p><ul><li><b>NE</b> – północny wschód,</li><li><b>NW</b> – północny zachód,</li><li><b>SE</b> – południowy wschód,</li><li><b>SW</b> – południowy zachód.</li></ul><div class="example">U góry i w lewo = <b>północny zachód</b>.</div>`,'compass');
+L('reading','Orientowanie mapy',`<p><span class="key">Zorientować mapę</span> znaczy tak ją obrócić, żeby kierunki na mapie zgadzały się z kierunkami w rzeczywistości.</p><p>Możesz to zrobić na <b>dwa sposoby</b>: za pomocą kompasu lub rozpoznanych obiektów w terenie.</p>`,'compass');
+L('reading','Orientowanie za pomocą kompasu',`<ol><li>Połóż mapę poziomo.</li><li>Przyłóż kompas do jej krawędzi i poczekaj, aż igła wskaże północ.</li><li>Obróć mapę tak, by północ na mapie pokryła się z północą wskazywaną przez kompas.</li></ol>`,'compass');
+L('reading','Orientowanie za pomocą obiektów',`<ol><li>Znajdź w otoczeniu charakterystyczne obiekty, np. most i wieżę.</li><li>Odszukaj je na mapie.</li><li>Obróć mapę, aż kierunki do tych obiektów na mapie będą zgodne z tym, co widzisz.</li></ol>`,'city');
+L('reading','Siatka liter i liczb',`<p>Na planach miasta często widzimy <b>kolumny oznaczone literami</b> i <b>wiersze oznaczone liczbami</b>.</p><p>Współrzędne <b>C2</b> to przecięcie kolumny <b>C</b> z wierszem <b>2</b>.</p><p>Na planie ćwiczeniowym poniżej znajduje się tam muzeum.</p>`,'city');
+L('reading','Jak korzystać z planu?',`<ol><li>Sprawdź <b>tytuł i legendę</b>.</li><li>Znajdź szukany obiekt (pomaga siatka).</li><li>Sprawdź <b>kierunki</b> i przebieg ulic.</li><li>Jeśli trzeba, skorzystaj ze <b>skali</b> do obliczenia odległości.</li></ol>`,'city');
+L('reading','Jak zaplanować trasę na mapie turystycznej?',`<ol><li>Znajdź punkt startu i cel.</li><li>Odczytaj z legendy drogi, szlaki i obiekty turystyczne.</li><li>Sprawdź, którędy biegnie trasa.</li><li>Oblicz odległość ze skali albo podziałki.</li></ol>`,'tourist');
+L('reading','Przykłady z podręcznika',`<p>Na planie Krakowa <b>Planty</b> otaczają Stare Miasto, a w polu <b>C2</b> znajdziesz kościół Mariacki i kościół Świętej Trójcy.</p><p>Na mapie Pojezierza Leszczyńskiego między <b>Brennem a Wieleniem</b> przebiega droga wojewódzka <b>305</b>.</p><p>To przykłady wyszukiwania informacji w legendzie i na mapie.</p>`,'tourist');
+// Krótkie powtórki po każdym temacie – bez dodatkowego obciążenia uwagi.
+L('map','Powtórka: mapa i skala',`<p><b>Wystarczy, że umiesz:</b></p><ul><li>wymienić cztery elementy mapy;</li><li>odróżnić znaki punktowe, liniowe i powierzchniowe;</li><li>rozpoznać trzy postacie skali;</li><li>przeliczyć centymetry na metry i kilometry.</li></ul><div class="example">Teraz sprawdzisz te rzeczy na krótkich zadaniach. Nie musisz pamiętać wszystkiego od razu.</div>`,'symbols');
+L('distance','Powtórka: mierzenie odległości',`<p><b>Trzy zasady:</b></p><ol><li><b>Prosta trasa</b> → linijka.</li><li><b>Kilka odcinków</b> → dodaj ich długości, a potem zastosuj skalę.</li><li><b>Kręta trasa</b> → nitka i podziałka liniowa.</li></ol><p>Wynik podaj w odpowiedniej jednostce.</p>`,'route');
+L('terrain','Powtórka: poziomice i wysokości',`<ul><li><b>Bezwzględna</b> → od poziomu morza.</li><li><b>Względna</b> → różnica dwóch wysokości.</li><li><b>Poziomice blisko</b> → stromo.</li><li><b>Wyżej do środka</b> → góra; <b>niżej do środka</b> → kotlina.</li><li><b>Skala barw</b> → wysokość na mapie hipsometrycznej.</li></ul>`,'slopes');
+L('reading','Powtórka: czytanie map',`<ul><li><b>Ogólnogeograficzna</b> → podstawowe informacje.</li><li><b>Krajobrazowa</b> → użytkowanie terenu.</li><li><b>Turystyczna</b> → szlaki i atrakcje.</li><li><b>Plan miasta</b> → ulice i budynki.</li></ul><p>Przed wyruszeniem w teren sprawdź legendę, skalę i <b>zorientuj mapę</b>.</p>`,'city');
+// Baza zadań: trening używa całego banku; test pełny sprawdza 10 umiejętności w każdym dziale.
+const QUESTIONS={map:[],distance:[],terrain:[],reading:[]};
+let qserial=0;
+function C(u,q,options,correct,explain,hint='',visual='',core=false){QUESTIONS[u].push({id:'q'+(++qserial),kind:'choice',q,options,correct,explain,hint:hint||'Przypomnij sobie właściwą definicję z nauki.',visual,core});}
+function N(u,q,answer,suffix,explain,hint='',visual='',core=false){QUESTIONS[u].push({id:'q'+(++qserial),kind:'number',q,answer,suffix,explain,hint:hint||'Rozpisz działanie krok po kroku.',visual,core});}
+function T(u,q,answers,explain,hint='',visual='',core=false){QUESTIONS[u].push({id:'q'+(++qserial),kind:'text',q,answers:Array.isArray(answers)?answers:[answers],explain,hint:hint||'Przypomnij sobie nazwę z lekcji.',visual,core});}
+
+// 1. Mapa i skala
+T('map','Jak nazywa się część mapy, w której wyjaśnione są znaki kartograficzne?',['legenda'],'To legenda – objaśnienia znaków użytych na mapie.','W podręczniku występuje razem z tytułem, skalą i treścią.','',true);
+C('map','Czym jest mapa?',['Obraz powierzchni Ziemi widzianej z góry, na płaszczyźnie i w pomniejszeniu','Zdjęcie przedstawiające wyłącznie budynki','Opis słowny wszystkich państw na świecie','Obraz Ziemi zawsze w naturalnej wielkości'],0,'Mapa przedstawia powierzchnię Ziemi lub jej fragment z góry, w pomniejszeniu.','Przypomnij sobie: z góry, na płasko i w pomniejszeniu.','simpleMap',true);
+C('map','Który zestaw zawiera wszystkie cztery elementy mapy?',['Tytuł, treść, legenda, skala','Tytuł, kompas, data, autor','Legenda, zdjęcie, miasto, rzeka','Skala, fotografia, wysokość, godzina'],0,'Cztery podstawowe elementy to: tytuł, treść, legenda i skala.','Pomyśl, co mapa przedstawia, czym opisuje symbole i jak podaje pomniejszenie.','simpleMap',true);
+C('map','Gdzie sprawdzisz, co oznacza symbol P na mapie?',['W legendzie','W skali','W tytule','W numerze strony'],0,'Legenda wyjaśnia znaczenie znaków kartograficznych.','Potrzebujesz słownika symboli.','simpleMap',false);
+C('map','Jakiego rodzaju znakiem jest symbol pojedynczego muzeum?',['Punktowym','Liniowym','Powierzchniowym','Wysokościowym'],0,'Pojedynczy budynek lub instytucję oznacza się znakiem punktowym.','Pomyśl, czy obiekt zajmuje punkt, przebiega jak linia, czy pokrywa obszar.','symbols',true);
+C('map','Droga pokazana kolorową linią to znak…',['liniowy','punktowy','powierzchniowy','wysokościowy'],0,'Drogi, szlaki i rzeki są przykładami znaków liniowych.','Obejrzyj kształt oznaczenia.','symbols',true);
+C('map','Las zaznaczony dużą zieloną plamą to znak…',['powierzchniowy','punktowy','liniowy','kierunkowy'],0,'Las zajmuje obszar, więc jest przedstawiany znakiem powierzchniowym.','Pomyśl, czy zaznaczono miejsce czy rozległy obszar.','symbols',true);
+C('map','Który zapis jest skalą liczbową?',['1:50 000','1 cm – 500 m','Linia z oznaczeniami 0, 1, 2 km','200 metrów'],0,'Skala liczbowa ma zapis w postaci 1:liczba.','Przyjrzyj się sposobowi zapisu, a nie liczbie.','scaleBar',true);
+N('map','Skala 1:10 000. Ilu metrom w terenie odpowiada 1 cm na mapie?',100,'m','10 000 cm : 100 = 100 m.','Najpierw zamień 10 000 centymetrów na metry.','scaleBar',true);
+N('map','Skala 1:250 000. Ilu kilometrom odpowiada 1 cm?',2.5,'km','250 000 cm = 2500 m = 2,5 km.','Centymetry zamień najpierw na metry, potem na kilometry.','scaleBar',true);
+C('map','Która z podanych skal jest większa i pozwala pokazać więcej szczegółów?',['1:10 000','1:100 000','1:500 000','1:1 000 000'],0,'Największa skala to ta z najmniejszym mianownikiem: 1:10 000.','Porównaj liczby po dwukropku.','scaleCompare',true);
+C('map','Co wyjaśnia tytuł mapy?',['Jaki obszar lub zjawisko pokazuje mapa','Ile centymetrów ma linijka','Gdzie leży północ magnetyczna','Jakie kolory ma długopis'],0,'Tytuł identyfikuje przedstawiany obszar lub zjawisko.','Pomyśl o tytule książki.');
+C('map','Co oznacza skala 1:1000?',['1 cm na mapie to 1000 cm w terenie','1 cm na mapie to 1000 km w terenie','Mapa ma dokładnie 1000 stron','1000 cm na mapie to 1 cm w terenie'],0,'Obie długości w skali liczbowej odczytujemy w tych samych jednostkach.','Porównaj jednostki po obu stronach proporcji.');
+C('map','Który zapis to skala mianowana?',['1 cm – 2 km','1:200 000','Linia z kreskami i liczbami','Sama liczba 200 000'],0,'Skala mianowana podaje jednostki, np. 1 cm – 2 km.','Przy skali mianowanej zapisuje się odległość w terenie w metrach albo kilometrach.');
+C('map','Które określenie opisuje podziałkę liniową?',['Linia z kreskami i odległościami','Symbol muzeum na mapie','Nazwa przedstawionego obszaru','Kolor oznaczający jezioro'],0,'Podziałka to graficzna prezentacja skali.','To sposób pokazania odległości rysunkiem.','scaleBar');
+N('map','Skala 1:500 000. Ile kilometrów w terenie odpowiada 1 cm?',5,'km','500 000 cm = 5000 m = 5 km.','100 000 cm to 1 km.');
+N('map','Skala 1:1 000 000. Ile kilometrów w terenie odpowiada 1 cm?',10,'km','1 000 000 cm = 10 000 m = 10 km.','Najpierw znajdź liczbę metrów.');
+N('map','Skala mianowana: 1 cm – 300 m. Jaką liczbę trzeba wpisać po dwukropku w skali 1:…?',30000,'','300 m · 100 = 30 000 cm, więc 1:30 000.','Zamień metry na centymetry: pomnóż przez 100.');
+N('map','Skala mianowana: 1 cm – 2 km. Jaką liczbę trzeba wpisać po dwukropku w skali 1:…?',200000,'','2 km = 2000 m = 200 000 cm.','W jednym kilometrze jest 100 000 cm.');
+N('map','Skala 1:100 000. Ilu kilometrom odpowiada jeden główny odcinek podziałki o długości 1 cm?',1,'km','100 000 cm w terenie to 1 km.','Najpierw przelicz skalę mianowaną.','scaleBar');
+N('map','Na podziałce każdy odcinek 1 cm oznacza 2 km. Ile kilometrów oznaczają 3 takie odcinki?',6,'km','Trzy odcinki po 2 km dają 6 km.','Dodaj równe odcinki.','scaleBar');
+C('map','Czym różni się mapa miasta od mapy całego kraju?',['Mapa miasta zwykle pokazuje więcej szczegółów małego obszaru','Mapa miasta zawsze ma mniejszą skalę','Mapa kraju pokazuje każdy budynek','Mapa kraju nie ma legendy'],0,'Mapy mniejszych obszarów zwykle stosują większą skalę i pokazują więcej detali.','Zastanów się, gdzie łatwiej pokazać pojedynczą ulicę.');
+C('map','Do czego służy odcinek wsteczny podziałki liniowej?',['Do dokładniejszego odczytu krótkich odległości','Do wskazywania północy','Do rysowania granic państw','Do oznaczania poziomu morza'],0,'Podzielony na mniejsze części odcinek na lewo od zera pozwala dokładniej mierzyć.','Poszukaj na podziałce drobniejszych kresek.','scaleBar');
+
+// 2. Odległości
+T('distance','Jakiego przedmiotu użyjesz do zmierzenia krętej drogi, której nie da się zmierzyć linijką?',['nitka','nitki'],'Nitkę przykłada się wzdłuż zakrętów, a potem do podziałki liniowej.','Da się ułożyć ten przedmiot wzdłuż zakrętów.','curvedRoute',true);
+C('distance','Czym najłatwiej zmierzyć na mapie odległość w linii prostej?',['Linijką','Nitką przyłożoną do podziałki','Kompasem','Odczytem z legendy'],0,'Prosty odcinek wygodnie mierzy się linijką.','Jakim przyrządem mierzysz prostą linię?','straightRoute',true);
+N('distance','Na mapie 1:30 000 odcinek AB ma 3 cm. Ile metrów wynosi odległość w terenie?',900,'m','1 cm to 300 m, więc 3 · 300 = 900 m.','Najpierw oblicz, ile metrów odpowiada 1 cm.','straightRoute',true);
+N('distance','Trasa ma dwa odcinki: 6 cm i 3 cm. Skala 1:30 000. Ile kilometrów ma cała trasa?',2.7,'km','6 + 3 = 9 cm, a 9 · 300 m = 2700 m = 2,7 km.','Najpierw dodaj długości odcinków na mapie.','route',true);
+N('distance','Na mapie 1:25 000 dwa punkty dzielą 4 cm. Ile kilometrów to w terenie?',1,'km','1 cm to 250 m, więc 4 · 250 m = 1000 m = 1 km.','1 cm to 25 000 cm, czyli 250 m.','scaleBar',true);
+C('distance','Jak zmierzyć krętą trasę na mapie?',['Ułożyć nitkę wzdłuż trasy i przyłożyć ją do podziałki','Zmierzyć prostą między startem a metą i zawsze uznać ją za długość trasy','Zliczyć znaki muzeów','Odczytać wyłącznie kolor szlaku'],0,'Nitka dopasowuje się do zakrętów i pozwala zmierzyć całą trasę.','Pomyśl o przedmiocie, który łatwo wygina się wzdłuż drogi.','curvedRoute',false);
+N('distance','Odcinek wsteczny od 0 do 250 m ma 10 równych części. Ile metrów pokazuje jedna część?',25,'m','250 : 10 = 25 m.','Podziel długość przez liczbę równych części.','scaleBar',true);
+N('distance','Na podziałce odczytano 750 m i jeszcze 125 m na odcinku wstecznym. Jaka jest cała odległość?',875,'m','750 + 125 = 875 m.','Wyniki z obu części trzeba dodać.','scaleBar',true);
+N('distance','Skala 1:50 000. Na mapie zmierzono 6 cm. Ile kilometrów to w terenie?',3,'km','1 cm to 500 m = 0,5 km. 6 · 0,5 km = 3 km.','Najpierw przelicz 1 cm mapy na kilometry.','scaleBar',true);
+N('distance','Ile kilometrów to 1500 metrów?',1.5,'km','1500 : 1000 = 1,5 km.','Zamień metry na kilometry, dzieląc przez 1000.','scaleBar',true);
+C('distance','Co robisz najpierw przy obliczaniu długości trasy z kilku prostych odcinków?',['Mierzysz poszczególne odcinki na mapie','Mnożysz liczbę znaków na mapie','Wybierasz najdłuższą rzekę','Rysujesz nowe poziomice'],0,'Najpierw trzeba zmierzyć każdy odcinek, później je dodać i użyć skali.','Zacznij od pomiaru, jeszcze bez obliczeń.','route',true);
+N('distance','Skala 1:100 000. Odległość na mapie wynosi 2,5 cm. Ile kilometrów jest w terenie?',2.5,'km','Przy 1:100 000 jeden centymetr odpowiada jednemu kilometrowi.','Najpierw sprawdź, ile kilometrów przypada na 1 cm.');
+N('distance','Skala 1:200 000. Trasa na mapie ma 3 cm. Ile kilometrów ma w rzeczywistości?',6,'km','1 cm = 2 km, więc 3 · 2 km = 6 km.');
+N('distance','Skala 1:10 000. Trasa na mapie ma 9 cm. Ile metrów wynosi odległość w terenie?',900,'m','1 cm = 100 m, więc 9 · 100 m = 900 m.');
+N('distance','Skala 1:1000. Odległość na mapie wynosi 7 cm. Ile metrów jest w terenie?',70,'m','1 cm = 10 m, więc 7 · 10 m = 70 m.');
+N('distance','Skala 1:60 000. Mierzysz 3 cm. Ile kilometrów jest w terenie?',1.8,'km','1 cm = 600 m = 0,6 km. 3 · 0,6 km = 1,8 km.');
+N('distance','Skala 1:50 000. Mierzysz 4 cm. Ile kilometrów jest w terenie?',2,'km','1 cm = 0,5 km. 4 · 0,5 = 2 km.');
+N('distance','Długości odcinków na mapie to 2 cm, 3 cm i 1 cm. Ile centymetrów ma cała trasa?',6,'cm','2 + 3 + 1 = 6 cm.','Dodaj wszystkie trzy odcinki.','route');
+N('distance','Trasa ma na mapie 2 cm, 3 cm i 1 cm. Skala 1:50 000. Ile kilometrów wynosi jej długość?',3,'km','Razem 6 cm, a każdy centymetr odpowiada 0,5 km. Wynik: 3 km.','Najpierw dodaj odcinki, potem pomnóż przez 0,5 km.','route');
+C('distance','Dlaczego odległość po krętej drodze jest zazwyczaj dłuższa niż w linii prostej?',['Bo zakręty wydłużają przebytą trasę','Bo skala nie działa na drogach','Bo linijka wskazuje tylko kilometry','Bo każda droga jest pod górę'],0,'Droga z zakrętami ma zwykle większą długość niż proste połączenie tych samych punktów.','Porównaj prostą kreskę z linią z zakrętami.','curvedRoute');
+C('distance','Jak prawidłowo wykorzystać podziałkę liniową?',['Porównać długość z odcinkami od zera i odczytać odległość','Zamienić legendę na tytuł','Zmierzyć wysokość góry kompasem','Obrócić mapę do góry nogami'],0,'Podziałka graficzna wiąże odcinek na mapie z odległością w terenie.','Znajdź zero i podpisane odległości.','scaleBar');
+
+// 3. Ukształtowanie
+T('terrain','Jak nazywa się linia na mapie łącząca punkty o takiej samej wysokości bezwzględnej?',['poziomica','izohipsa'],'Poziomica (izohipsa) łączy punkty o jednakowej wysokości nad poziomem morza.','Jej nazwa tworzy określenie „mapa poziomicowa”.','',true);
+C('terrain','Od czego mierzymy wysokość bezwzględną?',['Od poziomu morza','Od najbliższego drzewa','Od najbliższej ulicy','Od podstawy kartki'],0,'Wysokość bezwzględna jest odniesiona do poziomu morza.','Przypomnij sobie skrót n.p.m.','height',true);
+N('terrain','Szczyt ma 720 m n.p.m., dno doliny 200 m n.p.m. Ile metrów wynosi wysokość względna?',520,'m','720 − 200 = 520 m.','Od wysokości szczytu odejmij wysokość doliny.','height',true);
+C('terrain','Co łączy poziomica (izohipsa)?',['Punkty o tej samej wysokości bezwzględnej','Wszystkie rzeki na mapie','Tylko miasta jednej wielkości','Punkty o tej samej odległości od Warszawy'],0,'Na jednej poziomicy każdy punkt ma jednakową wysokość nad poziomem morza.','Pomyśl o jednakowej wysokości.','hill',false);
+C('terrain','Jak rozpoznasz stromy stok na mapie poziomicowej?',['Poziomice leżą bardzo blisko siebie','Poziomice są bardzo daleko od siebie','Nie ma żadnych poziomic','Legenda jest na dole mapy'],0,'Im mniejsza odległość między poziomicami, tym większe nachylenie stoku.','Wybierz stronę, na której wysokość zmienia się szybciej.','slopes',true);
+C('terrain','Na którym rysunku przedstawiono górę?',['Na tym, gdzie wysokości rosną do środka','Na tym, gdzie wysokości maleją do środka','Na tym, gdzie wszystkie poziomice mają 0 m','Na tym, gdzie widnieje tylko kolor niebieski'],0,'Na zamkniętych poziomicach góry wartości rosną w stronę szczytu.','Spójrz na liczby w środkowej części rysunku.','hill',true);
+C('terrain','Na którym rysunku przedstawiono kotlinę?',['Na tym, gdzie wysokości maleją do środka','Na tym, gdzie wysokości rosną do środka','Na tym, gdzie linie są wyłącznie pionowe','Na tym, gdzie zaznaczono wyłącznie szlak'],0,'Kotlina to zagłębienie, więc jej środek znajduje się niżej niż otoczenie.','Sprawdź, w którym kierunku liczby maleją.','basin',true);
+C('terrain','Czym jest przełęcz?',['Obniżeniem pomiędzy dwoma szczytami','Najwyższym punktem obu gór','Płaskim dnem morza','Polem oznaczonym na planie miasta'],0,'Przełęcz to niższe miejsce między pobliskimi szczytami.','Przyjrzyj się środkowi między dwoma wzniesieniami.','saddle',true);
+C('terrain','Który kolor na mapie hipsometrycznej zazwyczaj oznacza niziny?',['Zielony','Żółty','Czerwony','Fioletowy'],0,'Niziny (0–300 m n.p.m.) oznacza się odcieniami zieleni.','Przypomnij sobie barwy najniżej położonych lądów.','hypsometric',true);
+C('terrain','Jakimi barwami zaznacza się góry na mapie hipsometrycznej?',['Pomarańczową i czerwoną','Białą i niebieską','Wyłącznie czarną','Wyłącznie granatową'],0,'W podręcznikowej skali barw górskie wysokości oznaczono pomarańczem i czerwienią.','Pomyśl o najwyżej położonych lądach.','hypsometric',true);
+C('terrain','Co pokazuje mapa hipsometryczna?',['Ukształtowanie terenu za pomocą poziomic i barw','Szlaki turystyczne i schroniska','Nazwy ulic i budynków miasta','Przebieg granic i dróg bez wysokości'],0,'Poziomice z dodatkowymi barwami ułatwiają odczyt wysokości i form terenu.','Sama nazwa dotyczy wysokości.','hypsometric',true);
+T('terrain','Jak nazywa się linia łącząca punkty o jednakowej wysokości n.p.m.?',['poziomica','izohipsa'],'To poziomica, czyli izohipsa.','Jej nazwa pojawia się w określeniu „mapa poziomicowa”.','hill');
+T('terrain','Jak nazywa się obniżenie terenu pomiędzy dwoma szczytami?',['przelecz'],'To przełęcz.','Nie myl ze szczytem.','saddle');
+T('terrain','Jak nazywa się obszar lądowy położony poniżej poziomu morza?',['depresja','depresje'],'To depresja; zwykle ma na mapie barwę ciemnozieloną.','Pomyśl o wysokości mniejszej niż 0 m n.p.m.','hypsometric');
+C('terrain','Jak odczytać wysokość punktu znajdującego się dokładnie na poziomicy 450?',['450 m n.p.m.','450 km n.p.m.','Zawsze 0 m n.p.m.','Nie można jej odczytać'],0,'Punkt na poziomicy ma dokładnie wysokość podpisaną na tej linii.','Wykorzystaj liczbę zapisaną na poziomicy.','hill');
+C('terrain','Punkt leży między poziomicami 350 i 400 m n.p.m. Która wysokość jest rozsądnym przybliżeniem?',['375 m n.p.m.','100 m n.p.m.','500 m n.p.m.','750 m n.p.m.'],0,'375 m leży pomiędzy 350 i 400 m, więc jest możliwym przybliżeniem.','Wybierz liczbę pośrednią.');
+N('terrain','Szczyt: 2000 m n.p.m. Podnóże: 1200 m n.p.m. Jaka jest wysokość względna?',800,'m','2000 − 1200 = 800 m.','Odejmij poziom podnóża od poziomu szczytu.','height');
+N('terrain','Szczyt: 670 m n.p.m. Punkt startu: 500 m n.p.m. Ile metrów trzeba pokonać w pionie?',170,'m','670 − 500 = 170 m.','Szukasz różnicy dwóch wysokości.','height');
+N('terrain','Szczyt ma 540 m n.p.m., podnóże 310 m n.p.m. Ile wynosi wysokość względna?',230,'m','540 − 310 = 230 m.');
+C('terrain','Jak na mapie poziomicowej rozpoznasz dolinę rzeki?',['Po przebiegu poziomic i wysokościach malejących ku rzece','Po zamkniętych poziomicach rosnących do środka','Wyłącznie po znakach muzeów','Wyłącznie po nazwach ulic'],0,'W dolinie wysokości maleją w stronę jej dna, często do płynącej nią rzeki.','Gdzie znajduje się najniższy fragment doliny?','valley');
+C('terrain','Który kolor zwykle oznacza obszary wodne na mapie hipsometrycznej?',['Niebieski','Czerwony','Żółty','Pomarańczowy'],0,'Morza, jeziora i rzeki zaznacza się barwą niebieską.','Pomyśl o barwie jeziora na mapie.','hypsometric');
+C('terrain','Jaki kolor oznacza depresje według podręcznika?',['Ciemnozielony','Pomarańczowy','Żółty','Czerwony'],0,'Depresje, czyli ląd poniżej 0 m n.p.m., zaznacza się ciemnozielono.','To obszar położony niżej niż niziny.','hypsometric');
+C('terrain','Jakimi kolorami zaznacza się wyżyny na mapie hipsometrycznej?',['Odcieniami żółtego','Odcieniami błękitu','Wyłącznie szarością','Odcieniami fioletu'],0,'Wyżyny w podręcznikowej legendzie są oznaczone odcieniami żółtego.','Między zielonymi nizinami i pomarańczowymi górami jest kolejny kolor.','hypsometric');
+C('terrain','Które formy terenu są wklęsłe?',['Doliny i kotliny','Góry i wzgórza','Pagórki i grzbiety','Wyłącznie wierzchołki'],0,'Formy wklęsłe są obniżeniami, takimi jak doliny i kotliny.','Wklęsłe znaczy niżej od otoczenia.','basin');
+C('terrain','Które formy terenu są wypukłe?',['Pagórki, wzgórza i góry','Doliny i kotliny','Jeziora i rzeki','Obniżenia poniżej poziomu morza'],0,'Pagórki, wzgórza i góry wznoszą się nad otoczenie.','Wypukłe wznosi się nad otoczenie.','hill');
+C('terrain','Jaki obszar jest niziną według zakresu wysokości w podręczniku?',['100 m n.p.m.','400 m n.p.m.','650 m n.p.m.','800 m n.p.m.'],0,'Niziny obejmują od 0 do 300 m n.p.m.','Wróć do dolnego zakresu skali barw.','hypsometric');
+C('terrain','Jaki obszar leży poniżej poziomu morza?',['−5 m n.p.m.','5 m n.p.m.','100 m n.p.m.','500 m n.p.m.'],0,'−5 m n.p.m. oznacza 5 metrów poniżej poziomu morza.','Znaki plus i minus mają tu znaczenie.');
+C('terrain','Co oznacza większe zagęszczenie poziomic?',['Bardziej stromy stok','Łagodniejszy stok','Większe jezioro','Niższą temperaturę powietrza'],0,'Poziomice blisko siebie pokazują szybką zmianę wysokości na krótkim odcinku.','Wyobraź sobie, że w krótkim dystansie musisz się mocno wspiąć.','slopes');
+C('terrain','Jak określić wysokość względną między dwoma punktami?',['Odjąć ich wysokości bezwzględne','Dodać obie wysokości','Pomnożyć wysokości przez skalę mapy','Zmierzyć wyłącznie odległość poziomą'],0,'Wysokość względna to różnica wysokości dwóch miejsc.','Potrzebna jest różnica, nie suma.','height');
+
+C('terrain','Spójrz na rysunek poziomicowy. Który stok jest bardziej stromy?',['Stok B','Stok A','Oba są jednakowo strome','Nie da się porównać stoków'],0,'Na stoku B poziomice są bliżej siebie, więc jego nachylenie jest większe.','Porównaj odstępy między sąsiednimi liniami.','slopes');
+C('terrain','Na rysunku poziomicowym widać poziomice 400, 450, 500 i 550 m. Jak zmienia się wysokość ku środkowi?',['Rośnie','Maleje','Wszędzie wynosi 400 m','Najpierw jest ujemna'],0,'Rosnące wartości od zewnętrznej poziomicy w stronę środka oznaczają wzniesienie.','Sprawdzaj po kolei oznaczenia poziomic.','hill');
+// 4. Czytamy mapy
+T('reading','Jak nazywamy mapę elektroniczną, którą można powiększać i oddalać?',['mapa cyfrowa','cyfrowa','mapy cyfrowe'],'Mapa cyfrowa pozwala zmieniać skalę widoku, wybierać informacje i korzystać z aktualizacji.','To mapa w telefonie lub komputerze.','',true);
+C('reading','Na której mapie znajdziesz podstawowe informacje o rzekach, miastach, drogach i ukształtowaniu powierzchni?',['Ogólnogeograficznej','Krajobrazowej','Turystycznej','Planie miasta'],0,'Mapa ogólnogeograficzna przedstawia ogólne cechy obszaru.','Szukasz mapy z różnymi podstawowymi informacjami.','kinds',true);
+C('reading','Jaka mapa najlepiej pokaże rozmieszczenie pól, łąk, lasów i zabudowy?',['Krajobrazowa','Ogólnogeograficzna','Turystyczna','Plan miasta'],0,'Mapa krajobrazowa pokazuje zagospodarowanie terenu.','Pomyśl o sposobie użytkowania powierzchni Ziemi.','kinds',true);
+C('reading','Jakiej mapy szukasz, planując pieszą wycieczkę po szlakach i zabytkach?',['Turystycznej','Krajobrazowej','Ogólnogeograficznej','Planu miasta'],0,'Mapa turystyczna pokazuje szlaki oraz obiekty przydatne turystom.','Wybierz rodzaj opracowany dla turystów.','tourist',true);
+C('reading','Co pomoże Ci odnaleźć konkretną ulicę i budynek w centrum miasta?',['Szczegółowy plan miasta','Mapa krajobrazowa Polski','Mapa turystyczna regionu','Mapa ogólnogeograficzna Europy'],0,'Plan miasta pokazuje ulice, budynki i niewielki obszar z dużą dokładnością.','Szukasz mapy z nazwami ulic.','city',true);
+C('reading','Która cecha jest zaletą map cyfrowych?',['Można powiększać obraz i wybierać wyświetlane informacje','Nigdy nie są aktualizowane','Zawsze pokazują wyłącznie drogi','Nie pozwalają wyszukiwać miejsc'],0,'Mapy cyfrowe pozwalają zmieniać powiększenie i zakres informacji.','Przypomnij sobie, co można zrobić z mapą na telefonie.','kinds',false);
+C('reading','Na mapie z północą u góry: w którą stronę jest zachód?',['W lewo','W prawo','Do góry','W dół'],0,'Gdy północ jest u góry, zachód znajduje się po lewej stronie.','Wypowiedz kolejno N, E, S, W.','compass',true);
+C('reading','Na czym polega orientowanie mapy?',['Na zgodnym ustawieniu kierunków mapy i terenu','Na wpisaniu daty na mapie','Na obróceniu mapy zawsze o 180°','Na zakryciu legendy'],0,'Zorientowana mapa ma kierunki zgodne z rzeczywistymi kierunkami w terenie.','Pomyśl o zgodności kierunku północnego.','compass',true);
+C('reading','Co robisz, orientując mapę za pomocą kompasu?',['Obracasz mapę, aż północ na mapie zgadza się z północą wskazaną przez kompas','Przesuwasz skalę w prawo','Odwracasz znaki kartograficzne','Rysujesz nowe ulice'],0,'Po ustaleniu północy kompasem obraca się mapę tak, by oba kierunki były zgodne.','Zastanów się, do czego służy igła kompasu.','compass',true);
+C('reading','W siatce planu miasta pole C2 to…',['przecięcie kolumny C i wiersza 2','kolumna 2 i wiersz C','zawsze drugie muzeum w mieście','dokładnie dwa kilometry od centrum'],0,'Litera wskazuje kolumnę, a liczba wiersz.','Najpierw odszukaj literę, potem numer.','city',true);
+C('reading','Jak można zorientować mapę bez kompasu?',['Dopasować kierunki do charakterystycznych obiektów w terenie','Przyłożyć do niej dowolny zegarek','Zmierzyć szerokość papieru','Zmienić kolor papieru'],0,'Można znaleźć np. most i budynek, odszukać je na mapie i obrócić ją do właściwego położenia.','Potrzebujesz punktów, które widać i w terenie, i na mapie.','city',true);
+C('reading','Na planie ćwiczeniowym w którym polu znajduje się muzeum?',['C2','A1','B3','D1'],0,'Muzeum na planie oznaczono w kolumnie C, wierszu 2.','Sprawdź literę nad kolumną i cyfrę obok wiersza.','city');
+C('reading','Na planie ćwiczeniowym w którym polu znajduje się szkoła?',['B3','C2','D1','A1'],0,'Szkoła jest w kolumnie B i wierszu 3.','Najpierw kolumna z literą B.','city');
+C('reading','Gdy północ jest u góry, gdzie jest południe?',['Na dole','Na górze','Z lewej','Z prawej'],0,'Południe leży naprzeciw północy.','To kierunek przeciwny do N.','compass');
+C('reading','Gdy północ jest u góry, gdzie jest wschód?',['Z prawej','Z lewej','Na dole','Na górze'],0,'Wschód oznaczany E jest po prawej przy północy u góry.','Przypomnij sobie różę kierunków.','compass');
+C('reading','Który kierunek leży między północą a zachodem?',['Północno-zachodni','Południowo-wschodni','Południowo-zachodni','Północno-wschodni'],0,'Północny zachód jest po przekątnej w górę i w lewo.','Połącz górę i lewą stronę.','compass');
+C('reading','Który kierunek leży między południem a wschodem?',['Południowo-wschodni','Północno-wschodni','Północno-zachodni','Południowo-zachodni'],0,'Południowy wschód to dół i prawo.','Połącz dolną i prawą stronę.','compass');
+C('reading','Jak odczytasz objaśnienie symbolu pola namiotowego?',['W legendzie mapy turystycznej','Z samej szerokości mapy','Z daty wydania podręcznika','Tylko z kompasu'],0,'Legendy map turystycznych wyjaśniają symbole obiektów, w tym kempingów.','Na mapie symbole mają swój opis.','tourist');
+C('reading','Jaki park otacza najstarszą część Krakowa na planie w podręczniku?',['Planty','Łazienki Królewskie','Park Cytadela','Park Szczytnicki'],0,'Krakowskie Stare Miasto otaczają Planty.','To zielony pas otaczający Stare Miasto.');
+C('reading','Jakie kościoły podręcznik pokazuje w polu C2 planu Krakowa?',['Kościół Mariacki i kościół Świętej Trójcy','Kościół św. Anny i katedra na Wawelu','Kościół Mariacki i kościół na Skałce','Katedra Oliwska i kościół św. Brygidy'],0,'W polu C2 na pokazanym planie są kościół Mariacki i kościół Świętej Trójcy.','Wróć pamięcią do przykładu siatki w podręczniku.');
+N('reading','Jaki numer ma droga wojewódzka między Brennem a Wieleniem (mapa z podręcznika)?',305,'','Między Brennem i Wieleniem biegnie droga wojewódzka 305.','Numer znajdował się w żółtym znaku przy drodze.');
+C('reading','Na południe od drogi Wieleń–Osłonin leży…',['Jezioro Wieleńskie-Trzytoniowe','Jezioro Śniardwy','Jezioro Hańcza','Jezioro Morskie Oko'],0,'Na mapie Pojezierza Leszczyńskiego jest Jezioro Wieleńskie-Trzytoniowe.','To przykład odczytu nazwy z mapy turystycznej.');
+C('reading','Które elementy na mapie turystycznej pomagają zaplanować odpoczynek?',['Pola namiotowe, kąpieliska i ośrodki wypoczynkowe','Wyłącznie granice województw','Wyłącznie wysokość względna góry','Wyłącznie nazwy państw'],0,'Takie znaki pokazują obiekty, z których może skorzystać turysta.','Pomyśl o noclegu i wypoczynku.','tourist');
+C('reading','Jaka linia tramwajowa w przykładzie z Krakowa łączy okolice skrzyżowania J. Dietla/Starowiślnej z Barbakanem?', ['24','1','13','52'],0,'W przykładzie z planu Krakowa jest to tramwaj numer 24.','To zadanie z podręcznikowego planu Krakowa.');
+C('reading','Co wybierzesz, aby znaleźć pocztę na planie miasta?',['Odszukasz jej znak w legendzie i na planie','Policzysz wszystkie drzewa w lesie','Zwrócisz uwagę wyłącznie na barwy hipsometryczne','Sprawdzisz wysokość bezwzględną'],0,'Legenda wyjaśnia symbol poczty, a sam plan pokazuje jej położenie.','Zacznij od legendy.','city');
+C('reading','Co można zrobić z mapą cyfrową, gdy pokazuje za dużo obiektów?',['Zmienić wyświetlane informacje lub poziom powiększenia','Wymazać z ekranu wszystkie drogi na stałe','Przeliczyć ją na papierowy globus','Wyłączyć północ na Ziemi'],0,'Mapy cyfrowe pozwalają filtrować informacje i dopasowywać powiększenie.','To jedna z zalet w porównaniu z wydrukiem.','kinds');
+// Autorskie mapy ćwiczeniowe SVG, bez zewnętrznych obrazów i połączenia z internetem.
+const S=(title,contents,desc='')=>`<div class="visual"><svg viewBox="0 0 720 290" role="img" aria-label="${escAttr(title)}" xmlns="http://www.w3.org/2000/svg"><title>${esc(title)}</title>${contents}</svg><div class="visualLabel">${esc(desc||title)}</div></div>`;
+function svgText(x,y,text,size=16,color='#283d47',weight=600,anchor='start'){return `<text x="${x}" y="${y}" font-size="${size}" fill="${color}" font-family="system-ui, sans-serif" font-weight="${weight}" text-anchor="${anchor}">${esc(text)}</text>`;}
+function esc(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function escAttr(v){return esc(v);}
+function makeVisual(key){
+ const water='#bddfe7', ink='#334c56', green='#bed7ae', red='#b66d5c';
+ if(key==='simpleMap')return S('Przykładowa mapa: tytuł, treść, legenda i skala',`
+ <rect x="21" y="20" width="455" height="247" rx="13" fill="#fff" stroke="#aac3ba" stroke-width="2"/>
+ ${svgText(40,49,'PLAN OKOLICY',20,'#23594f',800)}
+ <rect x="40" y="62" width="414" height="154" rx="7" fill="#f2eeda"/>
+ <path d="M43 93 C132 116,150 66,227 105 S335 179,453 115" fill="none" stroke="#7db8d0" stroke-width="21"/>
+ <path d="M43 93 C132 116,150 66,227 105 S335 179,453 115" fill="none" stroke="#dff2f4" stroke-width="4"/>
+ <path d="M60 206 L185 69 L326 207 L452 80" fill="none" stroke="#c78d65" stroke-width="13" stroke-linejoin="round"/>
+ <path d="M60 206 L185 69 L326 207 L452 80" fill="none" stroke="#fff8ec" stroke-width="4" stroke-linejoin="round"/>
+ <rect x="65" y="123" width="67" height="54" fill="${green}" rx="6"/>
+ <path d="M285 65 L333 65 L357 107 L299 126 L266 97Z" fill="${green}" stroke="#91b690"/>
+ <rect x="214" y="157" width="25" height="20" fill="#8f9291" rx="2"/><rect x="250" y="165" width="25" height="25" fill="#8f9291" rx="2"/>
+ <rect x="380" y="165" width="35" height="27" rx="5" fill="#fff" stroke="#287e78" stroke-width="2"/>${svgText(397,184,'P',17,'#287e78',800,'middle')}
+ ${svgText(99,155,'LAS',13,'#24594a',800,'middle')}${svgText(341,100,'N',16,'#24594a',800,'middle')}
+ ${svgText(60,246,'Skala 1:20 000',14,'#334c56',700)}
+ <path d="M241 243 H390" stroke="#344b54" stroke-width="2"/><path d="M241 237V249M315 237V249M390 237V249" stroke="#344b54" stroke-width="2"/>
+ ${svgText(241,264,'0',12,'#334c56',600,'middle')}${svgText(315,264,'200',12,'#334c56',600,'middle')}${svgText(390,264,'400 m',12,'#334c56',600,'middle')}
+ <rect x="490" y="20" width="210" height="247" rx="13" fill="#eff5f2"/>
+ ${svgText(509,50,'LEGENDA',19,'#23594f',800)}
+ <path d="M511 83h39" stroke="#7db8d0" stroke-width="9"/>${svgText(560,88,'rzeka',16)}
+ <path d="M511 122h39" stroke="#c78d65" stroke-width="9"/>${svgText(560,127,'droga',16)}
+ <rect x="512" y="155" width="36" height="19" fill="${green}"/>${svgText(560,171,'las',16)}
+ <rect x="517" y="199" width="24" height="24" rx="4" fill="#fff" stroke="#287e78" stroke-width="2"/>${svgText(529,217,'P',15,'#287e78',800,'middle')}${svgText(560,217,'parking',16)}
+ `,'Mapa ćwiczeniowa: elementy mapy');
+ if(key==='symbols')return S('Znaki punktowe, liniowe i powierzchniowe',`
+ <rect x="30" y="32" width="206" height="221" rx="17" fill="#eff6f2" stroke="#d0dfd9"/>
+ <rect x="257" y="32" width="206" height="221" rx="17" fill="#eff6f2" stroke="#d0dfd9"/>
+ <rect x="484" y="32" width="206" height="221" rx="17" fill="#eff6f2" stroke="#d0dfd9"/>
+ ${svgText(133,75,'PUNKTOWY',15,'#215b50',800,'middle')}
+ <circle cx="133" cy="143" r="33" fill="#fff" stroke="#377c76" stroke-width="3"/>
+ ${svgText(133,155,'H',32,'#286f70',900,'middle')}${svgText(133,212,'szpital',17,ink,650,'middle')}
+ ${svgText(360,75,'LINIOWY',15,'#215b50',800,'middle')}
+ <path d="M290 127 Q340 80 380 142 T437 125" stroke="#ca9472" stroke-width="16" fill="none"/>
+ <path d="M290 127 Q340 80 380 142 T437 125" stroke="#fff" stroke-width="4" fill="none"/>
+ ${svgText(360,212,'droga',17,ink,650,'middle')}
+ ${svgText(588,75,'POWIERZCHNIOWY',14,'#215b50',800,'middle')}
+ <path d="M524 129 Q547 96 577 115 T658 133 L644 185 L541 177Z" fill="#95bf8c" stroke="#56945c" stroke-width="2"/>
+ ${svgText(588,212,'las',17,ink,650,'middle')}
+ `,'Trzy grupy znaków kartograficznych');
+ if(key==='scaleBar')return S('Skala liczbowa, mianowana i podziałka liniowa',`
+ ${svgText(360,40,'Trzy zapisy tej samej skali',20,'#245c50',800,'middle')}
+ <rect x="40" y="64" width="302" height="83" rx="12" fill="#e8f4ef"/>
+ ${svgText(65,91,'LICZBOWA',12,'#28665b',800)}${svgText(65,127,'1:100 000',27,ink,800)}
+ <rect x="372" y="64" width="308" height="83" rx="12" fill="#fff4da"/>
+ ${svgText(393,91,'MIANOWANA',12,'#8c610d',800)}${svgText(393,127,'1 cm – 1 km',26,ink,800)}
+ ${svgText(49,190,'PODZIAŁKA LINIOWA',13,'#28665b',800)}
+ <path d="M120 238 H640" fill="none" stroke="#304952" stroke-width="3"/>
+ <rect x="70" y="223" width="50" height="15" fill="#d9e8e2" stroke="#304952" stroke-width="1"/>
+ ${Array.from({length:11},(_,i)=>`<path d="M${70+i*5} 223 v${i%5===0?18:9}" stroke="#304952" stroke-width="1"/>`).join('')}
+ ${Array.from({length:6},(_,i)=>`<path d="M${120+i*104} 229v16" stroke="#304952" stroke-width="2"/>${svgText(120+i*104,216,i===0?'0':i===5?'5 km':String(i),17,ink,700,'middle')}`).join('')}
+ ${svgText(70,268,'odcinek wsteczny',12,'#51676b',500)}
+ `,'Odcinek wsteczny jest po lewej od zera');
+ if(key==='scaleCompare')return S('Większa i mniejsza skala',`
+ <rect x="30" y="35" width="317" height="214" rx="12" fill="#eaf4e8" stroke="#bfd5c0"/>
+ <rect x="371" y="35" width="317" height="214" rx="12" fill="#eaf4e8" stroke="#bfd5c0"/>
+ ${svgText(188,67,'1:10 000',25,'#1d685e',850,'middle')}${svgText(528,67,'1:1 000 000',25,'#1d685e',850,'middle')}
+ <g transform="translate(50,80)"><rect width="279" height="106" fill="#dcdfcf"/><rect x="14" y="10" width="52" height="33" fill="#959b90"/><rect x="201" y="50" width="50" height="42" fill="#959b90"/><path d="M0 55H279M139 0V106" stroke="#fdfdfd" stroke-width="19"/><path d="M0 55H279M139 0V106" stroke="#d4aa75" stroke-width="3"/></g>
+ <g transform="translate(390,80)"><rect width="279" height="106" fill="#b9cfaa"/><path d="M0 30C70 10 140 50 279 5M0 93Q160 48 279 80" stroke="#6d9bba" stroke-width="9" fill="none"/><circle cx="110" cy="59" r="8" fill="#6b7676"/><circle cx="179" cy="48" r="6" fill="#6b7676"/></g>
+ ${svgText(188,225,'więcej szczegółów',17,ink,720,'middle')}${svgText(528,225,'większy obszar',17,ink,720,'middle')}
+ `,'Mniejszy mianownik skali → więcej szczegółów');
+ if(key==='straightRoute')return S('Odcinek AB na mapie',`
+ <rect x="26" y="27" width="670" height="219" rx="14" fill="#ebf3e7"/>
+ <path d="M110 157H610" fill="none" stroke="#be8e7c" stroke-width="12"/>
+ <circle cx="110" cy="157" r="10" fill="#236e61"/><circle cx="610" cy="157" r="10" fill="#236e61"/>
+ ${svgText(110,187,'A',22,'#1c6458',850,'middle')}${svgText(610,187,'B',22,'#1c6458',850,'middle')}
+ ${svgText(360,133,'3 cm na mapie',23,ink,780,'middle')}${svgText(360,221,'Skala 1:30 000',19,ink,720,'middle')}
+ `,'Zadanie: przelicz odcinek AB na odległość w terenie');
+ if(key==='route')return S('Trasa AB złożona z dwóch prostych odcinków',`
+ <rect x="27" y="29" width="666" height="224" rx="13" fill="#eaf1e6"/>
+ <path d="M84 196 L413 196 L571 66" fill="none" stroke="#bd8570" stroke-width="14" stroke-linejoin="round"/>
+ <path d="M84 196 L413 196 L571 66" fill="none" stroke="#f9f5eb" stroke-width="5" stroke-linejoin="round"/>
+ <circle cx="84" cy="196" r="10" fill="#236a61"/><circle cx="571" cy="66" r="10" fill="#236a61"/>
+ ${svgText(72,228,'A',24,'#1e6056',850)}${svgText(583,65,'B',24,'#1e6056',850)}
+ ${svgText(243,179,'6 cm',18,'#6b4235',800,'middle')}${svgText(515,156,'3 cm',18,'#6b4235',800,'middle')}
+ ${svgText(362,274,'Skala 1:30 000  •  1 cm = 300 m',18,ink,780,'middle')}
+ `,'Na trasie z odcinków dodaj długości przed przeliczeniem');
+ if(key==='curvedRoute')return S('Kręta trasa: do pomiaru może posłużyć nitka',`
+ <rect x="30" y="23" width="658" height="240" rx="16" fill="#edf3e5"/>
+ <path d="M51 171Q145 78 230 158T409 131T656 101" fill="none" stroke="#c3ad8d" stroke-width="25" stroke-linecap="round"/>
+ <path d="M51 171Q145 78 230 158T409 131T656 101" fill="none" stroke="#f8f8f3" stroke-width="8" stroke-linecap="round"/>
+ <circle cx="51" cy="171" r="11" fill="#17756a"/><circle cx="656" cy="101" r="11" fill="#17756a"/>
+ ${svgText(52,208,'START',18,'#1e6257',750)}${svgText(651,75,'META',18,'#1e6257',750,'end')}
+ ${svgText(355,239,'Mierz wzdłuż zakrętów, a nie na skróty.',17,ink,720,'middle')}
+ `,'Kręta droga bywa dłuższa niż proste połączenie punktów');
+ if(key==='height')return S('Wysokość bezwzględna i względna',`
+ <rect x="25" y="239" width="670" height="31" fill="#bcdde3"/>
+ <path d="M45 239L107 202L188 164L275 69L339 27L390 100L470 178L608 239Z" fill="#a8bca1" stroke="#78967c" stroke-width="2"/>
+ <path d="M45 239L107 202L188 164L275 69L339 27L390 100L470 178L608 239Z" fill="none" stroke="#557661" stroke-width="2"/>
+ <path d="M339 27V239" stroke="#285e70" stroke-width="3" stroke-dasharray="5 6"/>
+ <path d="M184 163 H503 M339 27 H503" stroke="#b77b4f" stroke-width="2" stroke-dasharray="5 4"/>
+ <path d="M515 163 V28" stroke="#b77b4f" stroke-width="3"/><path d="M508 39L515 25L522 39M508 151L515 165L522 151" fill="none" stroke="#b77b4f" stroke-width="3"/>
+ ${svgText(531,83,'względna',16,'#874923',800)}${svgText(531,104,'520 m',17,'#874923',700)}
+ <path d="M646 239V27" stroke="#215e73" stroke-width="3"/><path d="M639 39L646 25L653 39M639 229L646 241L653 229" fill="none" stroke="#215e73" stroke-width="3"/>
+ ${svgText(683,135,'720 m',15,'#215e73',800,'end')}${svgText(683,151,'n.p.m.',13,'#215e73',650,'end')}
+ ${svgText(339,22,'SZCZYT',15,ink,800,'middle')}${svgText(155,153,'dolina 200 m',14,ink,750,'middle')}${svgText(65,259,'Morze: 0 m',13,ink,650)}
+ `,'720 m n.p.m. − 200 m n.p.m. = 520 m');
+ if(key==='hill'||key==='basin'){
+  const hill=key==='hill';const sizes=[[265,114],[225,91],[178,69],[122,49]];const vals=hill?[400,450,500,550]:[400,350,300,250];
+  return S(hill?'Poziomice na górze: rosną do środka':'Poziomice w kotlinie: maleją do środka',`
+ <rect x="25" y="26" width="670" height="230" rx="16" fill="#e2eacb"/>
+ ${sizes.map(([rx,ry],i)=>`<ellipse cx="360" cy="144" rx="${rx}" ry="${ry}" fill="${hill?['#dce5c8','#d7e0b9','#cbdca8','#bacd9e'][i]:['#d1ddac','#d9e5b9','#e4e9c7','#f1e8c6'][i]}" stroke="#a0774b" stroke-width="2"/>${svgText(360+rx-52,145-ry+18,vals[i]+' m',15,ink,700)}`).join('')}
+ <circle cx="360" cy="144" r="5" fill="#374b4a"/>
+ ${svgText(360,153,hill?'WYŻEJ':'NIŻEJ',15,ink,850,'middle')}
+ `,hill?'Góra: 400 → 450 → 500 → 550 m':'Kotlina: 400 → 350 → 300 → 250 m');
+ }
+ if(key==='saddle')return S('Dwa wierzchołki z przełęczą pośrodku',`
+ <rect x="18" y="20" width="684" height="245" rx="15" fill="#dce9cf"/>
+ <ellipse cx="235" cy="143" rx="170" ry="110" fill="none" stroke="#a88058" stroke-width="2"/>
+ <ellipse cx="471" cy="143" rx="170" ry="110" fill="none" stroke="#a88058" stroke-width="2"/>
+ <ellipse cx="226" cy="139" rx="120" ry="78" fill="none" stroke="#a88058" stroke-width="2"/>
+ <ellipse cx="479" cy="139" rx="120" ry="78" fill="none" stroke="#a88058" stroke-width="2"/>
+ <ellipse cx="222" cy="139" rx="68" ry="44" fill="none" stroke="#a88058" stroke-width="2"/>
+ <ellipse cx="483" cy="139" rx="68" ry="44" fill="none" stroke="#a88058" stroke-width="2"/>
+ <circle cx="224" cy="139" r="6" fill="#28594c"/><circle cx="484" cy="139" r="6" fill="#28594c"/>
+ ${svgText(224,90,'szczyt',16,ink,800,'middle')}${svgText(484,90,'szczyt',16,ink,800,'middle')}
+ <path d="M354 163v49" stroke="#206d62" stroke-width="3"/>${svgText(355,238,'przełęcz',18,'#1f675d',800,'middle')}
+ `,'Przełęcz znajduje się pomiędzy szczytami');
+ if(key==='slopes')return S('Porównanie łagodnego i stromego stoku',`
+ <rect x="29" y="25" width="315" height="233" rx="14" fill="#eaf1e2"/>
+ <rect x="376" y="25" width="315" height="233" rx="14" fill="#eaf1e2"/>
+ ${svgText(186,58,'ŁAGODNY',18,'#216357',800,'middle')}
+ ${svgText(533,58,'STROMY',18,'#216357',800,'middle')}
+ ${[92,150,208,266].map((x,i)=>`<path d="M${x} 85V201" stroke="#9d7951" stroke-width="3"/>${svgText(x,222,100+i*50,13,ink,650,'middle')}`).join('')}
+ ${[500,517,534,551].map((x,i)=>`<path d="M${x} 85V201" stroke="#9d7951" stroke-width="3"/>${svgText(x,222,100+i*50,12,ink,650,'middle')}`).join('')}
+ ${svgText(186,246,'poziomice daleko',13,ink,650,'middle')}${svgText(533,246,'poziomice blisko',13,ink,650,'middle')}
+ `,'Im ciaśniej ułożone poziomice, tym stromiej');
+ if(key==='valley')return S('Dolina z rzeką i poziomicami',`
+ <rect x="25" y="25" width="670" height="234" rx="13" fill="#f0f1df"/>
+ <path d="M362 30Q300 86 370 139T363 250" stroke="#86bed4" stroke-width="30" fill="none"/>
+ <path d="M362 30Q300 86 370 139T363 250" stroke="#cbeef1" stroke-width="12" fill="none"/>
+ ${[87,150,215].map((x,i)=>`<path d="M${x} 25 Q${x+145} 100 ${x+40} 259" stroke="#ab8658" stroke-width="2" fill="none"/>${svgText(x+2,51,(600-i*50)+' m',14,ink,700)}`).join('')}
+ ${[655,590,527].map((x,i)=>`<path d="M${x} 25 Q${x-145} 100 ${x-40} 259" stroke="#ab8658" stroke-width="2" fill="none"/>${svgText(x-58,235,(600-i*50)+' m',14,ink,700)}`).join('')}
+ ${svgText(363,153,'RZEKA',16,'#25617d',850,'middle')}
+ `,'Wysokość terenu maleje w kierunku dna doliny');
+ if(key==='hypsometric')return S('Skala barw hipsometrycznych',`
+ ${[['#376b45','DEPRESJE','poniżej 0 m'],['#83b579','NIZINY','0–300 m'],['#eed36d','WYŻYNY','zwykle 300–500 m'],['#e89b51','GÓRY','powyżej 500 m'],['#c65d4d','GÓRY','wyższe obszary'],['#90bcd9','WODA','jeziora, rzeki, morza']].map(([color,name,desc],i)=>`<rect x="44" y="${20+i*44}" width="632" height="39" rx="8" fill="#f3f4ed"/><rect x="49" y="${25+i*44}" width="85" height="29" rx="5" fill="${color}"/>${svgText(156,46+i*44,name,17,ink,850)}${svgText(424,46+i*44,desc,15,ink,600)}`).join('')}
+ `,'Kolory mogą mieć różne odcienie – zawsze sprawdzaj skalę barw w legendzie');
+ if(key==='compass')return S('Główne i pośrednie kierunki geograficzne',`
+ <circle cx="360" cy="145" r="111" fill="#f3f7f3" stroke="#adc4bd" stroke-width="2"/>
+ <path d="M360 49V241M263 145H457M294 79L426 211M426 79L294 211" stroke="#adc4bd" stroke-width="2"/>
+ <path d="M360 53L346 139L360 128L374 139Z" fill="#1b756a"/>
+ <path d="M360 238L346 151L360 161L374 151Z" fill="#a7b6b4"/>
+ <circle cx="360" cy="145" r="7" fill="#304c54"/>
+ ${svgText(360,24,'N  północ',19,'#1e685e',850,'middle')}${svgText(360,282,'S  południe',19,ink,750,'middle')}
+ ${svgText(479,150,'E  wschód',18,ink,750)}${svgText(244,150,'W  zachód',18,ink,750,'end')}
+ ${svgText(444,60,'NE',17,ink,750)}${svgText(276,60,'NW',17,ink,750,'end')}${svgText(442,242,'SE',17,ink,750)}${svgText(276,242,'SW',17,ink,750,'end')}
+ `,'Północ zwykle oznacza N, południe S, zachód W, wschód E');
+ if(key==='city')return S('Plan ćwiczeniowy miasta z siatką A–D i 1–3',`
+ <rect x="42" y="35" width="455" height="222" rx="8" fill="#f4f1e7" stroke="#a9b9b4"/>
+ ${[1,2,3].map((i)=>`<path d="M42 ${35+i*74}H497" stroke="#8f9f9a" stroke-dasharray="4 5"/>`).join('')}
+ ${[1,2,3].map((i)=>`<path d="M${42+i*113.75} 35V257" stroke="#8f9f9a" stroke-dasharray="4 5"/>`).join('')}
+ ${['A','B','C','D'].map((c,i)=>svgText(99+i*113.75,27,c,17,ink,800,'middle')).join('')}
+ ${[1,2,3].map((n,i)=>svgText(28,76+i*74,n,17,ink,800,'middle')).join('')}
+ <path d="M42 143H497" stroke="#cda67f" stroke-width="12"/><path d="M200 35V257" stroke="#cda67f" stroke-width="12"/>
+ <rect x="58" y="46" width="68" height="44" fill="#b6cda8" rx="5"/>
+ <rect x="385" y="54" width="63" height="36" fill="#d0c0ab" rx="4"/>
+ <rect x="277" y="120" width="56" height="42" fill="#d1b6a1" rx="4"/>
+ <rect x="171" y="202" width="60" height="42" fill="#d1b6a1" rx="4"/>
+ ${svgText(91,77,'PARK',12,'#235e45',800,'middle')}${svgText(416,77,'P',23,'#296c77',900,'middle')}
+ ${svgText(305,143,'MUZEUM',11,'#503d34',820,'middle')}${svgText(201,224,'SZKOŁA',11,'#503d34',820,'middle')}
+ <rect x="520" y="37" width="177" height="220" rx="11" fill="#edf3ee"/>
+ ${svgText(536,64,'LEGENDA',15,'#235c52',850)}
+ <rect x="536" y="86" width="25" height="21" fill="#b6cda8"/>${svgText(573,103,'park',16)}
+ <rect x="536" y="126" width="25" height="21" fill="#d1b6a1"/>${svgText(573,143,'budynek',16)}
+ <path d="M535 176H565" stroke="#cda67f" stroke-width="9"/>${svgText(574,182,'ulica',16)}
+ ${svgText(535,226,'N ↑',22,'#235c52',800)}
+ `,'Wymyślony plan do ćwiczenia oznaczeń i siatki; nie jest mapą prawdziwego miasta');
+ if(key==='tourist')return S('Mapa turystyczna: szlak, jezioro i obiekty',`
+ <rect x="25" y="23" width="486" height="239" rx="12" fill="#eaf0da" stroke="#c6d5bf"/>
+ <path d="M320 32Q436 67 412 129T496 235L496 258L290 258Q244 199 286 146T320 32" fill="#a6d2dc" stroke="#86bbc9" stroke-width="2"/>
+ <rect x="48" y="49" width="108" height="74" rx="13" fill="#bdd4aa"/>
+ <rect x="61" y="169" width="110" height="74" rx="13" fill="#bdd4aa"/>
+ <path d="M62 88Q186 75 252 151T473 219" fill="none" stroke="#cfbd8c" stroke-width="12"/>
+ <path d="M62 88Q186 75 252 151T473 219" fill="none" stroke="#dc9c29" stroke-width="5" stroke-dasharray="10 6"/>
+ <circle cx="66" cy="88" r="10" fill="#1d7667"/><circle cx="459" cy="215" r="10" fill="#1d7667"/>
+ ${svgText(61,67,'START',14,ink,800)}${svgText(445,198,'META',14,ink,800)}
+ ${svgText(344,170,'JEZIORO',15,'#1c6076',850,'middle')}
+ <path d="M224 111l11 -20 11 20Z" fill="#fff" stroke="#6f4b40" stroke-width="2"/>
+ <rect x="271" y="195" width="26" height="26" fill="#fff" stroke="#296c77" stroke-width="2" rx="4"/>${svgText(284,213,'P',17,'#296c77',900,'middle')}
+ <rect x="522" y="23" width="175" height="239" rx="12" fill="#f3f6f0"/>
+ ${svgText(540,53,'LEGENDA',16,'#215f52',850)}
+ <path d="M540 80h30" stroke="#dc9c29" stroke-width="5" stroke-dasharray="8 4"/>${svgText(581,87,'szlak',15)}
+ <path d="M540 121l12 -17 12 17Z" fill="#fff" stroke="#6f4b40" stroke-width="2"/>${svgText(581,120,'kemping',15)}
+ <rect x="540" y="148" width="25" height="21" fill="#b6cda8"/>${svgText(581,165,'las',15)}
+ <rect x="540" y="189" width="25" height="21" fill="#a6d2dc"/>${svgText(581,205,'jezioro',15)}
+ `,'Schemat turystyczny: odczytaj szlak i znaki z legendy');
+ if(key==='kinds')return S('Cztery rodzaje map: wybierz zgodnie z potrzebą',`
+ ${[['OGÓLNOGEOGRAFICZNA','miasta, granice, rzeki'],['KRAJOBRAZOWA','pola, lasy, zabudowa'],['TURYSTYCZNA','szlaki, atrakcje'],['PLAN MIASTA','ulice, budynki']].map(([a,b],i)=>{let x=28+(i%2)*340,y=22+Math.floor(i/2)*127;return `<rect x="${x}" y="${y}" width="323" height="112" rx="14" fill="${i%2?'#f1f2e4':'#eaf4ec'}" stroke="#cddcce"/>${svgText(x+18,y+37,a,15,'#216256',850)}${svgText(x+18,y+74,b,17,ink,550)}`}).join('')}
+ `,'Każda mapa ma inne przeznaczenie');
+ return '';
+}
+const STORE='geografia-mapa-polski-audhd-v1';
+let saved={completedLearn:{},learnPosition:{},practiceBest:{},testBest:null,cycles:{},active:null};
+try{const raw=localStorage.getItem(STORE);if(raw){const item=JSON.parse(raw);if(item&&typeof item==='object')saved={...saved,...item};}}catch(e){}
+let view='home',unit='map',lessonIndex=0,session=null;
+const lookup=Object.fromEntries(Object.values(QUESTIONS).flat().map(q=>[q.id,q]));
+if(saved.active&&saved.active.ids&&saved.active.ids.every(id=>lookup[id]))session=saved.active;
+const app=document.getElementById('app');
+function persist(){saved.active=session;try{localStorage.setItem(STORE,JSON.stringify(saved));}catch(e){}}
+function mix(items){let a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function unitName(id){return UNITS.find(x=>x.id===id)?.name||'';}
+function nav(active){return `<nav class="mainnav" aria-label="Etapy"><button class="navbtn ${active==='learn'?'active':''}" data-action="menuLearn">1. Nauka</button><button class="navbtn ${active==='practice'?'active':''}" data-action="menuPractice">2. Trening</button><button class="navbtn ${active==='test'?'active':''}" data-action="menuTest">3. Test</button></nav>`;}
+function progress(n,total){return `<div class="progressTrack" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${n}" aria-label="Postęp"><div class="progressFill" style="width:${total?100*n/total:0}%"></div></div>`;}
+function topview(){window.scrollTo({top:0,behavior:'instant'});}
+function render(){
+ if(view==='home')return renderHome();
+ if(view==='learnMenu')return renderLearnMenu();
+ if(view==='practiceMenu')return renderPracticeMenu();
+ if(view==='testIntro')return renderTestIntro();
+ if(view==='learn')return renderLearn();
+ if(view==='quiz')return renderQuiz();
+ if(view==='result')return renderResult();
+}
+function renderHome(){
+ const finished=UNITS.filter(x=>saved.completedLearn[x.id]).length;
+ app.innerHTML=`<section class="hero"><div class="eyebrow">Rozdział 1 · Mapa Polski · strony 8–32</div><h1>Poznaj mapy krok po kroku</h1><p class="lead">Najpierw poznaj jedną rzecz, potem poćwicz ją bez pośpiechu, a na koniec sprawdź, ile umiesz. W każdej chwili możesz zrobić przerwę.</p></section>
+ ${nav('')}
+ <section class="panel"><h2>Wybierz etap</h2><div class="grid">
+ <button class="unit" data-action="menuLearn"><span class="unitNo">Etap 1</span><span class="unitTitle">Nauka</span><span class="unitMeta">${Object.values(LESSONS).reduce((a,b)=>a+b.length,0)} krótkie karty · ${finished} z 4 działów ukończone</span></button>
+ <button class="unit" data-action="menuPractice"><span class="unitNo">Etap 2</span><span class="unitTitle">Trening</span><span class="unitMeta">8 pytań na raz lub cały dział · podpowiedzi i poprawki</span></button>
+ <button class="unit" data-action="menuTest"><span class="unitNo">Etap 3</span><span class="unitTitle">Test</span><span class="unitMeta">Krótki: 20 pytań · pełny: 40 pytań</span></button>
+ <div class="unit" style="cursor:default"><span class="unitNo">Twoje tempo</span><span class="unitTitle">Bez zegara</span><span class="unitMeta">Duże przyciski, jedno pytanie naraz, zapis postępów na urządzeniu</span></div>
+ </div>${session&&!session.finished?`<div class="callout"><b>Masz niedokończony ${session.mode==='test'?'test':'trening'}.</b><p class="quiet">Możesz wrócić do pytania ${session.index+1} z ${session.ids.length}.</p><button class="primary" data-action="resume">Wznów od tego miejsca</button></div>`:''}</section>
+ <section class="panel"><h3>Co znajdziesz w aplikacji?</h3><div class="topicPills">${UNITS.map(x=>`<span class="topicPill">${esc(x.short)}</span>`).join('')}</div><p class="quiet">Do ćwiczeń dołączone są uproszczone, autorskie rysunki map, poziomic, podziałek i kierunków. Nie musisz mieć podręcznika przy sobie.</p></section>
+ <p class="footer">Postęp jest zapisywany lokalnie w tej przeglądarce. Aplikacja nie wysyła odpowiedzi do internetu i nie potrzebuje połączenia sieciowego.</p>`;
+}
+function renderLearnMenu(){app.innerHTML=`<section class="hero"><div class="eyebrow">Etap 1</div><h1>Nauka</h1><p class="lead">Jedna mała porcja wiedzy na ekran. Możesz cofać się i wracać do lekcji dowolnie.</p></section>${nav('learn')}
+ <section class="panel"><h2>Wybierz temat</h2><div class="grid">${UNITS.map((x,i)=>`<button class="unit" data-action="openLearn" data-unit="${x.id}"><span class="unitNo">Temat ${i+1} · ${x.range}</span><span class="unitTitle">${esc(x.name)}</span><span class="unitMeta">${LESSONS[x.id].length} kroków · ${saved.completedLearn[x.id]?'Ukończono ✓':saved.learnPosition[x.id]?'Można kontynuować':'Jeszcze nie rozpoczęto'}</span></button>`).join('')}</div></section>`;}
+function renderLearn(){let lessons=LESSONS[unit],lesson=lessons[lessonIndex];
+ app.innerHTML=`<section class="hero"><div class="eyebrow">Etap 1 · ${esc(unitName(unit))}</div><h1>Nauka</h1></section>${nav('learn')}
+ <article class="panel"><div class="metaLine"><span>Krok ${lessonIndex+1} z ${lessons.length}</span><span>${esc(unitName(unit))}</span></div>${progress(lessonIndex+1,lessons.length)}
+ <h2 class="stepTitle" tabindex="-1">${esc(lesson.title)}</h2><div class="lessonText">${lesson.html}</div>${lesson.visual?makeVisual(lesson.visual):''}
+ <div class="actions"><button class="secondary" data-action="learnPrev" ${lessonIndex===0?'disabled':''}>← Wstecz</button>${lessonIndex+1<lessons.length?`<button class="primary right" data-action="learnNext">Rozumiem, dalej →</button>`:`<button class="primary right" data-action="learnFinish">Ukończ temat ✓</button>`}</div></article>
+ <div class="actions"><button class="smallBtn" data-action="menuLearn">Wybierz inny temat</button><button class="smallBtn" data-action="menuPractice">Przejdź do treningu</button></div>`;
+}
+function renderPracticeMenu(){app.innerHTML=`<section class="hero"><div class="eyebrow">Etap 2</div><h1>Trening</h1><p class="lead">Pracujesz bez presji czasu. Za poprawną odpowiedź od razu dostajesz wyjaśnienie. Po pomyłce możesz spróbować ponownie.</p></section>${nav('practice')}
+ <section class="panel"><h2>Wybierz temat i długość treningu</h2><div class="grid">${UNITS.map((x,i)=>`<div class="unit" style="cursor:default"><span class="unitNo">Temat ${i+1}</span><span class="unitTitle">${esc(x.short)}</span><span class="unitMeta">${QUESTIONS[x.id].length} zadań w bazie${saved.practiceBest[x.id]?' · najlepszy wynik: '+saved.practiceBest[x.id]+'%':''}</span><div class="actions" style="margin-top:auto"><button class="primary" data-action="startPractice" data-unit="${x.id}" data-count="8">8 pytań</button><button class="secondary" data-action="startPractice" data-unit="${x.id}" data-count="all">Cały dział</button></div></div>`).join('')}</div></section>
+ <section class="panel"><h3>Jak działa trening?</h3><p class="quiet">Dobra odpowiedź za pierwszym razem daje <b>2 punkty</b>, za drugim <b>1 punkt</b>. Po dwóch pomyłkach pokażę rozwiązanie. Zadania dobierają się naprzemiennie, żeby z czasem powtórzyć cały dział.</p></section>`;}
+function renderTestIntro(){app.innerHTML=`<section class="hero"><div class="eyebrow">Etap 3</div><h1>Test końcowy</h1><p class="lead">Sprawdź wiedzę ze wszystkich czterech tematów. Są pytania zamknięte i takie, gdzie trzeba wpisać liczbę lub krótką nazwę. Odpowiedzi i wyjaśnienia zobaczysz w podsumowaniu.</p></section>${nav('test')}
+ <section class="panel"><h2>Wybierz długość testu</h2><div class="grid"><div class="unit" style="cursor:default"><span class="unitNo">Na rozgrzewkę</span><span class="unitTitle">Krótki test</span><span class="unitMeta">20 pytań · po 5 z każdego działu · przerwy po 5</span><button class="primary" data-action="startTest" data-count="short">Zacznij 20 pytań</button></div><div class="unit" style="cursor:default"><span class="unitNo">Pełny sprawdzian</span><span class="unitTitle">Pełny test</span><span class="unitMeta">40 pytań · po 10 z każdego działu · przerwy po 10</span><button class="primary" data-action="startTest" data-count="full">Zacznij 40 pytań</button></div></div>
+ ${saved.testBest!==null?`<div class="callout">Twój najlepszy wynik pełnego testu: <b>${saved.testBest}%</b>.</div>`:''}
+ <p class="quiet">Nie ma limitu czasu. W teście nie ma podpowiedzi ani poprawiania po zatwierdzeniu, ale na końcu zobaczysz wyjaśnienia. Wynik nie jest oceną szkolną.</p></section>`;}
+function buildPractice(id,count){let bank=QUESTIONS[id].map(q=>q.id),cycle=saved.cycles?.[id]||[];
+ cycle=cycle.filter(x=>bank.includes(x));if(cycle.length===0)cycle=mix(bank);
+ let selected=[];const total=count==='all'?bank.length:8;
+ while(selected.length<total){if(!cycle.length)cycle=mix(bank.filter(x=>!selected.includes(x)));if(!cycle.length)break;selected.push(cycle.shift());}
+ saved.cycles=saved.cycles||{};saved.cycles[id]=cycle;startSession('practice',id,selected,total);
+}
+function buildTest(full){const ids=[];for(const u of UNITS){const core=QUESTIONS[u.id].filter(q=>q.core).map(q=>q.id);ids.push(...mix(core).slice(0,full?10:5));}startSession('test',null,ids,full?10:5);}
+function startSession(mode,id,ids,perChapter){
+ session={mode,unit:id,ids,index:0,score:0,answered:[],orders:ids.map(qid=>lookup[qid].kind==='choice'?mix([0,1,2,3]):[]),current:{selected:null,input:'',tries:0,wrongChoices:[],done:false,feedback:'',hintVisible:false},paused:false,finished:false,perChapter};
+ view='quiz';persist();render();topview();
+}
+function getQ(){return lookup[session.ids[session.index]];}
+function correctText(q){if(q.kind==='choice')return q.options[q.correct];if(q.kind==='number')return `${formatN(q.answer)}${q.suffix?' '+q.suffix:''}`;return q.answers[0]==='przelecz'?'przełęcz':q.answers[0];}
+function formatN(n){return String(n).replace('.',',');}
+function normalize(s){return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ł/g,'l').replace(/[^a-z0-9]+/g,' ').trim();}
+function numValue(s){let v=String(s).trim().replace(/\s+/g,'').replace(',','.');if(!/^-?(\d+(\.\d*)?|\.\d+)$/.test(v))return NaN;return Number(v);}
+function isRight(q,answer){if(q.kind==='choice')return Number(answer)===q.correct;if(q.kind==='number')return Number.isFinite(numValue(answer))&&Math.abs(numValue(answer)-q.answer)<1e-8;return q.answers.some(a=>normalize(a)===normalize(answer));}
+function questionVisual(key){
+ if(!key)return '';
+ // Nauka zawiera pełne etykiety; w zadaniach zostawiamy tylko rysunki, z których uczeń ma wnioskować.
+ if(['scaleCompare','scaleBar','symbols','height','hypsometric','compass','kinds','saddle','simpleMap','valley'].includes(key))return '';
+ if(key==='slopes')return S('Poziomice na stoku A i B',`
+  <rect x="25" y="25" width="315" height="230" rx="12" fill="#e9f2e5"/><rect x="380" y="25" width="315" height="230" rx="12" fill="#e9f2e5"/>
+  ${svgText(185,61,'STOK A',20,'#295e56',800,'middle')}${svgText(538,61,'STOK B',20,'#295e56',800,'middle')}
+  ${[87,145,203,261].map((x,i)=>`<path d="M${x} 83v112" stroke="#a57d4e" stroke-width="3"/>${svgText(x,217,100+i*50,13,'#334c56',650,'middle')}`).join('')}
+  ${[493,510,527,544].map((x,i)=>`<path d="M${x} 83v112" stroke="#a57d4e" stroke-width="3"/>${svgText(x,217,100+i*50,13,'#334c56',650,'middle')}`).join('')}
+ `,'');
+ if(key==='hill'||key==='basin'){
+  const vals=key==='hill'?[400,450,500,550]:[400,350,300,250];const radii=[[265,112],[215,90],[165,68],[113,46]];
+  return S('Rysunek poziomicowy z oznaczonymi wysokościami',`<rect x="24" y="21" width="671" height="241" rx="13" fill="#e8eedb"/>${radii.map(([rx,ry],i)=>`<ellipse cx="360" cy="144" rx="${rx}" ry="${ry}" fill="none" stroke="#9f805b" stroke-width="2"/>${svgText(360+rx-52,141-ry+15,vals[i]+' m',15,'#304953',690)}`).join('')}`,'');
+ }
+ const built=makeVisual(key);
+ return built.replace(/<div class="visualLabel">[\s\S]*?<\/div><\/div>$/,'</div>');
+}
+function renderQuiz(){if(!session){view='home';render();return;}if(session.finished){view='result';return renderResult();}if(session.paused)return renderPause();
+ const q=getQ(), c=session.current;const n=session.index+1,total=session.ids.length;let lessonHead=session.mode==='test'?'Test':'Trening';let qopts='';
+ if(q.kind==='choice'){
+   qopts=`<div class="choices" role="group" aria-label="Odpowiedzi">${session.orders[session.index].map((origIdx,index)=>{
+    const selected=c.selected===origIdx, wrong=c.wrongChoices.includes(origIdx),correctShow=c.done&&origIdx===q.correct;
+    return `<button class="option ${selected?'selected':''} ${wrong?'wrong':''} ${correctShow?'correct':''}" type="button" data-action="choose" data-choice="${origIdx}" ${c.done||(session.mode==='practice'&&wrong)?'disabled':''} aria-pressed="${selected}" ><span class="letter">${'ABCD'[index]}</span><span>${esc(q.options[origIdx])}</span></button>`;
+   }).join('')}</div>`;
+ }else{
+  qopts=`<label for="answerInput" class="sr-only">Twoja odpowiedź</label><div class="fieldrow"><input id="answerInput" class="answerInput" type="text" inputmode="${q.kind==='number'?'decimal':'text'}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Wpisz odpowiedź" value="${escAttr(c.input||'')}" ${c.done?'disabled':''}/>${q.suffix?`<span class="unitSuffix">${esc(q.suffix)}</span>`:''}</div><p class="tiny">${q.kind==='number'?'Możesz wpisać np. 1,5 albo 1.5. Jednostka jest już podana.':'Wpisz krótką nazwę.'}</p>`;
+ }
+ const isTest=session.mode==='test';
+ let response='';
+ if(isTest){response=c.selected===null&&q.kind==='choice'?'':`<div class="actions"><button class="primary right" data-action="submit">${n===total?'Zakończ test':'Zapisz i dalej →'}</button></div>`;}
+ else{
+  if(c.done){response=`<div class="feedback ${c.feedback==='bad'?'wrong':''}" role="status"><b>${c.feedback==='ok'?'Dobrze!':c.feedback==='retryok'?'Udało się po poprawce!':'Pokażę Ci rozwiązanie.'}</b><p>${esc(q.explain)}</p><p class="tiny">${c.feedback==='ok'?'Zdobyte punkty: 2':c.feedback==='retryok'?'Zdobyte punkty: 1':'Zdobyte punkty: 0'}</p></div><div class="actions"><button class="primary right" data-action="next">${n===total?'Zobacz podsumowanie':'Następne zadanie →'}</button></div>`;}
+  else{
+   response=`${c.tries?`<div class="feedback wrong" role="status"><b>Jeszcze nie.</b><p>Spróbuj drugi raz. Nie musisz się spieszyć.</p></div>`:''}
+   ${c.hintVisible?`<div class="hintBox">Podpowiedź: ${esc(q.hint)}</div>`:''}
+   <div class="actions"><button class="hintBtn" data-action="hint">${c.hintVisible?'Ukryj podpowiedź':'Potrzebuję podpowiedzi'}</button>${q.kind!=='choice'?`<button class="primary right" data-action="submit">Sprawdź odpowiedź</button>`:''}</div>`;
+  }
+ }
+ app.innerHTML=`<section class="hero"><div class="eyebrow">${lessonHead} · ${esc(unitName(qUnit(q)))}</div><h1>${isTest?'Sprawdź, co umiesz':'Spróbuj samodzielnie'}</h1></section>${nav(isTest?'test':'practice')}
+ <article class="panel"><div class="metaLine"><span>Pytanie ${n} z ${total}</span><span>${isTest?'Bez oceniania do końca':`${session.score} pkt`}</span></div>${progress(session.index,total)}
+ <div class="question" tabindex="-1">${esc(q.q)}</div>${q.visual?questionVisual(q.visual):''}${qopts}${response}
+ ${isTest?'<p class="tiny" style="margin-top:13px">Odpowiedź poznasz po zakończeniu testu.</p>':''}</article><div class="actions"><button class="smallBtn" data-action="home">Przerwij i zapisz postęp</button></div>`;
+ if(!isTest&&q.kind==='choice'&&c.tries===0){ /* odpowiedź jest sprawdzana po dotknięciu opcji */ }
+}
+function qUnit(q){for(let u of UNITS){if(QUESTIONS[u.id].includes(q))return u.id;}return 'map';}
+function renderPause(){const nextUnit=unitName(qUnit(getQ()));app.innerHTML=`<section class="hero"><div class="eyebrow">Test · przerwa między tematami</div><h1>Część ukończona ✓</h1></section>${nav('test')}<section class="panel"><h2>Możesz zrobić przerwę</h2><p>Za Tobą ${session.index} z ${session.ids.length} pytań. Wyniki zobaczysz na końcu.</p>${progress(session.index,session.ids.length)}<p class="quiet">Dalej: <b>${esc(nextUnit)}</b>.</p><div class="actions"><button class="secondary" data-action="home">Zapisz i odpocznij</button><button class="primary right" data-action="continueTest">Jestem gotowy →</button></div></section>`;}
+function choose(i){const q=getQ(),c=session.current;if(q.kind!=='choice'||c.done||session.paused)return;c.selected=i;if(session.mode==='practice'){grade();}else{persist();render();}}
+function submit(){const q=getQ(),c=session.current;if(c.done||session.paused)return;if(q.kind==='choice'&&c.selected===null)return;
+ if(q.kind!=='choice'){const input=document.getElementById('answerInput');if(input)c.input=input.value.trim();if(!c.input){input?.focus();return;}if(q.kind==='number'&&!Number.isFinite(numValue(c.input))){input?.focus();return;}}
+ if(session.mode==='test'){
+   const ans=q.kind==='choice'?c.selected:c.input;const right=isRight(q,ans);session.answered.push({id:q.id,answer:ans,correct:right,points:right?1:0});session.score+=right?1:0;next();
+ }else{grade();}}
+function grade(){const q=getQ(),c=session.current;if(c.done)return;const ans=q.kind==='choice'?c.selected:c.input;if(q.kind==='choice'&&ans===null)return;
+ if(isRight(q,ans)){const points=c.tries===0?2:1;session.score+=points;c.done=true;c.feedback=points===2?'ok':'retryok';session.answered.push({id:q.id,answer:ans,correct:true,points,tries:c.tries+1});}
+ else{c.tries++;if(q.kind==='choice')c.wrongChoices.push(c.selected);c.selected=null;if(c.tries>=2){c.done=true;c.feedback='bad';session.answered.push({id:q.id,answer:ans,correct:false,points:0,tries:c.tries});}}
+ persist();render();}
+function next(){const prev=session.index;session.index++;
+ if(session.index>=session.ids.length){session.finished=true;const percent=Math.round(100*session.score/(session.mode==='test'?session.ids.length:session.ids.length*2));
+   if(session.mode==='test'){if(session.ids.length===40)saved.testBest=Math.max(saved.testBest===null?0:saved.testBest,percent);}else{saved.practiceBest[session.unit]=Math.max(saved.practiceBest[session.unit]||0,percent);}
+   view='result';
+ }else{session.current={selected:null,input:'',tries:0,wrongChoices:[],done:false,feedback:'',hintVisible:false};if(session.mode==='test'&&session.index%session.perChapter===0)session.paused=true;}
+ persist();render();topview();}
+function renderResult(){if(!session){view='home';return render();}
+ const isTest=session.mode==='test',all=session.ids.length,percent=Math.round(100*session.score/(isTest?all:all*2));
+ const wrong=session.answered.filter(a=>!a.correct);const byUnits=UNITS.map(u=>{let subset=session.answered.filter(a=>qUnit(lookup[a.id])===u.id);return {u,done:subset.length,good:subset.filter(a=>a.correct).length};}).filter(x=>x.done);
+ app.innerHTML=`<section class="hero"><div class="eyebrow">${isTest?'Test ukończony':'Trening ukończony'}</div><h1>${isTest?'Twój wynik':'Koniec tej serii'}</h1><p class="lead">Każda próba pomaga. Sprawdź, które rzeczy już umiesz, a które warto przećwiczyć jeszcze raz.</p></section>${nav(isTest?'test':'practice')}
+ <section class="panel"><h2>${isTest?'Wynik testu':'Wynik treningu'}</h2><div class="stats"><div class="stat"><strong>${percent}%</strong><small>wynik</small></div><div class="stat"><strong>${session.score}</strong><small>${isTest?'poprawnych odpowiedzi':`punktów na ${all*2}`}</small></div><div class="stat"><strong>${all-wrong.length}/${all}</strong><small>zadań rozwiązanych poprawnie</small></div></div>
+ <h3>Wyniki według działów</h3><div class="checks">${byUnits.map(x=>`<div class="check"><b>${esc(x.u.short)}</b><span>${x.good} poprawnych z ${x.done}</span></div>`).join('')}</div>
+ <div class="actions"><button class="secondary" data-action="home">Do menu</button><button class="primary right" data-action="${isTest?'menuTest':'menuPractice'}">${isTest?'Nowy test':'Jeszcze poćwiczę'}</button></div></section>
+ <section class="panel"><h2>Powtórz te zadania (${wrong.length})</h2>${wrong.length?wrong.map((a,i)=>{let q=lookup[a.id];let given=q.kind==='choice'?q.options[a.answer]:(a.answer||'(brak)');return `<div class="reviewRow"><span class="tag bad">Do utrwalenia</span><p><b>${i+1}. ${esc(q.q)}</b></p><p class="tiny">Twoja odpowiedź: ${esc(given)}</p><p><span class="key">Poprawnie:</span> <b>${esc(correctText(q))}</b></p><p>${esc(q.explain)}</p></div>`;}).join(''):`<div class="callout"><b>Wszystkie zadania rozwiązane!</b><p>Możesz przejść do kolejnego tematu lub spróbować nowej serii.</p></div>`}</section>`;
+}
+function openLearn(id){unit=id;lessonIndex=Math.max(0,Math.min(LESSONS[id].length-1,saved.learnPosition[id]||0));view='learn';render();topview();}
+function resetAll(){if(!window.confirm('Usunąć wyniki, ukończone lekcje i zapisane testy z tej przeglądarki?'))return;saved={completedLearn:{},learnPosition:{},practiceBest:{},testBest:null,cycles:{},active:null};session=null;persist();view='home';render();topview();}
+app.addEventListener('click',e=>{const el=e.target.closest('button[data-action]');if(!el)return;let action=el.dataset.action;
+ if(action==='home'){view='home';render();topview();return;}
+ if(action==='menuLearn'){view='learnMenu';render();topview();return;}
+ if(action==='menuPractice'){view='practiceMenu';render();topview();return;}
+ if(action==='menuTest'){view='testIntro';render();topview();return;}
+ if(action==='openLearn'){openLearn(el.dataset.unit);return;}
+ if(action==='learnNext'){lessonIndex=Math.min(LESSONS[unit].length-1,lessonIndex+1);saved.learnPosition[unit]=lessonIndex;persist();render();topview();return;}
+ if(action==='learnPrev'){lessonIndex=Math.max(0,lessonIndex-1);saved.learnPosition[unit]=lessonIndex;persist();render();topview();return;}
+ if(action==='learnFinish'){saved.completedLearn[unit]=true;saved.learnPosition[unit]=0;persist();view='practiceMenu';render();topview();return;}
+ if(action==='startPractice'){buildPractice(el.dataset.unit,el.dataset.count);return;}
+ if(action==='startTest'){buildTest(el.dataset.count==='full');return;}
+ if(action==='resume'){if(session){view=session.finished?'result':'quiz';render();topview();}return;}
+ if(action==='choose'){choose(Number(el.dataset.choice));return;}
+ if(action==='submit'){submit();return;}
+ if(action==='next'){next();return;}
+ if(action==='hint'){session.current.hintVisible=!session.current.hintVisible;persist();render();return;}
+ if(action==='continueTest'){session.paused=false;persist();render();topview();return;}
+ if(action==='reset'){resetAll();return;}
+});
+app.addEventListener('input',e=>{if(e.target.id==='answerInput'&&session&&!session.finished&&!session.paused){session.current.input=e.target.value;persist();}});
+app.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='answerInput'){e.preventDefault();submit();}});
+document.getElementById('homeBtn').addEventListener('click',()=>{view='home';render();topview();});
+document.getElementById('homeLink').addEventListener('click',e=>{e.preventDefault();view='home';render();topview();});
+const origHome=renderHome;
+renderHome=function(){origHome();const footer=app.querySelector('.footer');if(footer){footer.insertAdjacentHTML('afterend','<div class="resetLine"><button class="smallBtn" data-action="reset">Wyzeruj zapisane postępy</button></div>');}};
+render();
+</script>
+</body>
+</html>
