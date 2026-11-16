@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f8fb">
+  <meta name="description" content="Interaktywna nauka biologii: komórka zwierzęca, roślinna, bakteryjna i grzybowa. Krótkie lekcje, sprawdzenie i test końcowy.">
+  <title>Biologia: komórki | Nauka, sprawdzenie, test</title>
+  <style>
+    :root { color-scheme:light; --bg:#f6f8fb; --paper:#fff; --ink:#1b2a3a; --muted:#526274; --line:#dce4ec; --blue:#295c92; --light:#eef5fb; --green:#236d50; --green-bg:#eaf6ef; --red:#993e39; --red-bg:#fff0ee; --focus:#e6a23b; }
+    *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55}button{font:inherit;cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible{outline:4px solid var(--focus);outline-offset:3px}main{max-width:920px;margin:0 auto;padding:20px 18px 72px}.site-header{background:#fff;border-bottom:1px solid var(--line)}.head-inner{max-width:920px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-size:18px;font-weight:800;letter-spacing:-.035em}.brand .mark{display:inline-flex;align-items:center;justify-content:center;background:#dcebf8;color:var(--blue);border-radius:10px;width:40px;height:40px;margin-right:8px;font-size:15px}.head-actions{display:flex;gap:8px;flex-wrap:wrap}.nav-btn,.sound-btn{border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);padding:9px 12px;font-weight:650;font-size:14px}.sound-btn{white-space:nowrap}.eyebrow{font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);font-size:12px;margin:0 0 10px}.intro{padding:30px 0 16px}.intro h1,.page-heading h1{font-size:clamp(28px,5vw,38px);letter-spacing:-.045em;line-height:1.2;margin:0 0 12px}.intro p,.lead{font-size:18px;color:var(--muted);margin:0;max-width:720px}.summary{border:1px solid var(--line);border-radius:18px;padding:18px 20px;background:var(--paper);margin:22px 0}.summary-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:15px;font-weight:750}.progress{background:#e5edf4;overflow:hidden;height:9px;border-radius:99px;margin-top:12px}.progress > span{display:block;background:#3372ac;border-radius:99px;height:100%;transition:width .15s ease}.steps{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 20px}.step{background:var(--light);border:1px solid #d5e5f2;color:#2d4f6c;border-radius:10px;padding:8px 12px;font-size:14px;font-weight:650}.unit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.unit-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:19px 19px 17px;display:flex;flex-direction:column;gap:8px}.unit-meta{font-size:13px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.04em}.unit-card h2{font-size:20px;line-height:1.25;margin:0;letter-spacing:-.025em}.unit-card p{color:var(--muted);font-size:15px;flex:1;margin:0}.small-done{color:var(--green);font-weight:750;font-size:13px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{border-radius:13px;border:1px solid transparent;padding:13px 18px;font-size:16px;font-weight:750;min-height:52px;text-align:center}.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:#214d7c}.btn-secondary{background:#fff;color:var(--blue);border-color:#bdcbd8}.btn-quiet{background:#fff;color:var(--ink);border-color:var(--line)}.btn-small{min-height:42px;padding:8px 12px;font-size:14px;align-self:flex-start;margin-top:2px}.btn-block{width:100%}.divider{margin:28px 0;border:0;border-top:1px solid var(--line)}.test-promo{background:#fff;border:1px solid var(--line);padding:24px;border-radius:18px}.test-promo h2{font-size:23px;line-height:1.25;margin:0 0 8px}.test-promo p{font-size:16px;color:var(--muted);margin:0}.page-heading{margin:22px 0 18px}.page-heading .muted{color:var(--muted);font-weight:600;font-size:14px}.learning-card,.question-card,.result-card,.break-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,34px);box-shadow:0 3px 9px #19365208}.learning-card h2{font-size:clamp(25px,4.5vw,33px);line-height:1.25;letter-spacing:-.025em;margin:0 0 17px}.learn-text{font-size:clamp(20px,2.7vw,24px);font-weight:450;line-height:1.55;margin:0}.learn-text strong{font-weight:800}.remember{margin-top:24px;border-left:4px solid #80aed1;background:#f2f7fb;border-radius:0 12px 12px 0;padding:13px 15px;font-size:18px}.remember strong{font-weight:800}.learning-controls{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:18px}.question-card h2{font-size:clamp(23px,4vw,30px);line-height:1.32;letter-spacing:-.025em;margin:8px 0 26px}.answer-list{display:grid;gap:12px;margin-top:14px}.answer{width:100%;display:flex;align-items:center;gap:16px;min-height:68px;text-align:left;background:#fff;border:2px solid #d6e1ec;border-radius:14px;padding:12px 16px;color:var(--ink);font-size:clamp(17px,2.5vw,20px);font-weight:650}.answer:hover:not(:disabled){background:#f0f6fc;border-color:#a6c4dd}.answer .answer-letter{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;background:#eaf1f7;color:#315b80;font-size:15px;border-radius:9px;font-weight:850}.answer.is-selected{border-color:var(--blue);background:#eef5fb}.answer.correct{border-color:#71b397;background:var(--green-bg)}.answer.incorrect{border-color:#d99a91;background:var(--red-bg)}.feedback{margin-top:18px;padding:16px 18px;border-radius:14px;font-size:17px;line-height:1.5}.feedback.good{background:var(--green-bg);border:1px solid #afd9c0}.feedback.bad{background:var(--red-bg);border:1px solid #e9bab3}.feedback strong{font-weight:850}.feedback p{margin:4px 0 0}.question-bottom{display:flex;justify-content:flex-end;margin-top:20px}.meter{display:flex;align-items:center;gap:12px;margin-bottom:15px;color:var(--muted);font-size:14px;font-weight:700}.meter .progress{flex:1;margin:0;height:7px}.diagram{margin:20px auto 6px;max-width:520px}.diagram svg{width:100%;height:auto;display:block;max-height:290px}.diagram-caption{color:var(--muted);font-size:14px;text-align:center;margin:0 auto 8px;max-width:480px}.result-card h2,.break-card h2{margin:0 0 10px;font-size:clamp(25px,4vw,32px)}.result-card p,.break-card p{font-size:18px;margin:4px 0 14px;color:var(--muted)}.big-score{font-size:clamp(45px,9vw,70px);line-height:1.1;letter-spacing:-.05em;font-weight:850;color:var(--blue);margin:10px 0 15px}.review-list{padding:0;list-style:none;display:grid;gap:12px}.review-item{background:#f7f9fb;border:1px solid var(--line);border-radius:12px;padding:14px}.review-item h3{font-size:16px;margin:0 0 6px}.review-item p{font-size:15px;margin:5px 0}.review-item .good-text{color:var(--green);font-weight:800}.review-item .bad-text{color:var(--red);font-weight:700}.mini-table{margin-top:20px;display:grid;gap:8px}.comparison{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:12px}.comparison .mini-cell{border:1px solid var(--line);border-radius:10px;background:#fafbfd;padding:10px 6px;text-align:center}.mini-cell strong{display:block;font-size:13px;margin:4px 0}.mini-cell span{font-size:13px;color:var(--muted)}.small-note{color:var(--muted);font-size:14px;margin:12px 0 0}.status-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:20px 0}.status-list div{background:#f6f9fc;border:1px solid var(--line);border-radius:12px;padding:12px}.status-list strong{display:block;font-size:18px}.status-list span{font-size:13px;color:var(--muted)}.tip{font-size:15px;color:var(--muted);margin-top:14px}.foot{margin-top:34px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:13px} .quiet-space{height:6px}.hidden{display:none!important} @media(max-width:640px){main{padding:14px 14px 46px}.head-inner{padding:10px 14px}.brand{font-size:16px}.brand .mark{width:34px;height:34px}.unit-grid{grid-template-columns:1fr}.intro{padding-top:24px}.learning-card,.question-card,.result-card,.break-card{padding:20px 18px}.learning-controls{flex-wrap:wrap}.learning-controls .btn-primary{flex:1}.answer{min-height:66px;padding:12px}.comparison{grid-template-columns:repeat(2,minmax(0,1fr))}.status-list{grid-template-columns:1fr 1fr}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}@media print {.site-header,.btn,.head-actions,.sound-btn{display:none!important}body{background:white}main{max-width:100%}.result-card{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="head-inner"><div class="brand"><span class="mark">BIO</span> Świat komórek</div><div class="head-actions"><button type="button" class="nav-btn" data-action="home">Wszystkie tematy</button></div></div></header>
+  <main id="app" aria-live="polite"></main>
+  <script>
+  'use strict';
+  // Treści przygotowane wyłącznie na podstawie przesłanych stron 29–38 podręcznika.
+  const modules = [
+    {
+      id:'podstawy', title:'Czym jest komórka?', sub:'Najważniejsza definicja i rodzaje organizmów.',
+      cards:[
+        {title:'Wszystko zaczyna się od komórki',text:'<strong>Komórka</strong> jest najmniejszą częścią organizmu, która może wykonywać czynności życiowe.',remember:'Komórka = podstawowa jednostka życia.',art:'cells'},
+        {title:'Jedna albo wiele',text:'<strong>Jednokomórkowy</strong> organizm składa się z jednej komórki, np. bakteria. <strong>Wielokomórkowy</strong> składa się z wielu komórek, np. zwierzę.',remember:'Jednokomórkowy = 1 komórka. Wielokomórkowy = wiele komórek.'},
+        {title:'Nie wszystkie są takie same',text:'Komórki różnią się <strong>wielkością, kształtem i budową</strong>. Kształt często pomaga im wykonywać zadanie.',remember:'Inne zadanie może oznaczać inny kształt.'}
+      ],
+      check:[
+        {q:'Dlaczego komórkę nazywamy podstawową jednostką życia?',o:['Bo jest zawsze okrągła.','Bo wykonuje czynności życiowe.','Bo jest widoczna gołym okiem.'],a:1,why:'Komórka jest najmniejszą częścią organizmu zdolną do wykonywania czynności życiowych.'},
+        {q:'Z ilu komórek składa się organizm jednokomórkowy?',o:['Z jednej.','Z wielu.','Z dwóch.'],a:0,why:'Organizm jednokomórkowy ma tylko jedną komórkę.'},
+        {q:'Czym mogą się różnić komórki?',o:['Tylko kolorem.','Tylko miejscem występowania.','Wielkością, kształtem i budową.'],a:2,why:'Podręcznik wskazuje wielkość, kształt i budowę komórek.'}
+      ]
+    },
+    {
+      id:'ksztalty',title:'Kształty komórek',sub:'Plemnik, komórka nerwowa, jajowa i komórki roślin.',
+      cards:[
+        {title:'Ruch i zapasy',text:'<strong>Plemnik</strong> ma długą wić, dzięki której się porusza. <strong>Komórka jajowa</strong> ma kształt kuli i zawiera substancje zapasowe.',remember:'Plemnik: wić. Komórka jajowa: kula.',art:'shapes'},
+        {title:'Informacje i ochrona',text:'<strong>Komórka nerwowa</strong> ma długie wypustki do przekazywania informacji. <strong>Komórka nabłonka</strong> przypomina kostkę i tworzy warstwę ochronną.',remember:'Nerwowa: wypustki. Nabłonkowa: kostka i ochrona.'},
+        {title:'Kształty komórek roślin',text:'Komórki szparkowe przypominają <strong>nasiona fasoli</strong>. <strong>Włośniki</strong> są długie i pobierają wodę z solami mineralnymi. Komórki przewodzące wodę tworzą <strong>rury</strong>.',remember:'Kształt pomaga komórce w jej pracy.',art:'plantshape'}
+      ],
+      check:[
+        {q:'Co umożliwia plemnikowi ruch?',o:['Ściana komórkowa.','Długa wić.','Chloroplast.'],a:1,why:'Dzięki długiej wici plemnik może się przemieszczać.'},
+        {q:'Dlaczego komórka nerwowa ma długie wypustki?',o:['Żeby przekazywać informacje.','Żeby magazynować wodę.','Żeby chronić korzeń.'],a:0,why:'Wypustki łączą komórki nerwowe z innymi komórkami.'},
+        {q:'Które komórki rośliny pobierają wodę i sole mineralne z podłoża?',o:['Komórki szparkowe.','Komórki jajowe.','Włośniki.'],a:2,why:'Włośniki to długie komórki w korzeniu pobierające wodę i sole mineralne.'}
+      ]
+    },
+    {
+      id:'zwierzeca',title:'Komórka zwierzęca',sub:'Błona, cytoplazma, cytozol i jądro.',
+      cards:[
+        {title:'Co otacza komórkę?',text:'<strong>Błona komórkowa</strong> otacza komórkę, oddziela ją od otoczenia i transportuje substancje do środka i na zewnątrz.',remember:'Błona = granica i transport.',art:'animal'},
+        {title:'Co wypełnia komórkę?',text:'Wnętrze wypełnia <strong>cytoplazma</strong>. Jej galaretowatą częścią jest <strong>cytozol</strong>, w którym znajdują się inne elementy komórki.',remember:'Cytozol = galaretowata część cytoplazmy.'},
+        {title:'Kto kieruje pracą?',text:'<strong>Jądro komórkowe</strong> kieruje procesami w komórce. Zawiera <strong>DNA</strong>. Zwykle znajduje się blisko środka komórki.',remember:'Jądro = kieruje pracą i zawiera DNA.',art:'animal'}
+      ],
+      check:[
+        {q:'Co oddziela wnętrze komórki zwierzęcej od otoczenia?',o:['Błona komórkowa.','Rybosom.','Wakuola.'],a:0,why:'To błona komórkowa tworzy granicę i uczestniczy w transporcie substancji.'},
+        {q:'Jak nazywa się galaretowata część cytoplazmy?',o:['Chloroplast.','Jądro.','Cytozol.'],a:2,why:'Cytozol to galaretowata substancja wypełniająca komórkę.'},
+        {q:'Gdzie w komórce zwierzęcej znajduje się DNA?',o:['W ścianie komórkowej.','W jądrze komórkowym.','W wici.'],a:1,why:'Jądro komórkowe zawiera DNA i kieruje procesami w komórce.'}
+      ]
+    },
+    {
+      id:'funkcje',title:'Do czego służą elementy?',sub:'Mitochondria, rybosomy, wakuole i inne.',
+      cards:[
+        {title:'Energia i białka',text:'<strong>Mitochondria</strong> dostarczają energii komórce. <strong>Rybosomy</strong> odpowiadają za wytwarzanie białek.',remember:'Mitochondrium = energia. Rybosom = białka.',art:'animal'},
+        {title:'Małe pęcherzyki',text:'<strong>Wakuole (wodniczki)</strong> w komórce zwierzęcej mają postać małych pęcherzyków. Mogą uczestniczyć w pobieraniu, trawieniu i usuwaniu substancji.',remember:'Wakuola = pęcherzyk uczestniczący w różnych czynnościach.'},
+        {title:'Transport wewnątrz komórki',text:'<strong>Aparat Golgiego</strong> przekształca i transportuje białka. <strong>Siateczka śródplazmatyczna</strong> bierze udział w wytwarzaniu i transporcie białek i tłuszczów.',remember:'Aparat Golgiego i siateczka pomagają w wytwarzaniu lub transporcie substancji.'}
+      ],
+      check:[
+        {q:'Który element dostarcza komórce energii?',o:['Rybosom.','Mitochondrium.','Wakuola.'],a:1,why:'Mitochondrium to centrum energetyczne komórki.'},
+        {q:'Co wytwarzają rybosomy?',o:['Białka.','Wodę.','Ścianę komórkową.'],a:0,why:'Rybosomy odpowiadają za wytwarzanie białek.'},
+        {q:'Który element przekształca i transportuje białka?',o:['Jądro komórkowe.','Wić.','Aparat Golgiego.'],a:2,why:'Aparat Golgiego odpowiada za przekształcanie i transportowanie białek.'}
+      ]
+    },
+    {
+      id:'jadrowe',title:'Jądrowe i bezjądrowe',sub:'Jaka jest najważniejsza różnica?',
+      cards:[
+        {title:'Komórki jądrowe',text:'Komórki <strong>zwierząt, roślin i grzybów</strong> mają jądro komórkowe. Dlatego nazywamy je <strong>jądrowymi</strong>.',remember:'Zwierzęca + roślinna + grzybowa = jądrowe.',art:'animal'},
+        {title:'Komórki bezjądrowe',text:'Komórki <strong>bakterii</strong> nie mają jądra komórkowego. Ich <strong>nić DNA</strong> znajduje się w cytozolu.',remember:'Bakteria: bez jądra, ale ma DNA.',art:'bacteria'},
+        {title:'Co jest wspólne?',text:'Każdy z czterech omawianych rodzajów komórek ma <strong>błonę komórkową, cytozol i rybosomy</strong>.',remember:'Wszystkie: błona + cytozol + rybosomy.'}
+      ],
+      check:[
+        {q:'Która z tych komórek jest bezjądrowa?',o:['Zwierzęca.','Roślinna.','Bakteryjna.'],a:2,why:'Komórka bakteryjna nie ma jądra komórkowego.'},
+        {q:'Gdzie znajduje się nić DNA bakterii?',o:['W cytozolu.','W jądrze komórkowym.','W chloroplaście.'],a:0,why:'Bakteria nie ma jądra, a jej DNA znajduje się w cytozolu.'},
+        {q:'Co mają wszystkie cztery rodzaje komórek?',o:['Chloroplasty.','Błonę komórkową.','Jądro komórkowe.'],a:1,why:'Błona występuje w komórce zwierzęcej, roślinnej, grzybowej i bakteryjnej.'}
+      ]
+    },
+    {
+      id:'roslinna',title:'Komórka roślinna',sub:'Ściana komórkowa, chloroplasty i duża wakuola.',
+      cards:[
+        {title:'Dodatkowa osłona',text:'Poza błoną komórka roślinna ma <strong>ścianę komórkową</strong>. Nadaje jej kształt i chroni ją. Głównym składnikiem ściany jest <strong>celuloza</strong>.',remember:'Ściana komórkowa = kształt i ochrona.',art:'plant'},
+        {title:'Zielone chloroplasty',text:'<strong>Chloroplasty</strong> zawierają zielony barwnik <strong>chlorofil</strong>. Dzięki nim zachodzi <strong>fotosynteza</strong>, czyli wytwarzanie substancji pokarmowych.',remember:'Chloroplast = fotosynteza.',art:'plant'},
+        {title:'Duża wakuola',text:'W typowej komórce roślinnej jest zwykle <strong>jedna duża wakuola</strong>. Zawiera głównie wodę i pomaga utrzymać jej odpowiednią ilość w komórce.',remember:'Komórka roślinna: zwykle jedna duża wakuola.'},
+        {title:'Nie zapomnij o wspólnych częściach',text:'Komórka roślinna ma też <strong>błonę, cytozol, jądro, mitochondria i rybosomy</strong>, podobnie jak komórka zwierzęca.',remember:'Roślinna = wspólne części + ściana + chloroplasty.'}
+      ],
+      check:[
+        {q:'Co nadaje komórce roślinnej kształt i chroni ją?',o:['Ściana komórkowa.','Wić.','Rybosom.'],a:0,why:'Sztywna ściana komórkowa nadaje kształt i chroni komórkę.'},
+        {q:'Gdzie zachodzi fotosynteza?',o:['W mitochondriach.','W chloroplastach.','W rybosomach.'],a:1,why:'Chloroplasty odpowiadają za przeprowadzanie fotosyntezy.'},
+        {q:'Jaka wakuola najczęściej występuje w komórce roślinnej?',o:['Brak wakuoli.','Wiele drobnych wakuol.','Jedna duża wakuola.'],a:2,why:'Podręcznik opisuje zwykle jedną dużą wakuolę położoną w centrum komórki roślinnej.'}
+      ]
+    },
+    {
+      id:'bakteryjna',title:'Komórka bakteryjna',sub:'Nić DNA, ściana, otoczka i rzęska.',
+      cards:[
+        {title:'Bakteria nie ma jądra',text:'Komórka bakteryjna ma <strong>nić DNA w cytozolu</strong>. Są w niej także <strong>rybosomy i błona komórkowa</strong>. Nie ma jądra ani mitochondriów.',remember:'Bakteria = nić DNA zamiast jądra.',art:'bacteria'},
+        {title:'Ściana i otoczka',text:'Na zewnątrz błony bakteria ma <strong>ścianę komórkową</strong>. Niektóre bakterie mają również <strong>otoczkę śluzową</strong>, która chroni m.in. przed wysychaniem.',remember:'Otoczka śluzowa: dodatkowa ochrona.'},
+        {title:'Jak bakteria się porusza?',text:'Niektóre bakterie mają <strong>rzęski</strong>, dzięki którym mogą się poruszać. Nie wszystkie bakterie mają rzęski.',remember:'Rzęska = ruch bakterii.',art:'bacteria'}
+      ],
+      check:[
+        {q:'Czego nie ma komórka bakteryjna?',o:['Rybosomów.','Jądra komórkowego.','Błony komórkowej.'],a:1,why:'DNA bakterii nie znajduje się w jądrze, tylko w cytozolu.'},
+        {q:'Co chroni niektóre bakterie przed wysychaniem?',o:['Otoczka śluzowa.','Chloroplast.','Jądro.'],a:0,why:'Otoczka śluzowa niektórych bakterii chroni je między innymi przed wysychaniem.'},
+        {q:'Co umożliwia ruch części komórek bakteryjnych?',o:['Wakuola.','Ściana komórkowa.','Rzęska.'],a:2,why:'Niektóre bakterie poruszają się za pomocą rzęski.'}
+      ]
+    },
+    {
+      id:'grzybowa',title:'Komórka grzybowa',sub:'Co łączy grzyby z roślinami i zwierzętami?',
+      cards:[
+        {title:'Grzyb ma jądro',text:'Komórka grzybowa ma <strong>jądro komórkowe, błonę, cytozol, mitochondria, rybosomy i wakuole</strong>. Jest komórką jądrową.',remember:'Komórka grzybowa ma jądro.',art:'fungus'},
+        {title:'Grzyb ma też ścianę',text:'Podobnie jak komórka roślinna, ma <strong>ścianę komórkową</strong>. U grzybów jest ona zbudowana z <strong>chityny</strong>, a u roślin głównie z celulozy.',remember:'Grzyb = chityna. Roślina = celuloza.'},
+        {title:'A co z chloroplastami?',text:'Komórka grzybowa <strong>nie ma chloroplastów</strong>. Chloroplasty występują w typowych komórkach zielonych części roślin.',remember:'Grzyb ma ścianę, ale nie ma chloroplastów.',art:'fungus'}
+      ],
+      check:[
+        {q:'Z jakiej substancji jest zbudowana ściana komórkowa grzybów?',o:['Z chlorofilu.','Z celulozy.','Z chityny.'],a:2,why:'W podręczniku podano, że ściana komórkowa grzyba zawiera chitynę.'},
+        {q:'Czy komórka grzybowa ma jądro komórkowe?',o:['Tak.','Nie.','Tylko wtedy, gdy ma rzęskę.'],a:0,why:'Komórki grzybowe należą do komórek jądrowych.'},
+        {q:'Czego nie ma w komórce grzybowej?',o:['Mitochondriów.','Chloroplastów.','Błony komórkowej.'],a:1,why:'Grzyby nie mają chloroplastów.'}
+      ]
+    },
+    {
+      id:'porownanie',title:'Porównanie i mikroskop',sub:'Cztery rodzaje komórek i proste obserwacje.',
+      cards:[
+        {title:'Cztery rodzaje komórek',text:'<strong>Zwierzęca:</strong> brak ściany i chloroplastów. <strong>Roślinna:</strong> ściana i chloroplasty. <strong>Grzybowa:</strong> ściana bez chloroplastów. <strong>Bakteryjna:</strong> ściana, ale bez jądra.',remember:'Najważniejsze różnice to jądro, ściana i chloroplasty.',art:'compare'},
+        {title:'Jak obejrzeć nabłonek jamy ustnej?',text:'Dotknij wewnętrznej strony policzka patyczkiem, przenieś komórki na <strong>szkiełko podstawowe</strong> i przykryj <strong>szkiełkiem nakrywkowym</strong>.',remember:'Policzek → szkiełko podstawowe → nakrywkowe.'},
+        {title:'Jak obejrzeć liść moczarki?',text:'Na szkiełku podstawowym umieść <strong>kroplę wody</strong>, potem liść moczarki i przykryj szkiełkiem nakrywkowym. Zacznij od <strong>najmniejszego powiększenia</strong>.',remember:'Woda → liść → nakrywkowe → małe powiększenie.'},
+        {title:'Co narysować po obserwacji?',text:'Narysuj zaobserwowane komórki i <strong>podpisz rozpoznane elementy</strong>. W liściu moczarki wskaż np. chloroplasty, ścianę komórkową i jądro.',remember:'Obserwacja = oglądam, rysuję, podpisuję.'}
+      ],
+      check:[
+        {q:'Która komórka ma ścianę komórkową i chloroplasty?',o:['Zwierzęca.','Roślinna.','Grzybowa.'],a:1,why:'W porównaniu w podręczniku te dwa elementy występują razem w komórce roślinnej.'},
+        {q:'Od jakiego powiększenia zaczynamy obserwację pod mikroskopem?',o:['Od najmniejszego.','Od największego.','Od dowolnego.'],a:0,why:'Podręcznik zaleca rozpoczęcie od najmniejszego powiększenia.'},
+        {q:'Co umieszczamy najpierw na szkiełku podczas przygotowania liścia moczarki?',o:['Komórki z policzka.','Szkiełko nakrywkowe.','Kroplę wody.'],a:2,why:'Przygotowanie preparatu moczarki zaczyna się od naniesienia kropli wody.'}
+      ]
+    }
+  ];
+
+  // Po trzy różne zadania na temat. Do testu końcowego trafiają dwa losowe z każdego działu.
+  const finalBank = {
+    podstawy:[
+      {q:'Jak nazywamy najmniejszą część organizmu zdolną do wykonywania czynności życiowych?',o:['Tkanka.','Komórka.','Narząd.'],a:1,why:'Taką podstawową jednostką życia jest komórka.'},
+      {q:'Który z podanych organizmów może być jednokomórkowy?',o:['Bakteria.','Pies.','Człowiek.'],a:0,why:'Bakterie to organizmy jednokomórkowe.'},
+      {q:'Dlaczego komórki mogą mieć różne kształty?',o:['Bo każda ma inny kolor.','Bo wszystkie rosną tak samo.','Bo pełnią różne funkcje.'],a:2,why:'Kształt komórki wiąże się z pełnioną przez nią funkcją.'}
+    ],
+    ksztalty:[
+      {q:'Komórka jajowa ma zwykle kształt...',o:['kuli.','rury.','długiej nici.'],a:0,why:'Komórka jajowa ma kształt kuli i zawiera substancje zapasowe.'},
+      {q:'Która komórka ma długie wypustki do przekazywania informacji?',o:['Komórka jajowa.','Komórka nabłonka.','Komórka nerwowa.'],a:2,why:'Komórka nerwowa łączy się za pomocą wypustek z innymi komórkami.'},
+      {q:'Do czego służy szparka między komórkami szparkowymi?',o:['Do magazynowania tłuszczu.','Do wymiany gazów.','Do poruszania korzeniem.'],a:1,why:'Przez szparkę przenikają tlen i dwutlenek węgla.'}
+    ],
+    zwierzeca:[
+      {q:'Który element kieruje procesami w komórce zwierzęcej?',o:['Mitochondrium.','Błona komórkowa.','Jądro komórkowe.'],a:2,why:'Jądro komórkowe kieruje wszystkimi procesami w komórce.'},
+      {q:'Co może przenikać do wnętrza i na zewnątrz komórki dzięki błonie?',o:['Różne substancje.','Tylko całe komórki.','Wyłącznie jądra komórkowe.'],a:0,why:'Błona komórkowa odpowiada między innymi za transport substancji.'},
+      {q:'W czym są zanurzone elementy cytoplazmy?',o:['W ścianie komórkowej.','W cytozolu.','W DNA.'],a:1,why:'Cytozol jest galaretowatą częścią cytoplazmy.'}
+    ],
+    funkcje:[
+      {q:'Komórka potrzebuje energii. Który element ją dostarcza?',o:['Mitochondrium.','Rybosom.','Jądro.'],a:0,why:'Mitochondrium pełni funkcję centrum energetycznego komórki.'},
+      {q:'Które elementy mają postać drobnych ziarenek i wytwarzają białka?',o:['Wakuole.','Rybosomy.','Chloroplasty.'],a:1,why:'Rybosomy są drobne i odpowiadają za produkcję białek.'},
+      {q:'Który element uczestniczy w produkcji i transporcie białek oraz tłuszczów?',o:['Rzęska.','Otoczka śluzowa.','Siateczka śródplazmatyczna.'],a:2,why:'Siateczka śródplazmatyczna bierze udział w produkcji i transporcie białek i tłuszczów.'}
+    ],
+    jadrowe:[
+      {q:'Wskaż zestaw zawierający wyłącznie komórki jądrowe.',o:['Zwierzęca, roślinna, grzybowa.','Bakteryjna, roślinna, grzybowa.','Bakteryjna, zwierzęca, roślinna.'],a:0,why:'Jądro mają komórki zwierzęce, roślinne i grzybowe; bakterie go nie mają.'},
+      {q:'Co występuje we wszystkich czterech rodzajach komórek opisanych w podręczniku?',o:['Jądro komórkowe.','Błona komórkowa, cytozol, rybosomy.','Chloroplasty i mitochondria.'],a:1,why:'Błona, cytozol i rybosomy występują także u bakterii.'},
+      {q:'Co w komórce bakterii zastępuje jądro komórkowe jako miejsce występowania DNA?',o:['Duża wakuola.','Chloroplast.','Nić DNA zanurzona w cytozolu.'],a:2,why:'Bakteria nie ma jądra, a jej nić DNA znajduje się w cytozolu.'}
+    ],
+    roslinna:[
+      {q:'Jak nazywa się zielony barwnik występujący w chloroplastach?',o:['Chityna.','Chlorofil.','Celuloza.'],a:1,why:'Chloroplasty zawierają zielony barwnik – chlorofil.'},
+      {q:'Jaki jest główny składnik ściany komórkowej rośliny?',o:['Celuloza.','Chityna.','DNA.'],a:0,why:'Ściana komórkowa rośliny jest zbudowana głównie z celulozy.'},
+      {q:'Co pomaga utrzymywać odpowiednią ilość wody w typowej komórce roślinnej?',o:['Rzęska.','Rybosom.','Duża wakuola.'],a:2,why:'Duża wakuola zawiera głównie wodę i pomaga utrzymać jej ilość.'}
+    ],
+    bakteryjna:[
+      {q:'Którego elementu NIE ma komórka bakteryjna?',o:['Ściany komórkowej.','Mitochondrium.','Rybosomów.'],a:1,why:'Bakterie nie mają mitochondriów.'},
+      {q:'Jaka część występuje u niektórych bakterii i pomaga im się poruszać?',o:['Rzęska.','Jądro komórkowe.','Chloroplast.'],a:0,why:'Niektóre bakterie mają rzęski służące do ruchu.'},
+      {q:'Które zdanie opisuje komórkę bakteryjną?',o:['Zawsze ma chloroplasty.','Ma jądro i mitochondria.','Ma błonę, cytozol i rybosomy.'],a:2,why:'Te trzy składniki występują w komórce bakteryjnej.'}
+    ],
+    grzybowa:[
+      {q:'Co odróżnia ścianę komórkową grzyba od ściany komórki roślinnej?',o:['Grzybowa jest z chityny, roślinna głównie z celulozy.','Grzybowa jest z chlorofilu, roślinna z DNA.','Obie zbudowane są wyłącznie z DNA.'],a:0,why:'Grzyb ma ścianę z chityny, a roślina głównie z celulozy.'},
+      {q:'Które elementy występują w komórce grzybowej?',o:['Chloroplasty i rzęski.','Jądro komórkowe i mitochondria.','Nić DNA bez jądra i chloroplasty.'],a:1,why:'Komórka grzybowa jest jądrowa i ma mitochondria.'},
+      {q:'Co łączy komórkę roślinną i grzybową, a odróżnia je od zwierzęcej?',o:['Obecność chloroplastów.','Brak jądra.','Obecność ściany komórkowej.'],a:2,why:'Komórki roślinne i grzybowe mają ścianę, a zwierzęce nie.'}
+    ],
+    porownanie:[
+      {q:'Która komórka ma ścianę komórkową, ale nie ma jądra?',o:['Roślinna.','Bakteryjna.','Grzybowa.'],a:1,why:'Bakteria ma ścianę komórkową, lecz nie ma jądra.'},
+      {q:'Podczas oglądania preparatu najpierw ustawiamy...',o:['najmniejsze powiększenie.','największe powiększenie.','obojętnie jakie powiększenie.'],a:0,why:'Obserwację mikroskopową zaczyna się od najmniejszego powiększenia.'},
+      {q:'W jakiej kolejności przygotowujemy preparat liścia moczarki?',o:['Liść → nakrywkowe → kropla wody.','Nakrywkowe → liść → kropla wody.','Kropla wody → liść → nakrywkowe.'],a:2,why:'Najpierw kropla wody na szkiełko podstawowe, potem liść, na końcu szkiełko nakrywkowe.'}
+    ]
+  };
+
+  const savedKey = 'quiz-komorki-postep-v1';
+  let progress = {done:[],lastExam:null};
+  try {const p=JSON.parse(localStorage.getItem(savedKey)||'null');if(p&&Array.isArray(p.done)){progress.done=p.done.filter(id=>modules.some(m=>m.id===id));progress.lastExam=p.lastExam||null}}catch(e){}
+  const state={page:'home',mi:0,ci:0,qi:0,checkQuestions:[],checkAnswers:[],examQuestions:[],examAnswers:[],examIndex:0,reviewQuestions:[],reviewAnswers:[],reviewIndex:0};
+  // Zachowujemy ostatni układ, żeby następne uruchomienie nie powtórzyło tej samej kolejności.
+  const shuffleKey='quiz-komorki-losowanie-v1';
+  let shuffleHistory={orders:{},options:{}};
+  try {
+    const saved=JSON.parse(localStorage.getItem(shuffleKey)||'null');
+    if(saved&&saved.orders&&saved.options)shuffleHistory=saved;
+  }catch(e){}
+  const app=document.getElementById('app');
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const save=()=>{try{localStorage.setItem(savedKey,JSON.stringify(progress))}catch(e){}};
+  const mod=()=>modules[state.mi];
+  const percent=(a,b)=>Math.round((a/b)*100);
+  const jump=()=>window.scrollTo({top:0,behavior:'instant'});
+  function speakCurrent(){if(!('speechSynthesis' in window))return;window.speechSynthesis.cancel();const t=document.querySelector('[data-readable]');if(!t)return;const speech=new SpeechSynthesisUtterance(t.innerText);speech.lang='pl-PL';speech.rate=.88;window.speechSynthesis.speak(speech)}
+  function stopSpeech(){if('speechSynthesis' in window)window.speechSynthesis.cancel()}
+  const listen=()=>('speechSynthesis' in window?'<button class="sound-btn" type="button" data-action="speak" aria-label="Przeczytaj na głos aktualną treść">🔊 Czytaj na głos</button>':'');
+  const btn=(action,label,cls='btn-primary',disabled=false)=>`<button type="button" class="btn ${cls}" data-action="${action}" ${disabled?'disabled':''}>${label}</button>`;
+  const meter=(n,total,label)=>`<div class="meter"><span>${esc(label)} ${n} / ${total}</span><div class="progress" aria-label="Postęp"><span style="width:${percent(n,total)}%"></span></div></div>`;
+  function svgArt(kind){
+    if(kind==='animal'||kind==='cells')return `<div class="diagram"><svg viewBox="0 0 520 280" role="img" aria-label="Uproszczony schemat komórki zwierzęcej: błona, cytozol, jądro, mitochondria, drobne rybosomy i wakuola">
+    <ellipse cx="260" cy="140" rx="195" ry="112" fill="#d9edf0" stroke="#4d7d83" stroke-width="6"/>
+    <g fill="#ca804a" stroke="#9b552b" stroke-width="2"><ellipse cx="140" cy="119" rx="38" ry="18" transform="rotate(-25 140 119)"/><ellipse cx="375" cy="169" rx="34" ry="18" transform="rotate(24 375 169)"/></g>
+    <g fill="none" stroke="#fff0cf" stroke-width="2.3"><path d="M116 119l15 -8 12 10 14 -10 11 8"/><path d="M352 169l12 -9 12 10 10 -9 9 6"/></g>
+    <ellipse cx="273" cy="137" rx="75" ry="64" fill="#8574aa" stroke="#544577" stroke-width="5"/><circle cx="283" cy="128" r="14" fill="#5d4a7e"/>
+    <g fill="none" stroke="#aa8eae" stroke-width="6" stroke-linecap="round"><path d="M195 52Q268 22 331 61"/><path d="M188 208Q271 248 341 216"/><path d="M359 89q34 18 24 39"/></g>
+    <g fill="#486a70"><circle cx="119" cy="180" r="3"/><circle cx="152" cy="188" r="3"/><circle cx="170" cy="76" r="3"/><circle cx="364" cy="71" r="3"/><circle cx="405" cy="128" r="3"/><circle cx="330" cy="218" r="3"/><circle cx="223" cy="229" r="3"/></g>
+    <circle cx="406" cy="97" r="22" fill="#eff9fc" stroke="#86b8c5" stroke-width="3"/><text x="260" y="268" text-anchor="middle" fill="#526274" font-size="15">Komórka zwierzęca · uproszczony rysunek</text></svg></div><p class="diagram-caption">Fioletowe: jądro. Pomarańczowe: mitochondria. Drobne kropki: rybosomy.</p>`;
+    if(kind==='plant')return `<div class="diagram"><svg viewBox="0 0 520 290" role="img" aria-label="Uproszczony schemat komórki roślinnej ze ścianą komórkową, jądrem, dużą wakuolą, chloroplastami i mitochondrium"><path d="M96 50L194 20L384 38L445 102L415 230L284 268L111 239L69 143Z" fill="#b7c892" stroke="#6c8744" stroke-width="14" stroke-linejoin="round"/><path d="M98 55L194 31L378 48L429 105L404 220L278 256L121 230L82 143Z" fill="#d9eaf0" stroke="#7eaa9c" stroke-width="4"/>
+    <path d="M174 118Q260 73 373 119Q401 151 357 206Q255 230 168 200Q138 171 174 118Z" fill="#eef9fd" stroke="#93b6c7" stroke-width="4"/>
+    <ellipse cx="223" cy="79" rx="38" ry="30" fill="#8675a8" stroke="#55497d" stroke-width="4"/>
+    <g fill="#6b9c57" stroke="#2d7145" stroke-width="4"><ellipse cx="133" cy="113" rx="27" ry="15" transform="rotate(70 133 113)"/><ellipse cx="344" cy="69" rx="31" ry="15" transform="rotate(-16 344 69)"/><ellipse cx="385" cy="190" rx="29" ry="15" transform="rotate(-70 385 190)"/></g>
+    <g fill="none" stroke="#c7e8af" stroke-width="3"><path d="M124 96l13 10 -8 12 12 9"/><path d="M321 65l14 -5 13 11 11 -10"/><path d="M376 168l12 14 -10 11 13 14"/></g><ellipse cx="158" cy="213" rx="26" ry="13" transform="rotate(20 158 213)" fill="#d18a52" stroke="#a46038" stroke-width="3"/>
+    <g fill="#4e807e"><circle cx="325" cy="219" r="3"/><circle cx="347" cy="219" r="3"/><circle cx="156" cy="69" r="3"/></g><text x="260" y="286" text-anchor="middle" fill="#526274" font-size="15">Komórka roślinna · uproszczony rysunek</text></svg></div><p class="diagram-caption">Gruby zielony obrys: ściana. Zielone owale: chloroplasty. Jasne wnętrze: duża wakuola.</p>`;
+    if(kind==='bacteria')return `<div class="diagram"><svg viewBox="0 0 520 245" role="img" aria-label="Uproszczony schemat bakterii: ściana komórkowa, błona, nić DNA, rybosomy i rzęska"><path d="M380 151C430 170 430 212 474 213" fill="none" stroke="#9c774e" stroke-width="6" stroke-linecap="round"/><rect x="87" y="45" width="335" height="150" rx="75" fill="#e1efd9" stroke="#6c8e67" stroke-width="12"/><rect x="99" y="57" width="311" height="126" rx="63" fill="#d7e9f0" stroke="#90aeb1" stroke-width="4"/>
+    <path d="M160 120q28 -62 50 0t53 0t51 0t51 0" fill="none" stroke="#805b8e" stroke-width="6" stroke-linecap="round"/><g fill="#4a7d77"><circle cx="143" cy="91" r="5"/><circle cx="177" cy="159" r="5"/><circle cx="246" cy="82" r="5"/><circle cx="339" cy="160" r="5"/><circle cx="381" cy="111" r="5"/><circle cx="291" cy="160" r="5"/><circle cx="128" cy="139" r="5"/></g>
+    <text x="256" y="236" text-anchor="middle" fill="#526274" font-size="15">Bakteria · uproszczony rysunek</text></svg></div><p class="diagram-caption">Fioletowa nić: DNA. Kropki: rybosomy. Długi „ogon”: rzęska.</p>`;
+    if(kind==='fungus')return `<div class="diagram"><svg viewBox="0 0 520 260" role="img" aria-label="Uproszczony schemat komórki grzybowej: ściana, błona, jądro, mitochondria i wakuola"><ellipse cx="260" cy="126" rx="170" ry="108" fill="#dbc0a0" stroke="#a57c50" stroke-width="13"/><ellipse cx="260" cy="126" rx="158" ry="96" fill="#daedf1" stroke="#8bb2ad" stroke-width="4"/><circle cx="245" cy="113" r="55" fill="#8872a4" stroke="#5f507c" stroke-width="5"/><circle cx="255" cy="110" r="11" fill="#5e4a7e"/><ellipse cx="354" cy="166" rx="37" ry="26" fill="#f2fafc" stroke="#9cc2cd" stroke-width="3"/><g fill="#d18c58" stroke="#a56339" stroke-width="3"><ellipse cx="156" cy="125" rx="33" ry="15" transform="rotate(-35 156 125)"/><ellipse cx="354" cy="90" rx="33" ry="15" transform="rotate(40 354 90)"/></g><g fill="#577880"><circle cx="171" cy="77" r="4"/><circle cx="192" cy="188" r="4"/><circle cx="303" cy="197" r="4"/><circle cx="340" cy="55" r="4"/></g><text x="260" y="255" text-anchor="middle" fill="#526274" font-size="15">Komórka grzybowa · uproszczony rysunek</text></svg></div><p class="diagram-caption">Brązowy obrys: ściana z chityny. Fioletowe: jądro. Nie ma chloroplastów.</p>`;
+    if(kind==='shapes')return `<div class="diagram"><svg viewBox="0 0 520 205" role="img" aria-label="Kształty komórek: plemnik z wicią, komórka jajowa kula, komórka nerwowa z wypustkami"><g stroke="#447c9d" fill="none" stroke-width="5" stroke-linecap="round"><path d="M96 68q-16 27 1 49t-20 28t-9 32"/></g><ellipse cx="95" cy="53" rx="17" ry="25" fill="#8bbbd6" stroke="#447c9d" stroke-width="3" transform="rotate(-20 95 53)"/><circle cx="252" cy="88" r="45" fill="#f2c36a" stroke="#bf9353" stroke-width="4"/><g stroke="#7e6650" stroke-width="4" stroke-linecap="round"><path d="M412 88L376 44M412 88l3 -62M412 88l41 -40M412 88l50 10M412 88l-48 39M412 88l25 54M412 88l12 77M376 44l-16 -9M376 44l1 -19M453 48l15 -8M364 127l-14 -5M437 142l10 8"/></g><circle cx="412" cy="88" r="17" fill="#c8a17c" stroke="#83644c" stroke-width="4"/><g text-anchor="middle" fill="#526274" font-size="15"><text x="92" y="201">Plemnik</text><text x="252" y="153">Komórka jajowa</text><text x="414" y="201">Nerwowa</text></g></svg></div>`;
+    if(kind==='plantshape')return `<div class="diagram"><svg viewBox="0 0 520 205" role="img" aria-label="Kształty komórek roślinnych: dwie fasolkowate komórki szparkowe, włośnik i długa komórka przewodząca wodę"><path d="M88 35q-55 38 -13 95q35 22 53 -30q-44 10 -40 -65Z" fill="#8ec08d" stroke="#397c5a" stroke-width="4"/><path d="M137 34q49 51 4 99q-35 9 -33 -34q37 -15 29 -65Z" fill="#8ec08d" stroke="#397c5a" stroke-width="4"/><g fill="#bd9876" stroke="#886b52" stroke-width="4"><path d="M214 35h54v79l18 14 56 27 -62 -12 -23 -16 -43 -1Z"/><path d="M375 28h59v124h-59Z"/></g><g stroke="#845f3e" stroke-width="5" fill="none"><path d="M378 45q40 6 53 28M378 70q40 6 53 28M378 95q40 6 53 28M378 120q40 6 53 28"/></g><g text-anchor="middle" fill="#526274" font-size="15"><text x="110" y="185">Szparkowe</text><text x="269" y="185">Włośnik</text><text x="405" y="185">Transport wody</text></g></svg></div>`;
+    if(kind==='compare')return `<div class="comparison" role="group" aria-label="Porównanie komórek"><div class="mini-cell"><strong>Zwierzęca</strong><span>Jądro: tak<br>Ściana: nie<br>Chloroplasty: nie</span></div><div class="mini-cell"><strong>Roślinna</strong><span>Jądro: tak<br>Ściana: tak<br>Chloroplasty: tak*</span></div><div class="mini-cell"><strong>Grzybowa</strong><span>Jądro: tak<br>Ściana: tak<br>Chloroplasty: nie</span></div><div class="mini-cell"><strong>Bakteryjna</strong><span>Jądro: nie<br>Ściana: tak<br>Chloroplasty: nie</span></div></div><p class="small-note">* Dotyczy typowej komórki zielonej części rośliny, np. liścia.</p>`;
+    return '';
+  }
+  function home(){
+    const done=progress.done.length;
+    const next=modules.findIndex(x=>!progress.done.includes(x.id));
+    return `<section class="intro"><p class="eyebrow">Biologia · dział o komórkach</p><h1>Odkryj świat komórek</h1><p>9 krótkich tematów. W każdym: kilka małych lekcji i 3 pytania sprawdzające. Na koniec jeden wspólny test. <strong>Kolejność pytań i odpowiedzi zmienia się w każdej próbie.</strong></p></section>
+      <div class="steps" aria-label="Etapy nauki"><span class="step">1. Nauka</span><span class="step">2. Test sprawdzający</span><span class="step">3. Test końcowy</span></div>
+      <section class="summary"><div class="summary-top"><span>Ukończone tematy</span><span>${done} z ${modules.length}</span></div><div class="progress"><span style="width:${percent(done,modules.length)}%"></span></div><div class="actions">${btn('continue',done===modules.length?'Powtórz pierwszy temat':done>0?'Kontynuuj naukę':'Zacznij naukę')}</div></section>
+      <h2 id="units-heading" style="font-size:22px;margin:25px 0 14px">Wybierz krótki temat</h2><div class="unit-grid" aria-labelledby="units-heading">${modules.map((m,i)=>`<article class="unit-card"><div class="unit-meta">Temat ${String(i+1).padStart(2,'0')} · ${m.cards.length} krótkie ekrany</div><h2>${esc(m.title)}</h2><p>${esc(m.sub)}</p>${progress.done.includes(m.id)?'<span class="small-done">✓ Ukończony test sprawdzający</span>':''}<button type="button" class="btn btn-secondary btn-small" data-action="start-lesson" data-mi="${i}">${progress.done.includes(m.id)?'Powtórz temat':'Ucz się'}</button></article>`).join('')}</div>
+      <hr class="divider"><section class="test-promo"><h2>Test końcowy</h2><p>18 pytań podzielonych na 3 rundy po 6. Bez limitu czasu. Po każdej rundzie możesz zrobić przerwę. Wynik pokaże się na końcu.</p>${progress.lastExam?`<p class="small-note"><strong>Ostatni wynik:</strong> ${progress.lastExam.score} / ${progress.lastExam.total}</p>`:''}<div class="actions">${btn('exam-intro','Przejdź do testu końcowego')}</div></section><p class="foot">Materiał: przesłane zdjęcia podręcznika, strony 29–38. Postęp zapisuje się na tym urządzeniu w tej przeglądarce.</p>`;
+  }
+  function lesson(){const m=mod(),card=m.cards[state.ci];return `<header class="page-heading"><p class="eyebrow">Temat ${state.mi+1} / ${modules.length} · Nauka</p><h1>${esc(m.title)}</h1><p class="muted">Jeden mały krok na raz. Bez pośpiechu.</p></header>${meter(state.ci+1,m.cards.length,'Ekran')}<section class="learning-card" data-readable><h2>${esc(card.title)}</h2><p class="learn-text">${card.text}</p>${card.art?svgArt(card.art):''}<div class="remember"><strong>Zapamiętaj:</strong> ${esc(card.remember)}</div></section><div class="learning-controls"><button class="btn btn-quiet" type="button" data-action="prev-card" ${state.ci===0?'disabled':''}>Wstecz</button>${listen()}${btn('next-card',state.ci===m.cards.length-1?'Sprawdź, co pamiętasz':'Dalej')}</div>`}
+  function questionView(q,n,total,mode){const check=mode==='check';const review=mode==='review';const idx=review?state.reviewIndex:check?state.qi:state.examIndex;const ans=review?state.reviewAnswers[idx]:check?state.checkAnswers[idx]:state.examAnswers[idx];const picked=ans!==undefined;const feedback=check||review;const label=check?'Test sprawdzający':review?'Powtórka błędów':'Test końcowy';const term=check?mod().title:(review?'Ćwiczymy to, co było trudne':'Runda '+(Math.floor(idx/6)+1)+' z 3');const classFor=(i)=>{if(!picked)return '';if(feedback){if(i===q.a)return ' correct';if(i===ans)return ' incorrect';return '';}return i===ans?' is-selected':''};const answeredRight=picked&&ans===q.a;
+    return `<header class="page-heading"><p class="eyebrow">${esc(label)}</p><h1>${esc(term)}</h1>${!check&&!review?'<p class="muted">Wynik poznasz na końcu. Bez limitu czasu.</p>':'<p class="muted">Wybierz jedną odpowiedź.</p>'}</header>${meter(idx+1,total,'Pytanie')}<section class="question-card"><div data-readable><h2>${esc(q.q)}</h2>${q.art?svgArt(q.art):''}</div><div class="answer-list" role="group" aria-label="Wybierz odpowiedź">${q.o.map((v,i)=>`<button class="answer${classFor(i)}" data-action="answer" data-answer="${i}" type="button" ${feedback&&picked?'disabled':''} aria-pressed="${picked&&ans===i?'true':'false'}"><span class="answer-letter">${['A','B','C'][i]}</span><span>${esc(v)}</span></button>`).join('')}</div>${feedback&&picked?`<div class="feedback ${answeredRight?'good':'bad'}" role="status"><strong>${answeredRight?'✓ Dobrze!':'Spróbuj zapamiętać:'}</strong><p>${esc(q.why)}</p>${!answeredRight?`<p><strong>Poprawna odpowiedź:</strong> ${esc(q.o[q.a])}</p>`:''}</div>`:''}${!feedback&&picked?'<p class="tip">Odpowiedź zaznaczona. Możesz ją zmienić przed przejściem dalej.</p>':''}<div class="question-bottom">${btn('next-question',idx===total-1?(check||review?'Zobacz wynik':'Zakończ test'):'Następne pytanie', 'btn-primary',!picked)}</div></section>${check?'<p class="tip">W treningu od razu widzisz wyjaśnienie, także po pomyłce.</p>':''}`;
+  }
+  function checkDone(){const m=mod();const score=state.checkQuestions.reduce((n,q,i)=>n+(state.checkAnswers[i]===q.a),0);const errors=state.checkQuestions.map((q,i)=>state.checkAnswers[i]===q.a?null:{...q,moduleId:m.id}).filter(Boolean);const next=state.mi<modules.length-1;
+    return `<header class="page-heading"><p class="eyebrow">Temat ${state.mi+1} · Zakończony</p><h1>${esc(m.title)}</h1></header><section class="result-card"><h2>Test sprawdzający ukończony</h2><div class="big-score">${score} / ${state.checkQuestions.length}</div><p>${score===state.checkQuestions.length?'Wszystkie odpowiedzi poprawne.':score===state.checkQuestions.length-1?'Dobrze! Została tylko jedna rzecz do powtórzenia.':'Możesz wrócić do pytań i spokojnie je powtórzyć.'}</p>${errors.length?`<div class="review-list">${errors.map(q=>`<div class="review-item"><h3>${esc(q.q)}</h3><p class="good-text">${esc(q.o[q.a])}</p><p>${esc(q.why)}</p></div>`).join('')}</div>`:'<p class="good-text">✓ Ten temat jest opanowany.</p>'}<div class="actions">${errors.length?btn('retry-errors','Powtórz błędy','btn-secondary'):''}${btn('retry-lesson','Jeszcze raz nauka','btn-quiet')}${next?btn('next-module','Następny temat'):btn('exam-intro','Test końcowy')}</div></section>`;
+  }
+  function examIntro(){return `<header class="page-heading"><p class="eyebrow">Etap 3 · Test końcowy</p><h1>Co już wiesz o komórkach?</h1></header><section class="result-card"><h2>18 pytań. 3 krótkie rundy.</h2><p>Każda runda ma 6 pytań. Po każdej można zrobić przerwę. Pytania i odpowiedzi losujemy na nowo przed każdym testem. Odpowiedzi i wynik zobaczysz na końcu.</p><div class="status-list"><div><strong>18</strong><span>pytań</span></div><div><strong>3 × 6</strong><span>krótkie rundy</span></div><div><strong>Bez zegara</strong><span>pracujesz we własnym tempie</span></div><div><strong>Powtórka</strong><span>pytań, które sprawiły trudność</span></div></div><div class="actions">${btn('start-exam','Rozpocznij test')}${btn('home','Wróć do tematów','btn-secondary')}</div></section>`}
+  function examBreak(){const completed=state.examIndex;return `<header class="page-heading"><p class="eyebrow">Test końcowy · Przerwa</p><h1>Runda ${Math.floor(completed/6)} zakończona</h1></header><section class="break-card"><h2>Masz już ${completed} z 18 odpowiedzi.</h2><p>Możesz teraz zrobić przerwę. Nie ma pośpiechu.</p><div class="progress"><span style="width:${percent(completed,18)}%"></span></div><div class="actions">${btn('continue-exam','Rozpocznij kolejną rundę')}</div><p class="tip">Jeżeli pozostaniesz na tej stronie, test będzie czekał na dalsze odpowiedzi.</p></section>`}
+  function examDone(){const q=state.examQuestions,ans=state.examAnswers;const score=q.reduce((n,item,i)=>n+(ans[i]===item.a),0);const errors=q.map((item,i)=>ans[i]===item.a?null:{...item,chosen:ans[i]}).filter(Boolean);const breakdown=modules.map(m=>{const vals=q.map((item,i)=>({item,i})).filter(x=>x.item.moduleId===m.id);return {m,score:vals.filter(v=>ans[v.i]===v.item.a).length,total:vals.length}});
+    return `<header class="page-heading"><p class="eyebrow">Test końcowy · Wyniki</p><h1>Twój wynik</h1></header><section class="result-card"><div class="big-score">${score} / ${q.length}</div><p>${score===q.length?'Wszystkie odpowiedzi poprawne!':score>=14?'Dużo już umiesz. Warto powtórzyć kilka szczegółów.':'Dobra okazja, żeby jeszcze raz przejść krótkie tematy.'}</p><div class="mini-table">${breakdown.map(x=>`<div class="summary-top" style="border-bottom:1px solid var(--line);padding:8px 0"><span>${esc(x.m.title)}</span><span>${x.score}/${x.total}</span></div>`).join('')}</div><div class="actions">${errors.length?btn('review-exam-errors',`Powtórz błędy (${errors.length})`):''}${btn('exam-intro','Nowy test','btn-secondary')}${btn('home','Wszystkie tematy','btn-quiet')}</div></section>${errors.length?`<h2 style="font-size:22px;margin:24px 0 12px">Co warto powtórzyć?</h2><div class="review-list">${errors.map(item=>`<div class="review-item"><h3>${esc(item.q)}</h3><p class="bad-text">Twoja odpowiedź: ${esc(item.o[item.chosen])}</p><p class="good-text">Poprawna: ${esc(item.o[item.a])}</p><p>${esc(item.why)}</p></div>`).join('')}</div>`:''}`;
+  }
+  function reviewDone(){const qs=state.reviewQuestions;const score=qs.reduce((n,q,i)=>n+(state.reviewAnswers[i]===q.a),0);return `<header class="page-heading"><p class="eyebrow">Powtórka błędów</p><h1>Powtórka zakończona</h1></header><section class="result-card"><div class="big-score">${score} / ${qs.length}</div><p>${score===qs.length?'Teraz wszystko się zgadza.':'Do tych pytań możesz wrócić jeszcze raz.'}</p><div class="actions">${score<qs.length?btn('retry-review','Jeszcze raz błędne','btn-secondary'):''}${btn('home','Wszystkie tematy')}${btn('exam-intro','Test końcowy','btn-quiet')}</div></section>`}
+  function render(){let html='';if(state.page==='home')html=home();if(state.page==='lesson')html=lesson();if(state.page==='check')html=questionView(state.checkQuestions[state.qi],state.qi+1,state.checkQuestions.length,'check');if(state.page==='checkdone')html=checkDone();if(state.page==='examintro')html=examIntro();if(state.page==='exam')html=questionView(state.examQuestions[state.examIndex],state.examIndex+1,state.examQuestions.length,'exam');if(state.page==='exambreak')html=examBreak();if(state.page==='examdone')html=examDone();if(state.page==='review')html=questionView(state.reviewQuestions[state.reviewIndex],state.reviewIndex+1,state.reviewQuestions.length,'review');if(state.page==='reviewdone')html=reviewDone();app.innerHTML=html;}
+  function startLesson(i){state.mi=i;state.ci=0;state.page='lesson';render();jump()}
+  function shuffled(arr){
+    const copy=[...arr];
+    for(let i=copy.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [copy[i],copy[j]]=[copy[j],copy[i]];
+    }
+    return copy;
+  }
+  // Losowanie bez bezpośredniego powtórzenia dokładnie tego samego układu.
+  function changedShuffle(items,lastArrangement,identity){
+    const result=shuffled(items);
+    if(result.length>1&&Array.isArray(lastArrangement)&&
+        result.every((item,index)=>identity(item)===lastArrangement[index])){
+      const i=Math.floor(Math.random()*result.length);
+      const j=(i+1+Math.floor(Math.random()*(result.length-1)))%result.length;
+      [result[i],result[j]]=[result[j],result[i]];
+    }
+    return result;
+  }
+  function prepareQuestions(questions,quizId){
+    // Pytania i odpowiedzi tasujemy tylko przy STARTOWANIU, nie przy renderowaniu ekranu.
+    const order=changedShuffle(questions,shuffleHistory.orders[quizId],q=>q.uid);
+    shuffleHistory.orders[quizId]=order.map(q=>q.uid);
+    const prepared=order.map(q=>{
+      // Te pola przechowują pierwotne odpowiedzi także podczas kolejnych powtórek.
+      const baseChoices=q.baseChoices||q.o;
+      const baseAnswer=q.baseAnswer===undefined?q.a:q.baseAnswer;
+      const choices=changedShuffle(baseChoices.map((text,index)=>({text,index})),shuffleHistory.options[q.uid],v=>v.index);
+      shuffleHistory.options[q.uid]=choices.map(x=>x.index);
+      return {...q,baseChoices,baseAnswer,o:choices.map(x=>x.text),a:choices.findIndex(x=>x.index===baseAnswer)};
+    });
+    try{localStorage.setItem(shuffleKey,JSON.stringify(shuffleHistory))}catch(e){}
+    return prepared;
+  }
+  function startCheck(){
+    state.checkQuestions=prepareQuestions(mod().check.map((q,i)=>({...q,uid:`check-${mod().id}-${i}`})),`check-${mod().id}`);
+    state.qi=0;state.checkAnswers=[];state.page='check';render();jump();
+  }
+  function startExam(){
+    const selected=modules.flatMap(m=>shuffled(finalBank[m.id].map((q,i)=>({...q,uid:`exam-${m.id}-${i}`,moduleId:m.id}))).slice(0,2));
+    state.examQuestions=prepareQuestions(selected,'exam');
+    state.examAnswers=[];state.examIndex=0;state.page='exam';render();jump();
+  }
+  function startReview(list){
+    state.reviewQuestions=prepareQuestions(list,'review');
+    state.reviewAnswers=[];state.reviewIndex=0;state.page='review';render();jump();
+  }
+  function navigate(page){stopSpeech();state.page=page;render();jump()}
+  document.addEventListener('click',event=>{const el=event.target.closest('[data-action]');if(!el||el.disabled)return;const action=el.dataset.action;
+    if(action==='speak'){speakCurrent();return}
+    if(action==='home'){navigate('home');return}
+    if(action==='continue'){const idx=modules.findIndex(x=>!progress.done.includes(x.id));startLesson(idx===-1?0:idx);return}
+    if(action==='start-lesson'){startLesson(Number(el.dataset.mi));return}
+    if(action==='prev-card'){state.ci=Math.max(0,state.ci-1);navigate('lesson');return}
+    if(action==='next-card'){if(state.ci<mod().cards.length-1){state.ci++;navigate('lesson')}else startCheck();return}
+    if(action==='answer'){
+      const n=Number(el.dataset.answer);
+      if(state.page==='check'){if(state.checkAnswers[state.qi]!==undefined)return;state.checkAnswers[state.qi]=n}
+      else if(state.page==='exam'){state.examAnswers[state.examIndex]=n}
+      else if(state.page==='review'){if(state.reviewAnswers[state.reviewIndex]!==undefined)return;state.reviewAnswers[state.reviewIndex]=n}
+      else return;
+      render();return;
+    }
+    if(action==='next-question'){
+      if(state.page==='check'){
+        if(state.checkAnswers[state.qi]===undefined)return;
+        if(++state.qi>=state.checkQuestions.length){if(!progress.done.includes(mod().id)){progress.done.push(mod().id);save()}navigate('checkdone')}else navigate('check');return;
+      }
+      if(state.page==='review'){
+        if(state.reviewAnswers[state.reviewIndex]===undefined)return;
+        if(++state.reviewIndex>=state.reviewQuestions.length)navigate('reviewdone');else navigate('review');return;
+      }
+      if(state.page==='exam'){
+        if(state.examAnswers[state.examIndex]===undefined)return;
+        state.examIndex++;
+        if(state.examIndex===state.examQuestions.length){const score=state.examQuestions.reduce((n,q,i)=>n+(state.examAnswers[i]===q.a),0);progress.lastExam={score,total:state.examQuestions.length};save();navigate('examdone')}
+        else if(state.examIndex%6===0)navigate('exambreak');else navigate('exam');return;
+      }
+    }
+    if(action==='retry-lesson'){startLesson(state.mi);return}
+    if(action==='retry-errors'){startReview(state.checkQuestions.filter((q,i)=>state.checkAnswers[i]!==q.a));return}
+    if(action==='next-module'){startLesson(Math.min(modules.length-1,state.mi+1));return}
+    if(action==='exam-intro'){navigate('examintro');return}
+    if(action==='start-exam'){startExam();return}
+    if(action==='continue-exam'){navigate('exam');return}
+    if(action==='review-exam-errors'){startReview(state.examQuestions.filter((q,i)=>state.examAnswers[i]!==q.a));return}
+    if(action==='retry-review'){startReview(state.reviewQuestions.filter((q,i)=>state.reviewAnswers[i]!==q.a));return}
+  });
+  render();
+  </script>
+</body>
+</html>
