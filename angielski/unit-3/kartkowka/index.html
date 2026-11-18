@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f8f5">
+  <title>Angielski – sport, przymiotniki i sprzęt | Nauka, trening, test</title>
+  <style>
+    :root {
+      --ink: #1d302a; --muted: #596c63; --green: #13664a; --greenDark: #0f5039;
+      --tint: #edf5ef; --edge: #dbe5dc; --bg: #f6f7f4; --white: #fff;
+      --wrong: #a62e33; --wrongBg: #fff2f0; --good: #14734f;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color-scheme: light;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); line-height: 1.45; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #78bca2; outline-offset: 3px; }
+    button:disabled { cursor: not-allowed; opacity: .48; }
+    .shell { max-width: 900px; margin: auto; padding: 28px 20px 68px; }
+    header { margin-bottom: 24px; }
+    .eyebrow { color: var(--green); font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; }
+    h1 { font-size: clamp(1.6rem, 4vw, 2.45rem); line-height: 1.16; letter-spacing: -.03em; margin: 8px 0 10px; }
+    .sub { color: var(--muted); max-width: 660px; font-size: 1rem; margin: 0; }
+    .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 22px 0 24px; }
+    .tab { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 56px; border: 1px solid var(--edge); background: white; border-radius: 13px; color: var(--muted); font-weight: 750; font-size: 1rem; }
+    .tab[aria-selected=true] { background: var(--green); color: white; border-color: var(--green); }
+    .tab-num { font-size: .75rem; opacity: .7; font-weight: 800; }
+    .panel { background: white; border: 1px solid var(--edge); border-radius: 19px; padding: clamp(18px, 4vw, 30px); box-shadow: 0 8px 30px rgba(28,66,45,.035); }
+    h2 { font-size: clamp(1.25rem, 3vw, 1.55rem); margin: 0 0 7px; line-height: 1.3; }
+    h3 { margin: 0; font-size: 1.16rem; }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .tiny { font-size: .88rem; }
+    .topline, .row, .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .actions { justify-content: flex-start; margin-top: 20px; }
+    .chiprow { display: flex; flex-wrap: wrap; gap: 8px; margin: 17px 0 18px; }
+    .chip { color: var(--ink); border: 1px solid var(--edge); background: #fff; border-radius: 999px; padding: 10px 15px; font-size: .93rem; font-weight: 650; }
+    .chip[aria-pressed=true] { background: var(--tint); color: var(--greenDark); border-color: #9bcbb1; }
+    .progress { width: 100%; height: 9px; background: #e9eee9; border-radius: 999px; overflow: hidden; margin: 15px 0 22px; }
+    .progress > span { display: block; height: 100%; background: var(--green); border-radius: inherit; transition: width .18s; }
+    .flash { border: 1px solid var(--edge); border-radius: 17px; background: #fff; }
+    .flashwords { padding: clamp(24px, 5vw, 40px); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 230px; min-width: 0; }
+    .word-label { font-size: .88rem; font-weight: 750; color: var(--muted); margin-top: 17px; }
+    .word-label:first-of-type { margin-top: 10px; }
+    .answer-divider { border-top: 1px solid var(--edge); width: 100%; margin: 24px 0 4px; }
+
+    .category { font-size: .78rem; font-weight: 800; color: var(--green); letter-spacing: .06em; text-transform: uppercase; }
+    .eng { font-size: clamp(1.75rem, 5vw, 2.6rem); letter-spacing: -.025em; font-weight: 800; overflow-wrap: anywhere; line-height: 1.16; margin: 8px 0 0; }
+    .translation { font-size: clamp(1.18rem, 2.9vw, 1.5rem); margin-top: 8px; color: #314a3e; font-weight: 650; }
+    .hiddenanswer { color: var(--muted); font-size: 1rem; font-style: italic; }
+    .btn { background: white; color: var(--greenDark); border: 1.5px solid #b9d4c4; border-radius: 11px; padding: 12px 18px; min-height: 49px; font-weight: 750; font-size: 1rem; }
+    .btn:hover:not(:disabled), .chip:hover:not(:disabled) { border-color: var(--green); }
+    .primary { color: white; background: var(--green); border-color: var(--green); }
+    .primary:hover:not(:disabled) { background: var(--greenDark); }
+    .quiet { border-color: var(--edge); color: var(--ink); }
+    .reset { color: #7c4a42; border-color: #e4d3d0; }
+    .status-note { margin-top: 13px; color: var(--muted); font-size: .9rem; }
+    .speech-settings { margin-top: 20px; border-top: 1px solid var(--edge); padding-top: 14px; }
+    .speech-settings summary { cursor: pointer; color: var(--muted); font-size: .93rem; font-weight: 650; padding: 7px 0; }
+    .speech-settings .speech-fields { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 13px; margin: 14px 0; }
+    .speech-settings label { display: block; font-size: .91rem; font-weight: 650; margin-bottom: 6px; }
+    .speech-settings select { display: block; width: 100%; min-height: 46px; padding: 8px 10px; border: 1px solid #b4c8b8; background: white; color: var(--ink); border-radius: 9px; }
+    @media (max-width: 640px) { .speech-settings .speech-fields { grid-template-columns: 1fr; } }
+    .question { padding: 22px 0 4px; }
+    .question-title { color: var(--muted); font-size: 1.07rem; font-weight: 650; }
+    .prompt { font-size: clamp(1.7rem, 5vw, 2.55rem); line-height: 1.2; font-weight: 800; letter-spacing: -.025em; margin: 13px 0 23px; overflow-wrap: anywhere; }
+    .answergrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+    .option { border: 1.5px solid #d5e2d8; background: #fff; border-radius: 12px; text-align: left; padding: 17px; min-height: 80px; font-size: clamp(.98rem, 2vw, 1.12rem); line-height: 1.35; font-weight: 650; transition: border-color .1s, background-color .1s; overflow-wrap: anywhere; }
+    .option[data-selected=true] { border-color: var(--green); background: #ecf6ef; box-shadow: inset 0 0 0 1px var(--green); }
+    .option[data-result=correct] { border-color: var(--good); background: #eaf6ef; }
+    .option[data-result=wrong] { border-color: var(--wrong); background: var(--wrongBg); }
+    .typebox { width: 100%; border: 1.5px solid #aebfb4; border-radius: 12px; padding: 16px 18px; font-size: 1.3rem; min-height: 62px; color: var(--ink); background: #fff; }
+    .typebox:disabled { background: #f7f8f5; color: #364f42; }
+    .hint { margin-top: 11px; font-size: .91rem; color: var(--muted); }
+    .feedback { margin-top: 20px; padding: 17px 18px; border-radius: 12px; background: var(--tint); border: 1px solid #d0e5d7; }
+    .feedback.bad { background: var(--wrongBg); border-color: #edcbc5; }
+    .feedback strong { display: block; font-size: 1.1rem; margin-bottom: 4px; }
+    .feedback.bad strong { color: var(--wrong); }
+    .feedback.good strong { color: var(--good); }
+    .simple-box { border-radius: 13px; border: 1px solid var(--edge); background: #fafbf9; padding: 17px; margin: 18px 0; }
+    .choice-label { font-weight: 750; display: block; margin-bottom: 9px; }
+    .round-options { display: flex; flex-wrap: wrap; gap: 9px; }
+    .counter { color: var(--muted); font-weight: 650; font-size: .93rem; }
+    .bigscore { font-size: clamp(2.6rem, 8vw, 4.3rem); font-weight: 850; line-height: 1; letter-spacing: -.05em; margin: 15px 0 12px; }
+    .resultlist { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 9px; }
+    .resultitem { display: flex; gap: 13px; border: 1px solid var(--edge); border-radius: 12px; padding: 13px 15px; align-items: flex-start; }
+    .resultitem.wrong { border-color: #eaccc7; background: #fffafa; }
+    .resultitem .symbol { font-weight: 800; color: var(--good); font-size: 1.12rem; min-width: 21px; }
+    .resultitem.wrong .symbol { color: var(--wrong); }
+    .resultitem p { margin: 3px 0; overflow-wrap: anywhere; }
+    .resultitem .qname { font-weight: 750; }
+    .pill { display: inline-block; padding: 5px 9px; background: var(--tint); color: var(--greenDark); font-weight: 750; font-size: .77rem; border-radius: 99px; }
+    .smallgap { margin-top: 8px; }
+    footer { margin-top: 20px; font-size: .88rem; color: #66786d; text-align: center; }
+    @media (max-width: 640px) {
+      .shell { padding: 17px 12px 38px; }
+      .panel { padding: 19px 15px; }
+      .tabs { gap: 6px; margin: 17px 0; }
+      .tab { min-height: 53px; gap: 4px; font-size: .92rem; }
+      .flashwords { padding: 24px 20px; min-height: 210px; }
+      .answergrid { grid-template-columns: 1fr; gap: 9px; }
+      .option { min-height: 64px; padding: 13px 15px; }
+      .btn { flex-grow: 1; }
+      .actions > .btn { flex-basis: 35%; }
+      .prompt { margin-bottom: 17px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <div class="eyebrow">Angielski · słownictwo</div>
+    <h1>Sport, przymiotniki i sprzęt</h1>
+    <p class="sub">28 słówek ze zdjęcia. Najpierw przeczytaj i posłuchaj, potem poćwicz, a na końcu sprawdź, co pamiętasz.</p>
+  </header>
+  <nav class="tabs" aria-label="Etapy nauki">
+    <button type="button" class="tab" id="tab-learn" aria-selected="true" onclick="switchTab('learn')"><span class="tab-num">01</span> Nauka</button>
+    <button type="button" class="tab" id="tab-train" aria-selected="false" onclick="switchTab('train')"><span class="tab-num">02</span> Trening</button>
+    <button type="button" class="tab" id="tab-test" aria-selected="false" onclick="switchTab('test')"><span class="tab-num">03</span> Test</button>
+  </nav>
+  <main id="app" class="panel" aria-live="polite"></main>
+  <footer>Quiz działa bez internetu. Wpisywane odpowiedzi są sprawdzane bez podpowiedzi klawiatury.</footer>
+</div>
+<script>
+'use strict';
+const WORDS = [
+  {en:'basketball', pl:'koszykówka', cat:'sports', typo:['basketbal','baskettball','baskeball']},
+  {en:'dodge ball', pl:'gra w zbijaka', cat:'sports', typo:['dodgebal','dogde ball','dodge boll']},
+  {en:'handball', pl:'piłka ręczna', cat:'sports', typo:['handbal','hanball','handboll']},
+  {en:'ice hockey', pl:'hokej na lodzie', cat:'sports', typo:['ice hocky','ice hokey','ice hokkey']},
+  {en:'sailing', pl:'żeglarstwo', cat:'sports', typo:['sailling','sailng','seiling']},
+  {en:'surfing', pl:'surfing', cat:'sports', typo:['surffing','surfng','serfing']},
+  {en:'table tennis', pl:'tenis stołowy, ping-pong', cat:'sports', typo:['table tenis','tabel tennis','table tenniss']},
+  {en:'windsurfing', pl:'windsurfing', cat:'sports', typo:['windserfing','windsurffing','windsufring']},
+  {en:'boring', pl:'nudny', cat:'adjectives', typo:['borring','borng','boaring']},
+  {en:'cheap', pl:'tani', cat:'adjectives', typo:['cheep','chep','chaep']},
+  {en:'dangerous', pl:'niebezpieczny', cat:'adjectives', typo:['dangarous','dangerus','dangereous']},
+  {en:'difficult', pl:'trudny', cat:'adjectives', typo:['dificcult','dificult','diffcult']},
+  {en:'easy', pl:'łatwy', cat:'adjectives', typo:['eazy','esay','eas']},
+  {en:'exciting', pl:'ekscytujący', cat:'adjectives', typo:['exiciting','exciteing','excitting']},
+  {en:'expensive', pl:'drogi', cat:'adjectives', typo:['expencive','exspensive','expensiv']},
+  {en:'safe', pl:'bezpieczny', cat:'adjectives', typo:['saffe','saf','saef']},
+  {en:'flippers', pl:'płetwy', cat:'equipment', typo:['flipers','fliperes','flipppers']},
+  {en:'football boots', pl:'korki, buty do piłki nożnej', cat:'equipment', typo:['fotball boots','football bots','footbal boots']},
+  {en:'goggles', pl:'okulary pływackie', cat:'equipment', typo:['googles','gogles','goglles']},
+  {en:'helmet', pl:'kask', cat:'equipment', typo:['helment','hemet','hellmet']},
+  {en:'ice skates', pl:'łyżwy', cat:'equipment', typo:['ice scates','ice skats','ice skatees']},
+  {en:'in-line skates', pl:'łyżworolki', cat:'equipment', typo:['in-line scates','inline skats','in-line skats']},
+  {en:'skis', pl:'narty', cat:'equipment', typo:['skiss','skie','skiis']},
+  {en:'surfboard', pl:'deska surfingowa', cat:'equipment', typo:['surfbord','surfbaord','surboard']},
+  {en:'table tennis racket', pl:'paletka do ping-ponga', cat:'equipment', typo:['table tenis racket','table tennis raket','tabel tennis racket']},
+  {en:'tennis racket', pl:'rakieta tenisowa', cat:'equipment', typo:['tenis racket','tennis raket','teniss racket']},
+  {en:'tracksuit', pl:'dres', cat:'equipment', typo:['traksuit','tracksiut','trackssuit']},
+  {en:'wetsuit', pl:'pianka, strój piankowy', cat:'equipment', typo:['watsuit','wetsut','wetssuit']}
+];
+const CATS = {all:'Wszystkie', sports:'Sport', adjectives:'Przymiotniki', equipment:'Sprzęt'};
+const app = document.getElementById('app');
+const escapeHTML = s => String(s).replace(/[&<>"']/g, x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+const shuffle = arr => { const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const normalize = s => String(s ?? '').trim().toLowerCase().replace(/\s+/g, ' ');
+const randomWord = arr => arr[Math.floor(Math.random()*arr.length)];
+let tab='learn';
+let learn = {cat:'all', index:0, show:true};
+let mastered = new Set();
+try { mastered = new Set(JSON.parse(localStorage.getItem('englishSportMastered') || '[]')); } catch(e) {}
+let training = null, trainingMode = 'mixed';
+let exam = null, examCount = 28;
+const VOICE_STORAGE = 'englishSportSpeechSettings';
+let speechSettings = {locale:'en-GB', voiceKey:''};
+try {
+  const saved = JSON.parse(localStorage.getItem(VOICE_STORAGE) || '{}');
+  if (['en-GB','en-US'].includes(saved.locale)) speechSettings.locale = saved.locale;
+  if (typeof saved.voiceKey === 'string') speechSettings.voiceKey = saved.voiceKey;
+} catch(e) {}
+let knownVoices = [];
+function voiceKey(v) { return `${v.voiceURI}|${v.lang}|${v.name}`; }
+function isEnglishVoice(v) { return String(v.lang).replace('_','-').toLowerCase().startsWith('en-'); }
+function voiceLocale(v) { return String(v.lang).replace('_','-').toLowerCase(); }
+function englishVoices() { return knownVoices.filter(isEnglishVoice).sort((a,b) =>
+  Number(voiceLocale(b) === speechSettings.locale.toLowerCase()) - Number(voiceLocale(a) === speechSettings.locale.toLowerCase()) || a.name.localeCompare(b.name)
+); }
+function saveSpeechSettings() { try { localStorage.setItem(VOICE_STORAGE,JSON.stringify(speechSettings)); } catch(e) {} }
+function refreshVoices() {
+  if (!('speechSynthesis' in window)) return;
+  knownVoices = window.speechSynthesis.getVoices();
+  updateVoiceControls();
+}
+if ('speechSynthesis' in window) {
+  refreshVoices();
+  if (window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged',refreshVoices);
+  else window.speechSynthesis.onvoiceschanged = refreshVoices;
+}
+function changeVoiceLocale(value) {
+  if (!['en-GB','en-US'].includes(value)) return;
+  speechSettings.locale = value; speechSettings.voiceKey = ''; saveSpeechSettings(); updateVoiceControls();
+}
+function changeVoiceChoice(value) {
+  speechSettings.voiceKey = value; saveSpeechSettings(); updateVoiceControls();
+}
+function updateVoiceControls() {
+  const accent = document.getElementById('speechLocale');
+  const selector = document.getElementById('speechVoice');
+  const info = document.getElementById('speechInfo');
+  if (!accent || !selector || !info) return;
+  accent.value = speechSettings.locale;
+  if (!('speechSynthesis' in window)) {
+    selector.innerHTML = '<option>Brak obsługi wymowy</option>'; selector.disabled = true;
+    info.textContent = 'Ta przeglądarka nie obsługuje syntezatora mowy.'; return;
+  }
+  const voices = englishVoices();
+  selector.disabled = !voices.length;
+  selector.innerHTML = '<option value="">Automatycznie (głos angielski)</option>' + voices.map(v =>
+    `<option value="${escapeHTML(voiceKey(v))}">${escapeHTML(v.name)} (${escapeHTML(v.lang.replace('_','-'))})${v.localService?' · na urządzeniu':''}</option>`
+  ).join('');
+  const matching = voices.find(v => voiceKey(v) === speechSettings.voiceKey);
+  if (speechSettings.voiceKey && !matching) { speechSettings.voiceKey = ''; saveSpeechSettings(); }
+  selector.value = speechSettings.voiceKey;
+  const preferred = voices.find(v => voiceLocale(v) === speechSettings.locale.toLowerCase());
+  if (!voices.length) info.textContent = 'Lista głosów jest niedostępna. Przeglądarka spróbuje użyć angielskiej wymowy. Jeśli brzmi źle, dodaj głos angielski w ustawieniach urządzenia.';
+  else if (!preferred) info.textContent = 'Nie znaleziono głosu z wybranego regionu. Odtwarzanie użyje innego dostępnego głosu angielskiego.';
+  else info.textContent = 'Dostępne głosy zależą od przeglądarki i urządzenia. Wybierz głos i odsłuchaj bieżące słowo.';
+}
+function saveMastered(){ try { localStorage.setItem('englishSportMastered', JSON.stringify([...mastered])); } catch(e) {} }
+function switchTab(name){ tab=name; for(const key of ['learn','train','test'])document.getElementById('tab-'+key).setAttribute('aria-selected', String(key===tab)); render(); }
+function bar(done,total){return `<div class="progress" role="progressbar" aria-label="Postęp" aria-valuenow="${done}" aria-valuemin="0" aria-valuemax="${total}"><span style="width:${total?100*done/total:0}%"></span></div>`;}
+function progressLabel(i,n){return `<span class="counter">${i} z ${n}</span>`;}
+function render(){ if(tab==='learn')renderLearn(); if(tab==='train')renderTrain(); if(tab==='test')renderTest(); }
+function learnWords(){return WORDS.filter(w => learn.cat==='all'||w.cat===learn.cat);}
+function renderLearn(){
+  const set=learnWords(); if(learn.index>=set.length)learn.index=0;
+  const w=set[learn.index];
+  const known=set.filter(x=>mastered.has(x.en)).length;
+  app.innerHTML = `
+    <div class="topline"><div><h2>Etap 1. Nauka słówek</h2><p class="muted">Przeczytaj słowo i tłumaczenie. Możesz też posłuchać wymowy.</p></div><span class="pill">Znam: ${known}/${set.length}</span></div>
+    <div class="chiprow" role="group" aria-label="Kategorie słówek">
+      ${Object.entries(CATS).map(([key,label])=>`<button type="button" class="chip" aria-pressed="${learn.cat===key}" onclick="selectCat('${key}')">${label}${key==='all'?' (28)':''}</button>`).join('')}
+    </div>
+    <div class="topline">${progressLabel(learn.index+1,set.length)}<span class="counter">${mastered.has(w.en)?'Zaznaczone jako znane':'Odkryj znaczenie i powtórz'}</span></div>
+    ${bar(learn.index+1,set.length)}
+    <section class="flash" aria-label="Fiszka ze słówkiem">
+      <div class="flashwords">
+        <span class="category">${CATS[w.cat]}</span>
+        <div class="word-label">Po angielsku</div>
+        <div class="eng">${escapeHTML(w.en)}</div>
+        <div class="answer-divider"></div>
+        <div class="word-label">Po polsku</div>
+        ${learn.show?`<div class="translation">${escapeHTML(w.pl)}</div>`:`<div class="hiddenanswer">Tłumaczenie jest zakryte</div>`}
+      </div>
+    </section>
+    <div class="actions">
+      <button class="btn quiet" type="button" onclick="speakWord()">Odsłuchaj wymowę</button>
+      <button class="btn quiet" type="button" onclick="toggleTranslation()">${learn.show?'Zakryj tłumaczenie':'Pokaż tłumaczenie'}</button>
+      <button class="btn" type="button" onclick="toggleKnown()">${mastered.has(w.en)?'Jeszcze ćwiczę':'Już znam'}</button>
+    </div>
+    <details class="speech-settings">
+      <summary>Ustawienia wymowy (dla rodzica)</summary>
+      <div class="speech-fields">
+        <div><label for="speechLocale">Język i akcent</label>
+          <select id="speechLocale" onchange="changeVoiceLocale(this.value)">
+            <option value="en-GB">Angielski brytyjski</option>
+            <option value="en-US">Angielski amerykański</option>
+          </select></div>
+        <div><label for="speechVoice">Głos lektora</label>
+          <select id="speechVoice" onchange="changeVoiceChoice(this.value)"><option value="">Automatycznie (głos angielski)</option></select></div>
+      </div>
+      <p class="tiny muted" id="speechInfo"></p>
+    </details>
+    <div class="actions" style="justify-content:space-between">
+      <button class="btn quiet" type="button" onclick="stepLearn(-1)">← Poprzednie</button>
+      <button class="btn primary" type="button" onclick="stepLearn(1)">Następne →</button>
+    </div>
+    <p class="status-note">Zaznaczaj „Już znam”, kiedy słówko nie sprawia trudności. Możesz wracać do niego dowolną liczbę razy.</p>`;
+  updateVoiceControls();
+}
+function selectCat(c){ learn.cat=c; learn.index=0; learn.show=true; renderLearn(); }
+function stepLearn(delta){learn.index=(learn.index+delta+learnWords().length)%learnWords().length; learn.show=true; renderLearn();}
+function toggleTranslation(){learn.show=!learn.show;renderLearn();}
+function toggleKnown(){let w=learnWords()[learn.index];if(mastered.has(w.en))mastered.delete(w.en);else mastered.add(w.en);saveMastered();renderLearn();}
+function speakWord(){
+  const w = learnWords()[learn.index];
+  if (!('speechSynthesis' in window)) { alert('Ta przeglądarka nie obsługuje odczytywania słów.'); return; }
+  const synth = window.speechSynthesis;
+  // Some browsers provide the voice list only after the first user interaction.
+  knownVoices = synth.getVoices();
+  const available = englishVoices();
+  const selected = available.find(v => voiceKey(v) === speechSettings.voiceKey);
+  const preferred = available.find(v => voiceLocale(v) === speechSettings.locale.toLowerCase());
+  const voice = selected || preferred || available[0];
+  synth.cancel();
+  const msg = new SpeechSynthesisUtterance(w.en);
+  msg.lang = voice ? voice.lang : speechSettings.locale;
+  if (voice) msg.voice = voice;
+  msg.rate = 0.94;
+  msg.pitch = 1;
+  synth.speak(msg);
+  updateVoiceControls();
+}
+function spellingOptions(w){return shuffle([w.en,...w.typo]);}
+function translationOptions(w){const others=shuffle(WORDS.filter(x=>x.cat===w.cat&&x.en!==w.en)).slice(0,3);return shuffle([w,...others]).map(x=>({value:x.en,label:x.pl}));}
+function createQuestion(word,type){return {word,type, options:type==='spelling'?spellingOptions(word).map(s=>({value:s,label:s})):type==='meaning'?translationOptions(word):[],selected:null,submitted:false,entered:'',correct:false};}
+function createTrainPool(items,mode){return shuffle(items).map((word,i)=>createQuestion(word,mode==='typed'?'typed':mode==='choice'?(i%2===0?'meaning':'spelling'):shuffle(['typed','typed','meaning','spelling'])[0]));}
+function beginTrain(items=WORDS){training={items:createTrainPool(items,trainingMode),index:0,firstCorrect:0,errors:[],feedback:false,extra:0,answered:0};renderTrain();}
+function trainQuestion(){return training.items[training.index];}
+function renderTrain(){
+ if(!training){
+  app.innerHTML=`<h2>Etap 2. Trening</h2><p class="muted">Tu dostajesz informację zwrotną po każdym pytaniu. Na końcu możesz powtórzyć wyłącznie słówka, które sprawiły trudność.</p>
+   <div class="simple-box"><span class="choice-label">Rodzaj ćwiczeń</span><div class="chiprow" style="margin:0">
+     ${[['mixed','Mieszany'],['typed','Wpisywanie słów'],['choice','Wybór odpowiedzi']].map(([k,n])=>`<button type="button" class="chip" aria-pressed="${trainingMode===k}" onclick="setTrainingMode('${k}')">${n}</button>`).join('')}</div>
+    </div><button class="btn primary" type="button" onclick="beginTrain()">Rozpocznij trening (28 słówek) →</button>`;
+  return;
+ }
+ if(training.index>=training.items.length){renderTrainSummary();return;}
+ const q=trainQuestion();
+ app.innerHTML=`<div class="topline"><h2>Trening</h2>${progressLabel(training.index+1,training.items.length)}</div>
+   ${bar(training.index,training.items.length)}${questionMarkup(q,'train')}
+   ${training.feedback?feedbackMarkup(q):''}
+   <div class="actions">
+   ${training.feedback?`<button type="button" class="btn primary" onclick="nextTrain()">${training.index+1===training.items.length?'Zobacz wynik':'Następne pytanie'} →</button>`:
+     `<button type="button" class="btn primary" onclick="submitTrain()">Sprawdź odpowiedź</button>`}
+   </div>`;
+ if(q.type==='typed'&&!training.feedback)setupTextInput('train');
+}
+function setTrainingMode(m){trainingMode=m;renderTrain();}
+function chooseAnswer(mode,value){const q=mode==='train'?trainQuestion():exam.questions[exam.index]; if(q.submitted)return;q.selected=value;if(mode==='train')renderTrain();else renderTest();}
+function questionMarkup(q,mode){
+ const w=q.word;
+ let head,prompt;
+ if(q.type==='typed'){head='Napisz po angielsku:';prompt=w.pl;}
+ else if(q.type==='spelling'){head='Wskaż poprawnie zapisane angielskie słowo:';prompt=w.pl;}
+ else {head='Co to znaczy po polsku?';prompt=w.en;}
+ const controls=q.type==='typed'?
+   `<input type="text" id="typedAnswer" class="typebox" placeholder="Wpisz odpowiedź po angielsku" aria-label="Angielska odpowiedź" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ${q.submitted?'disabled':''} value="${escapeHTML(q.entered)}" maxlength="100">
+   <p class="hint">Zwróć uwagę na wszystkie litery, spacje i myślnik. Wielkie i małe litery nie mają znaczenia.</p>`:
+   `<div class="answergrid" role="group" aria-label="Możliwe odpowiedzi">${q.options.map((o,i)=>`<button type="button" class="option" data-selected="${q.selected===o.value}" ${q.submitted?'disabled':''} onclick="chooseAnswer('${mode}',${JSON.stringify(o.value).replace(/"/g,'&quot;')})">${escapeHTML(o.label)}</button>`).join('')}</div>`;
+ return `<div class="question"><div class="question-title">${head}</div><div class="prompt">${escapeHTML(prompt)}</div>${controls}</div>`;
+}
+function setupTextInput(mode){const field=document.getElementById('typedAnswer'); if(!field)return; const q=mode==='train'?trainQuestion():exam.questions[exam.index];
+  field.addEventListener('input',()=>{q.entered=field.value;});
+  field.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();mode==='train'?submitTrain():submitExam();}});
+}
+function calcCorrect(q){return q.type==='typed'?normalize(q.entered)===normalize(q.word.en):q.selected===q.word.en;}
+function damerau(a,b){ // Small edit distance, used only to label near-miss answers in the review.
+  a=normalize(a);b=normalize(b);const d=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));
+  for(let i=0;i<=a.length;i++)d[i][0]=i;
+  for(let j=0;j<=b.length;j++)d[0][j]=j;
+  for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++){
+   let cost=a[i-1]===b[j-1]?0:1;
+   d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+cost);
+   if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1);
+  }
+  return d[a.length][b.length];
+}
+function nearTypo(q){return q.type==='typed' && normalize(q.entered) && !q.correct && damerau(q.entered,q.word.en)<=2;}
+function submitTrain(){const q=trainQuestion(); if(q.submitted)return;
+ if(q.type==='typed')q.entered=document.getElementById('typedAnswer').value;
+ if(q.type!=='typed'&&!q.selected){alert('Wybierz odpowiedź.');return;}
+ if(q.type==='typed'&&!normalize(q.entered)){alert('Wpisz odpowiedź.');return;}
+ q.correct=calcCorrect(q);q.submitted=true;training.feedback=true;training.answered++;
+ if(q.correct)training.firstCorrect++; else training.errors.push(q.word);
+ renderTrain();
+}
+function feedbackMarkup(q){
+ return `<div class="feedback ${q.correct?'good':'bad'}" role="status"><strong>${q.correct?'Dobrze!':'Jeszcze nie.'}</strong>
+ <div>${q.correct?'To poprawna odpowiedź.':`${nearTypo(q)?'To wygląda na literówkę. ':''}Poprawnie: <b>${escapeHTML(q.word.en)}</b> = ${escapeHTML(q.word.pl)}.`}</div></div>`;
+}
+function nextTrain(){training.index++;training.feedback=false;renderTrain();}
+function renderTrainSummary(){const unique=[...new Map(training.errors.map(w=>[w.en,w])).values()];app.innerHTML=`
+ <h2>Trening zakończony</h2><div class="bigscore">${training.firstCorrect}/${training.answered}</div>
+ <p>Poprawnych odpowiedzi za pierwszym razem. W treningu można powtarzać błędne słówka.</p>
+ ${unique.length?`<div class="simple-box"><strong>Do powtórki (${unique.length}):</strong><p class="smallgap">${unique.map(w=>escapeHTML(w.en)).join(', ')}</p></div>`:'<div class="feedback good"><strong>Wszystko poprawnie!</strong>Możesz przejść do testu końcowego.</div>'}
+ <div class="actions">${unique.length?`<button type="button" class="btn primary" onclick="repeatTrainingErrors()">Ćwicz błędne słówka</button>`:''}
+ <button type="button" class="btn quiet" onclick="resetTrain()">Nowy trening od początku</button><button type="button" class="btn quiet" onclick="switchTab('test')">Przejdź do testu →</button></div>`;
+}
+function repeatTrainingErrors(){const errors=[...new Set(training.errors.map(w=>w.en))];beginTrain(WORDS.filter(w=>errors.includes(w.en)));}
+function resetTrain(){training=null;renderTrain();}
+function startExam(){
+ const items=shuffle(WORDS).slice(0,examCount);
+ const typeCounts={typed:Math.ceil(items.length*.50),spelling:Math.floor(items.length*.25)};
+ const types=shuffle([...Array(typeCounts.typed).fill('typed'),...Array(typeCounts.spelling).fill('spelling'),...Array(items.length-typeCounts.typed-typeCounts.spelling).fill('meaning')]);
+ exam={questions:items.map((w,i)=>createQuestion(w,types[i])),index:0,finished:false};
+ renderTest();
+}
+function setExamCount(n){examCount=n;renderTest();}
+function currentExam(){return exam.questions[exam.index];}
+function renderTest(){
+ if(!exam){
+  app.innerHTML=`<h2>Etap 3. Test końcowy</h2>
+   <p class="muted">Jak na sprawdzianie: każdą odpowiedź zatwierdzasz tylko raz. Nie ma cofania ani poprawiania. Wynik i wszystkie błędy zobaczysz dopiero na końcu.</p>
+   <div class="simple-box"><span class="choice-label">Długość testu</span><div class="round-options">
+    ${[10,20,28].map(n=>`<button type="button" class="chip" aria-pressed="${examCount===n}" onclick="setExamCount(${n})">${n} pytań${n===28?' · cały materiał':''}</button>`).join('')}</div>
+   <p class="tiny muted" style="margin:14px 0 0">Będą trzy rodzaje zadań: wpisywanie słowa po angielsku, wybór prawidłowej pisowni spośród literówek i tłumaczenie. Za każde zadanie 1 punkt.</p></div>
+   <button type="button" class="btn primary" onclick="startExam()">Rozpocznij test →</button>`;return;
+ }
+ if(exam.finished){renderExamResults();return;}
+ const q=currentExam();
+ app.innerHTML=`<div class="topline"><h2>Test końcowy</h2>${progressLabel(exam.index+1,exam.questions.length)}</div>
+ ${bar(exam.index,exam.questions.length)}
+ <div class="topline"><span class="pill">Bez poprawiania odpowiedzi</span><span class="counter">Wynik zobaczysz po oddaniu testu</span></div>
+ ${questionMarkup(q,'test')}
+ <div class="actions"><button type="button" class="btn primary" onclick="submitExam()">${exam.index+1===exam.questions.length?'Zatwierdź i zakończ':'Zatwierdź i dalej →'}</button>
+ <button type="button" class="btn quiet" onclick="skipExam()">Pomiń pytanie</button></div>
+ <p class="status-note">Po zatwierdzeniu nie możesz wrócić do tego pytania.</p>`;
+ if(q.type==='typed')setupTextInput('test');
+}
+function submitExam(){const q=currentExam();if(q.submitted)return;
+ if(q.type==='typed')q.entered=document.getElementById('typedAnswer').value;
+ if(q.type==='typed'&&!normalize(q.entered)){alert('Wpisz odpowiedź albo wybierz „Pomiń pytanie”.');return;}
+ if(q.type!=='typed'&&!q.selected){alert('Wybierz odpowiedź albo wybierz „Pomiń pytanie”.');return;}
+ finishExamQuestion(false);
+}
+function skipExam(){finishExamQuestion(true);}
+function finishExamQuestion(skipped){const q=currentExam();if(q.submitted)return;q.skipped=skipped;q.correct=!skipped&&calcCorrect(q);q.submitted=true;
+ if(exam.index===exam.questions.length-1)exam.finished=true;else exam.index++;
+ renderTest(); window.scrollTo({top:0,behavior:'instant'});
+}
+function resultAnswer(q){if(q.skipped)return 'Pominięto';if(q.type==='typed')return q.entered||'(brak)';if(q.type==='spelling')return q.selected||'(brak)';return q.options.find(x=>x.value===q.selected)?.label||'(brak)';}
+function correctAnswer(q){return q.type==='meaning'?q.word.pl:q.word.en;}
+function renderExamResults(){const n=exam.questions.length;const score=exam.questions.filter(q=>q.correct).length;const mistakes=exam.questions.filter(q=>!q.correct);
+ const percentage=Math.round(100*score/n);
+ app.innerHTML=`<h2>Wynik testu</h2><p class="muted">Test oddany. Odpowiedzi są zamknięte.</p>
+ <div class="bigscore">${score}/${n}</div><p><strong>${percentage}%</strong> poprawnych odpowiedzi.</p>
+ ${bar(score,n)}
+ <div class="topline"><h3>${mistakes.length?'Błędne odpowiedzi':'Wszystko poprawnie'}</h3><span class="counter">${mistakes.length} błędów</span></div>
+ ${mistakes.length?`<ul class="resultlist">${mistakes.map((q)=>`<li class="resultitem wrong"><span class="symbol">×</span><div>
+ <div class="qname">${escapeHTML(q.word.pl)} · ${escapeHTML(q.type==='meaning'?q.word.en:'polski → angielski')}</div>
+ <p>Twoja odpowiedź: <strong>${escapeHTML(resultAnswer(q))}</strong>${nearTypo(q)?' <span class="pill">Literówka</span>':''}</p>
+ <p>Poprawnie: <strong>${escapeHTML(correctAnswer(q))}</strong></p>
+ </div></li>`).join('')}</ul>`:'<div class="feedback good"><strong>Świetny wynik.</strong>Wszystkie odpowiedzi są poprawne.</div>'}
+ <details class="simple-box"><summary style="font-weight:750;cursor:pointer">Pokaż wszystkie odpowiedzi (${n})</summary>
+ <ul class="resultlist">${exam.questions.map(q=>`<li class="resultitem ${q.correct?'':'wrong'}"><span class="symbol">${q.correct?'✓':'×'}</span><div>
+  <div class="qname">${escapeHTML(q.word.pl)}</div><p>Twoja: ${escapeHTML(resultAnswer(q))}</p>
+  <p>Poprawna: ${escapeHTML(correctAnswer(q))}</p></div></li>`).join('')}</ul></details>
+ <div class="actions"><button type="button" class="btn primary" onclick="retryExam()">Nowy test od początku ↻</button>
+ ${mistakes.length?`<button type="button" class="btn quiet" onclick="trainExamErrors()">Przećwicz błędne słówka</button>`:''}
+ </div><p class="status-note">W nowym teście kolejność pytań, warianty odpowiedzi i rodzaje zadań są losowane ponownie.</p>`;
+}
+function retryExam(){exam=null;startExam();}
+function trainExamErrors(){const mistakes=[...new Set(exam.questions.filter(q=>!q.correct).map(q=>q.word.en))];trainingMode='mixed';switchTab('train');beginTrain(WORDS.filter(w=>mistakes.includes(w.en)));}
+window.addEventListener('keydown',e=>{if(tab==='learn'&&e.target.tagName!=='INPUT'){if(e.key==='ArrowRight')stepLearn(1);if(e.key==='ArrowLeft')stepLearn(-1);}});
+render();
+</script>
+</body>
+</html>
